@@ -1,27 +1,35 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
+  color: #d4eed1;
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+p {
+  font-family: var(--font-merriweather);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.Fshadow {
+  transition: 0.3s ease !important;
+  box-shadow: 0px 6px 15px rgba(255, 167, 38, 0.5) !important;
 }
+.Fshadow:hover {
+  box-shadow: none !important;
+}
+
+.button {
+  background-color: #ffa726 !important;
+  color: #fff !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+}
+.button:hover {
+  background-color: #e69622 !important;
+  color: #fff !important;
+  border: 1px solid #e69622 !important;
+}
+
+/* Import Ant Design reset first to avoid conflicts */
+/* @import "antd/dist/reset.css"; */
+
+/* Tailwind base, components, and utilities */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";

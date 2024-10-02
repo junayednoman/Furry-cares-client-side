@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  corePlugins: {
+    preflight: false, // Disable base reset styles to avoid conflicts with Ant Design
+  },
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,8 +12,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primaryBg: "#D4EED1",
+        text: "#2D2D2D",
+        accent: "#FFA726",
+        accentDark: "#e69622"
+      },
+      fontFamily: {
+        montserrat: ["var(--font-montserrat)"],
+        merriweather: ["var(--font-merriweather)"],
       },
     },
   },
