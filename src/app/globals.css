@@ -1,7 +1,19 @@
+* {
+  margin-bottom: 0 !important;
+}
 body {
   color: #d4eed1;
   background: var(--background);
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-montserrat);
+}
+
 p {
   font-family: var(--font-merriweather);
 }
