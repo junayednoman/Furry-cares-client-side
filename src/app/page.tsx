@@ -2,6 +2,7 @@
 import BigPostCard from "@/components/ui/BigPostCard";
 import PostCard from "@/components/ui/ClassicPostCard";
 import FButton from "@/components/ui/FButton";
+import SmallPostCard from "@/components/ui/SmallPostCard";
 
 const post = {
   _id: "66fbc07dc661ee51510a17ee",
@@ -42,7 +43,7 @@ const post = {
 
 const Page = () => {
   return (
-    <div className="dm:m-32 mx-3">
+    <div className="md:m-32 m-3 space-y-12 pb-20">
       <h3 className="text-5xl font-semibold text-text mb-12">
         Hello, World! from Page
       </h3>
@@ -51,13 +52,16 @@ const Page = () => {
         <PostCard
           heading={post.title}
           imageUrl={
-            "https://img.freepik.com/free-photo/puppy-child-wallpaper_1409-6019.jpg?t=st=1727928883~exp=1727932483~hmac=a4f68fd50431ae91d88c8bfbb74d5b6418cf51d8ee62cabad3b1b3b0ad193986&w=1380"
+            "https://img.freepik.com/free-photo/adorable-portrait-pet-with-baby-surrounded-by-flowers_23-2151850071.jpg?t=st=1727930054~exp=1727933654~hmac=ff1f07dc90de773c443679bf985249acd39179e6ccb8646086e409ddfcc749bd&w=1380"
           }
           tag={post.category}
         />
       </div>
-      <div className="lg:w-[1000px] mt-12">
+      <div className="lg:w-[1000px] space-y-8">
         <BigPostCard post={post} />
+      </div>
+      <div className="lg:w-[800px] space-y-8">
+        <SmallPostCard post={post} />
       </div>
     </div>
   );
