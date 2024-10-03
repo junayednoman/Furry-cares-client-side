@@ -43,7 +43,7 @@ const PostCard: React.FC<PostCardProps> = ({ imageUrl, heading, tag }) => {
         </div>
         {/* Heading */}
         <Link href={"/"}>
-          <Heading3>{heading}</Heading3>
+          <Heading3 color="white">{heading}</Heading3>
         </Link>
       </div>
     </Card>

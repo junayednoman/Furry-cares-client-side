@@ -38,6 +38,9 @@ p {
   border: 1px solid #e69622 !important;
 }
 
+.ant-card-body {
+  padding: 0 !important;
+}
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
 

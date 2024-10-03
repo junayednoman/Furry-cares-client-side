@@ -1,4 +1,5 @@
 "use client";
+import BigPostCard from "@/components/ui/BigPostCard";
 import PostCard from "@/components/ui/ClassicPostCard";
 import FButton from "@/components/ui/FButton";
 
@@ -26,7 +27,7 @@ const post = {
   content:
     "Grooming your dog at home can be easy and fun! Here are 5 essential tips to keep your dog looking sharp and feeling comfortable...",
   thumbnail:
-    "https://res.cloudinary.com/dyvgvtnld/image/upload/v1727774843/l4iffit3uytqrieefvjw.webp",
+    "https://img.freepik.com/free-photo/view-cats-dogs-showing-friendship_23-2151806305.jpg?t=st=1727928825~exp=1727932425~hmac=a2a23f6513fc36b3334246890b5bc25e2115e7d65f73fa61d4a2488112528cc7&w=1380",
   category: "tip",
   tags: ["story", "dogs", "lovepet"],
   isPremium: false,
@@ -50,10 +51,13 @@ const Page = () => {
         <PostCard
           heading={post.title}
           imageUrl={
-            "https://www.thaiunion.com/files/product/pet/petcare-large.jpg"
+            "https://img.freepik.com/free-photo/puppy-child-wallpaper_1409-6019.jpg?t=st=1727928883~exp=1727932483~hmac=a4f68fd50431ae91d88c8bfbb74d5b6418cf51d8ee62cabad3b1b3b0ad193986&w=1380"
           }
           tag={post.category}
         />
+      </div>
+      <div className="lg:w-[1000px] mt-12">
+        <BigPostCard post={post} />
       </div>
     </div>
   );
