@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import logoIcon from "@/assets/icon.png";
+import logoIcon from "@/assets/icon.svg";
 import FContainer from "../ui/Container";
 import Link from "next/link";
 import FButton from "../ui/FButton";
@@ -18,8 +18,12 @@ const Header = () => {
                 href={"/"}
                 className="flex items-center gap-1 decoration-transparent"
               >
-                <Image src={logoIcon} alt="logo" width={40} height={40} />
-                <h4 className="font-semibold text-2xl text-text">Furrys</h4>
+                <Image src={logoIcon} alt="logo" width={35} height={35} />
+
+                <h4 className="font-semibold text-2xl text-text">
+                  {/* <span className="inline-block text-4xl">🐱</span> */}
+                  Furrys
+                </h4>
               </Link>
             </div>
             <div className="md:flex items-center gap-8 font-medium hidden">

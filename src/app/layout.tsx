@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 // import "@/styles/globals.css"; // Tailwind Global Styles
 import "antd/dist/reset.css"; // Ant Design CSS
-import "./globals.css";
-import { Merriweather, Montserrat } from "next/font/google";
+import { Lato, Montserrat } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import Providers from "./providers";
+// Import css files
+import "./globals.css";
 
 const montserrat = Montserrat({
   weight: ["500", "600", "700"],
   variable: "--font-montserrat",
 });
-const merriweather = Merriweather({
+const lato = Lato({
   weight: ["300", "400", "700"],
-  variable: "--font-merriweather",
+  variable: "--font-lato",
 });
 
 export const metadata: Metadata = {
@@ -27,8 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="icon.svg" sizes="any" />
+      </head>
       <body
-        className={`${montserrat.variable} ${merriweather.variable} font-montserrat`}
+        className={`${montserrat.variable} ${lato.variable} font-montserrat`}
       >
         <Providers>
           <AntdRegistry>

@@ -31,26 +31,28 @@ const BannerCarouselCard: React.FC<PostCardProps> = ({ imageUrl, heading }) => {
         {/* Tag */}
         <div className="w-fit text-primaryBg flex items-center mb-3">
           <Link href={"/"} className="font-medium mb-0 text-primaryBg">
-            <p className="font-montserrat text-base">By Junayed Noman</p>
+            <p className="font-montserrat text-base text-primaryBg">
+              By Junayed Noman
+            </p>
           </Link>
           <Dot className="-ml-2" size={40} />
           <Link href={"/"} className="font-medium mb-0 -ml-2 text-primaryBg">
-            <p className="font-montserrat ">3 Oct, 2024</p>
+            <p className="font-montserrat  text-primaryBg">3 Oct, 2024</p>
           </Link>
         </div>
         {/* Heading */}
         <Link href={"/"}>
           <Heading2 color="white">{heading}</Heading2>
         </Link>
-        <p className="text-white md:text-lg md:mt-7 mt-4 md:block hidden">
+        <p className="text-white md:text-lg md:mt-6 mt-4 md:block hidden">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta
           consectetur a odit, quasi tempora quaerat, sunt maxime adipisci
           voluptates esse explicabo incidunt?
         </p>
-        <div className="md:mt-8 mt-5">
+        <div className="mt-5">
           <Link className="text-black" href={"/"}>
             <div className="bg-primaryBg px-3 py-1 rounded-sm inline capitalize font-medium">
-              <span>{"story"}</span>
+              <span>{"Story"}</span>
             </div>
           </Link>
         </div>

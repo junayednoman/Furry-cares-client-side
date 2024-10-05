@@ -42,7 +42,7 @@ const ClassicPostsCard: React.FC<ClassicPostsCardProps> = ({
           </Link>
           <Dot className="-ml-2" size={40} />
           <Link href={"/"} className="font-medium mb-0 -ml-2 text-primaryBg">
-            <p className="font-montserrat ">By Junayed Noman</p>
+            <p className="font-montserrat text-primaryBg">By Junayed Noman</p>
           </Link>
         </div>
         {/* Heading */}

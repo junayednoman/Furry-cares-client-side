@@ -19,7 +19,7 @@ const config: Config = {
       },
       fontFamily: {
         montserrat: ["var(--font-montserrat)"],
-        merriweather: ["var(--font-merriweather)"],
+        lato: ["var(--font-lato)"],
       },
     },
   },

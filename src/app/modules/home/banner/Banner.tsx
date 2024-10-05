@@ -4,7 +4,7 @@ import ClassicPostsCard from "@/components/ui/ClassicPostCard";
 
 const Banner = () => {
   return (
-    <div className="pt-10 overflow-x-hidden">
+    <div className="pt-10 overflow-hidden">
       <FContainer>
         <div className="grid xl:grid-cols-5 grid-cols-1 md:gap-6 gap-4">
           <div className="xl:col-span-3">

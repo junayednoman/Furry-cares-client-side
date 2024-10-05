@@ -15,7 +15,8 @@ h6 {
 }
 
 p {
-  font-family: var(--font-merriweather);
+  font-family: var(--font-lato);
+  color: #2d2d2d;
 }
 
 .FCardShadow {
@@ -98,6 +99,37 @@ p {
 
 .headerBorder {
   border-bottom: 1px solid #edebeb;
+}
+
+.FeaturedCarouselItem {
+  display: grid !important;
+}
+
+.arrow--left {
+  top: 40%;
+  left: -10px !important;
+  position: absolute;
+  width: 42px !important;
+  height: 42px !important;
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.2) !important;
+  color: #000;
+  padding: 13px;
+  border-radius: 100%;
+  background: #fff;
+  cursor: pointer;
+}
+.arrow--right {
+  top: 40%;
+  right: -10px !important;
+  position: absolute;
+  width: 42px !important;
+  height: 42px !important;
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.2) !important;
+  color: #000;
+  padding: 13px;
+  border-radius: 100%;
+  background: #fff;
+  cursor: pointer;
 }
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
