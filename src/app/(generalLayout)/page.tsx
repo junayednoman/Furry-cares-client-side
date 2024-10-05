@@ -1,5 +1,11 @@
+import Banner from "../modules/home/banner/Banner";
+
 const Page = () => {
-  return <h3>Hello, World! from Page</h3>;
+  return (
+    <>
+      <Banner />
+    </>
+  );
 };
 
 export default Page;

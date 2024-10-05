@@ -50,6 +50,49 @@ p {
   box-shadow: none !important;
   text-shadow: none !important;
 }
+
+.slick-arrow.slick-prev {
+  padding: 27px;
+  margin-left: -35px;
+  background: #fff;
+  opacity: 80;
+  border-radius: 100%;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 18px 0 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.slick-arrow.slick-prev::after {
+  top: 40%;
+  left: 42%;
+  width: 13px;
+  height: 13px;
+}
+.slick-arrow.slick-next {
+  padding: 27px;
+  margin-right: -35px;
+  background: #fff;
+  opacity: 80;
+  border-radius: 100%;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -18px 0 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.slick-arrow.slick-next::after {
+  top: 40%;
+  left: 35%;
+  width: 13px;
+  height: 13px;
+}
+
+.headerBorder {
+  border-bottom: 1px solid #edebeb;
+}
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
 

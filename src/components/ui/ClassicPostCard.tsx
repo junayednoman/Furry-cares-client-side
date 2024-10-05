@@ -4,16 +4,20 @@ import Link from "next/link";
 import { Dot } from "lucide-react";
 import Heading3 from "../typography/Heading3";
 
-interface PostCardProps {
+interface ClassicPostsCardProps {
   imageUrl: string;
   heading: string;
   tag: string;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ imageUrl, heading, tag }) => {
+const ClassicPostsCard: React.FC<ClassicPostsCardProps> = ({
+  imageUrl,
+  heading,
+  tag,
+}) => {
   return (
     <Card
-      className="relative sm:min-h-[300px] min-h-[250px] w-full overflow-hidden rounded-lg shadow-md group p-0 cursor-pointer"
+      className="relative sm:min-h-[338px] min-h-[250px] w-full overflow-hidden rounded-lg shadow-md group p-0 cursor-pointer"
       bodyStyle={{ padding: 0 }}
     >
       {/* Background Image with Gradient Overlay */}
@@ -50,4 +54,4 @@ const PostCard: React.FC<PostCardProps> = ({ imageUrl, heading, tag }) => {
   );
 };
 
-export default PostCard;
+export default ClassicPostsCard;
