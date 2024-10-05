@@ -11,7 +11,7 @@ const FButton = ({ children, link, wFull, onclick }: RButtonProps) => {
       type="link"
       href={link}
       onClick={onclick}
-      className={`Fshadow bg-accent py-6 px-7 uppercase text-sm font-montserrat font-semibold hover:bg-accentDark text-white ${
+      className={`Fshadow bg-accent py-[22px] px-7 uppercase text-sm font-montserrat font-semibold hover:bg-accentDark text-white ${
         wFull && "w-full"
       }`}
     >

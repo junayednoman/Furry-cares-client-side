@@ -41,6 +41,15 @@ p {
 .ant-card-body {
   padding: 0 !important;
 }
+.ant-form-item-label {
+  padding-bottom: 3px;
+  text-transform: capitalize;
+}
+
+.ant-picker:focus {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
 
