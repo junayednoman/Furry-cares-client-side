@@ -18,6 +18,12 @@ p {
   font-family: var(--font-merriweather);
 }
 
+.FCardShadow {
+  transition: 0.3s ease !important;
+  box-shadow: 0 0 2px 0 rgba(145, 158, 171, 0.2),
+    0 12px 24px -4px rgba(145, 158, 171, 0.12);
+}
+
 .Fshadow {
   transition: 0.3s ease !important;
   box-shadow: 0px 6px 15px rgba(255, 167, 38, 0.5) !important;
@@ -27,7 +33,7 @@ p {
 }
 
 .button {
-  background-color: #ffa726 !important;
+  background-color: #000000 !important;
   color: #fff !important;
   font-weight: 500 !important;
   text-transform: uppercase;

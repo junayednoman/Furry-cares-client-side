@@ -47,7 +47,9 @@ const ClassicPostsCard: React.FC<ClassicPostsCardProps> = ({
         </div>
         {/* Heading */}
         <Link href={"/"}>
-          <Heading3 color="white">{heading}</Heading3>
+          <Heading3 color="white">
+            {heading.length > 50 ? heading.substring(0, 50) + "..." : heading}
+          </Heading3>
         </Link>
       </div>
     </Card>
