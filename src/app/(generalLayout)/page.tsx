@@ -4,6 +4,8 @@ import ExclusivePosts from "../modules/home/Exclusive posts/ExclusivePosts";
 import Faq from "../modules/home/faq/Faq";
 import FeaturedStories from "../modules/home/featured items/FeaturedStories";
 import LatestPosts from "../modules/home/Latest posts/LatestPosts";
+import SubscribeSection from "../modules/home/newsletter/SubscribeSection";
+import Testimonial from "../modules/home/Testimonial/Testimonial";
 import TopAuthors from "../modules/home/top authors/TopAuthors";
 
 const Page = () => {
@@ -16,6 +18,8 @@ const Page = () => {
       <TopAuthors />
       <LatestPosts />
       <Faq />
+      {/* <Testimonial /> */}
+      <SubscribeSection />
     </>
   );
 };

@@ -51,21 +51,21 @@ const About = () => {
                 />
               </div>
               <div className="grid grid-cols-2 md:gap-10 gap-6 -mt-5 lg:w-full md:w-[80%] mx-auto">
-                <div className="rounded-md FCardShadow h-auto w-auto py-12 text-center hover:rotate-2 duration-500 md:bg-[#f6fcf6] bg-white">
+                <div className="rounded-md FCardShadow h-auto w-auto py-12 text-center hover:rotate-2 duration-500 md:bg-transparent bg-white">
                   <Heading2>100+</Heading2>
                   <p className="font-semibold">Stories</p>
                 </div>
-                <div className="rounded-md FCardShadow h-auto w-auto py-12 text-center hover:rotate-2 duration-500 md:bg-[#f6fcf6] bg-white">
+                <div className="rounded-md FCardShadow h-auto w-auto py-12 text-center hover:rotate-2 duration-500 md:bg-transparent bg-white">
                   <Heading2>83+</Heading2>
                   <p className="font-semibold">Tips</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 md:gap-10 gap-6 md:mt-10 mt-6 lg:w-full md:w-[80%] mx-auto">
-                <div className="rounded-md FCardShadow h-auto w-auto py-12 text-center hover:rotate-2 duration-500 md:bg-[#f6fcf6] bg-white">
+                <div className="rounded-md FCardShadow h-auto w-auto py-12 text-center hover:rotate-2 duration-500 md:bg-transparent bg-white">
                   <Heading2>940+</Heading2>
                   <p className="font-semibold">Members</p>
                 </div>
-                <div className="rounded-md FCardShadow h-auto w-auto py-12 text-center hover:rotate-2 duration-500 md:bg-[#f6fcf6] bg-white">
+                <div className="rounded-md FCardShadow h-auto w-auto py-12 text-center hover:rotate-2 duration-500 md:bg-transparent bg-white">
                   <Heading2>10+</Heading2>
                   <p className="font-semibold">Years</p>
                 </div>

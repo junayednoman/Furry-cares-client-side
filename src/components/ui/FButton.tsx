@@ -2,13 +2,21 @@ import { Button } from "antd";
 type RButtonProps = {
   children: string;
   link?: string;
-  wFull?: string;
+  wFull?: boolean;
   onclick?: () => void;
+  htmlType?: "button" | "submit" | "reset";
 };
-const FButton = ({ children, link, wFull, onclick }: RButtonProps) => {
+const FButton = ({
+  children,
+  link,
+  wFull,
+  onclick,
+  htmlType,
+}: RButtonProps) => {
   return (
     <Button
       type="link"
+      htmlType={htmlType}
       href={link}
       onClick={onclick}
       className={`Fshadow bg-accent py-[22px] px-7 uppercase text-sm font-montserrat font-semibold hover:bg-accentDark text-white ${
