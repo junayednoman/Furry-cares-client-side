@@ -5,6 +5,10 @@ export const loginSchema = z.object({
   password: z.string({ required_error: "Password is required" }),
 });
 
+export const resetPassSchema = z.object({
+  password: z.string({ required_error: "Password is required" }),
+});
+
 
 export const registrationSchema = z.object({
   name: z.string({ required_error: "Name is required" }),

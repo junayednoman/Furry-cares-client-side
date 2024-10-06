@@ -39,7 +39,9 @@ const Register = () => {
               placeholder="Enter your designation"
               label="Designation"
             />
-            <FButton htmlType="submit">Register</FButton>
+            <FButton wFull htmlType="submit">
+              Register
+            </FButton>
           </div>
         </FForm>
         <div className="mt-8">
