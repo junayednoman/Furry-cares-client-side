@@ -13,7 +13,7 @@ interface PostCardProps {
 const BannerCarouselCard: React.FC<PostCardProps> = ({ imageUrl, heading }) => {
   return (
     <Card
-      className="relative xl:min-h-[700px] lg:min-h-[600px] md:min-h-[500px] min-h-[350px] w-full overflow-hidden rounded-lg shadow-md group p-0 cursor-pointer"
+      className="relative xl:min-h-[600px] lg:min-h-[600px] md:min-h-[500px] min-h-[350px] w-full overflow-hidden rounded-lg shadow-md group p-0 cursor-pointer"
       bodyStyle={{ padding: 0 }}
     >
       {/* Background Image with Gradient Overlay */}

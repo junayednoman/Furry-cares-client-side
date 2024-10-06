@@ -17,7 +17,7 @@ const ClassicPostsCard: React.FC<ClassicPostsCardProps> = ({
 }) => {
   return (
     <Card
-      className="relative sm:min-h-[338px] min-h-[250px] w-full overflow-hidden rounded-lg shadow-md group p-0 cursor-pointer"
+      className="relative sm:min-h-[280px] min-h-[250px] w-full overflow-hidden rounded-lg shadow-md group p-0 cursor-pointer"
       bodyStyle={{ padding: 0 }}
     >
       {/* Background Image with Gradient Overlay */}
