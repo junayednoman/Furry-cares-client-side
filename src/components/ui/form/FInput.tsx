@@ -43,7 +43,7 @@ const FInput = ({
                   type={type}
                   placeholder={placeholder}
                   disabled={disabled}
-                  className="block font-normal rounded-[4px] dark:bg-primaryColor dark:border-gray-500 focus:border-text focus:shadow-none hover:border-text text-primaryColor dark:text-gray-300 hover:dark:bg-primaryColor hover:dark:border-gray-300 focus:dark:bg-primaryColor focus:dark:border-gray-300 placeholder:dark:text-gray-400"
+                  className="block font-normal rounded-[5px] dark:bg-primaryColor dark:border-gray-500 focus:border-text focus:shadow-none hover:border-text text-primaryColor dark:text-gray-300 hover:dark:bg-primaryColor hover:dark:border-gray-300 focus:dark:bg-primaryColor focus:dark:border-gray-300 placeholder:dark:text-gray-400"
                   size="large"
                 />
                 {error && (
