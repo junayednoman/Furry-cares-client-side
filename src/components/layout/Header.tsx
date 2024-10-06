@@ -20,10 +20,7 @@ const Header = () => {
               >
                 <Image src={logoIcon} alt="logo" width={35} height={35} />
 
-                <h4 className="font-semibold text-2xl text-text">
-                  {/* <span className="inline-block text-4xl">🐱</span> */}
-                  Furrys
-                </h4>
+                <h4 className="font-semibold text-2xl text-text">Furrys</h4>
               </Link>
             </div>
             <div className="md:flex items-center gap-8 font-medium hidden">
@@ -62,7 +59,7 @@ const Header = () => {
             <div className="md:flex items-center gap-6 hidden">
               <Moon size={20} className="text-text cursor-pointer" />
               <Search size={20} className="text-text cursor-pointer" />
-              <FButton>Login</FButton>
+              <FButton link="/auth/login">Login</FButton>
             </div>
             {/* mobile menu */}
             <div className="md:hidden block">
@@ -104,7 +101,7 @@ const Header = () => {
                   <div className="flex items-center justify-end mt-8 gap-6">
                     <Moon size={20} className="text-text cursor-pointer" />
                     <Search size={20} className="text-text cursor-pointer" />
-                    <FButton>Login</FButton>
+                    <FButton link="/auth/login">Login</FButton>
                   </div>
                 </div>
               </FDrawer>

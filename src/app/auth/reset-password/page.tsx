@@ -6,7 +6,6 @@ import FInput from "@/components/ui/form/FInput";
 import FSectionTitle from "@/components/ui/FSectionTitle";
 import { registrationSchema } from "@/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const ResetPassword = () => {
@@ -36,15 +35,6 @@ const ResetPassword = () => {
             </FButton>
           </div>
         </FForm>
-        <div className="mt-8">
-          <p>
-            Go back to the{" "}
-            <Link className=" font-semibold text-accent" href="/auth/login">
-              Login
-            </Link>{" "}
-            page
-          </p>
-        </div>
       </div>
     </FContainer>
   );

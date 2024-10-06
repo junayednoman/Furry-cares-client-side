@@ -47,7 +47,12 @@ const Login = () => {
             </Link>
           </p>
           <p className="sm:text-base text-[15px] font-semibold text-accent">
-            Forgot Password?
+            <Link
+              className=" font-semibold text-accent"
+              href="/auth/forget-password"
+            >
+              Forgot password?
+            </Link>
           </p>
         </div>
       </div>

@@ -27,7 +27,7 @@ p {
 
 .Fshadow {
   transition: 0.3s ease !important;
-  box-shadow: 0px 6px 15px rgba(255, 167, 38, 0.5) !important;
+  box-shadow: 0px 3px 15px rgba(255, 167, 38, 0.5) !important;
 }
 .Fshadow:hover {
   box-shadow: none !important;
