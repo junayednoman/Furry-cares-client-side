@@ -151,7 +151,7 @@ const posts = [
   },
 ];
 
-const ExclusivePosts = () => {
+const FeaturedStories = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
@@ -217,8 +217,8 @@ const ExclusivePosts = () => {
       <div className="md:py-20 py-16 overflow-hidden">
         <FContainer>
           <FSectionTitle
-            heading="exclusive health tips"
-            subHeading="Keep your pet healthy"
+            heading="featured stories"
+            subHeading="reader's choice"
           />
           <div className="navigation-wrapper w-full relative">
             <div ref={sliderRef} className="keen-slider mt-10">
@@ -261,7 +261,7 @@ const ExclusivePosts = () => {
   );
 };
 
-export default ExclusivePosts;
+export default FeaturedStories;
 
 function Arrow(props: {
   disabled: boolean;

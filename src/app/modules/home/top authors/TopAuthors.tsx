@@ -44,13 +44,13 @@ const authors = [
 
 const TopAuthors = () => {
   return (
-    <div className="py-20 bg-[#F6FCF6]">
+    <div className="md:py-20 py-16 bg-[#F6FCF6]">
       <FContainer>
         <FSectionTitle
           heading="Top Authors"
           subHeading="Meet the top authors"
         />
-        <div className="grid md:grid-cols-3 grid-cols-1 items-center lg:gap-16 gap-4 mt-10 lg:max-w-[950px] w-[85%] mx-auto">
+        <div className="grid md:grid-cols-3 grid-cols-1 items-center lg:gap-16 gap-4 mt-10 xl:max-w-[950px] md:w-full w-[85%] mx-auto">
           {authors.map((author) => (
             <div
               key={author._id}

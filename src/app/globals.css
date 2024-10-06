@@ -131,6 +131,15 @@ p {
   background: #fff;
   cursor: pointer;
 }
+
+.ant-collapse-header-text {
+  font-weight: 600;
+}
+.ant-collapse-item-active .ant-collapse-header-text,
+.ant-collapse-item-active .ant-collapse-expand-icon {
+  color: #e69622 !important;
+}
+
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
 
