@@ -34,7 +34,7 @@ const Header = () => {
 
               <Link
                 className="relative group decoration-transparent"
-                href={"/"}
+                href={"/feed"}
               >
                 <span>Feed</span>
                 <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
@@ -76,7 +76,7 @@ const Header = () => {
 
                     <Link
                       className="relative group decoration-transparent text-text"
-                      href={"/"}
+                      href={"/feed"}
                     >
                       <span>Feed</span>
                       <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>

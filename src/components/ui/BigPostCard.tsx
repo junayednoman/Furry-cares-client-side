@@ -6,33 +6,32 @@ import Heading3 from "../typography/Heading3";
 import { Dot } from "lucide-react";
 
 interface PostCardProps {
+  _id: string;
   thumbnail: string;
   title: string;
   content: string;
   category: string;
-  postId: string;
-  categoryId: string;
 }
 
 const BigPostCard = ({ post }: { post: PostCardProps }) => {
   const { thumbnail, title, content, category } = post;
   return (
     <Card className="flex flex-row border-none p-0 duration-300">
-      <div className="grid md:grid-cols-2 md:gap-10 gap-y-3">
-        <div>
+      <div className="grid md:grid-cols-5 grid-cols-1 md:gap-10 gap-y-3">
+        <div className="col-span-2">
           <Link href={"/"}>
             <Image
-              className="h-full w-full"
+              className="lg:min-h-[240px] md:min-h-[200px] min-h-[240px] w-full"
               src={thumbnail}
-              width={500}
-              height={350}
+              width={450}
+              height={200}
               alt={title}
             />
           </Link>
         </div>
-        <div className="flex justify-between flex-col">
+        <div className="flex justify-between flex-col col-span-3">
           <div>
-            <div className=" flex items-center">
+            <div className=" flex items-center -mt-2">
               <Link
                 className="text-slate-600 font-semibold capitalize"
                 href={`/category}`}
@@ -46,7 +45,9 @@ const BigPostCard = ({ post }: { post: PostCardProps }) => {
               </p>
             </div>
             <Link href={"/"}>
-              <Heading3>{title}</Heading3>
+              <Heading3>
+                {title.length > 60 ? title.slice(0, 60) + "..." : title}
+              </Heading3>
             </Link>
             <p className="md:my-5 my-3 text-slate-600 lg:text-base">
               {content.length > 100 ? content.slice(0, 100) + "..." : content}

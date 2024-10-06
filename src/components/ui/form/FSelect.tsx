@@ -6,7 +6,7 @@ const { Option } = Select;
 
 type TSelectProps = {
   name: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   disabled?: boolean;
   colSpanLg?: number;
