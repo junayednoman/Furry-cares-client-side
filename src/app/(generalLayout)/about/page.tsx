@@ -6,7 +6,7 @@ import Team from "@/app/modules/about page/Team";
 const AboutPage = () => {
   return (
     <>
-      <Banner />
+      <Banner heading="About Us" />
       <Mission />
       <Team />
       <ContactInfo />

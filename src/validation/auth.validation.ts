@@ -9,7 +9,6 @@ export const resetPassSchema = z.object({
   password: z.string({ required_error: "Password is required" }),
 });
 
-
 export const registrationSchema = z.object({
   name: z.string({ required_error: "Name is required" }),
   email: z.string({ required_error: "Email is required" }).email("Invalid email address"),
@@ -17,4 +16,9 @@ export const registrationSchema = z.object({
     required_error: "Password is required",
   }),
   designation: z.string({ required_error: "Designation is required" }),
+})
+
+export const subscriptionSchema = z.object({
+  name: z.string({ required_error: "Name is required" }),
+  email: z.string({ required_error: "Email is required" }).email("Invalid email address"),
 })

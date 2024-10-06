@@ -1,7 +1,7 @@
 import bannerImg from "@/assets/about-bg.jpg";
 import Image from "next/image";
 
-const Banner = () => {
+const Banner = ({ heading }: { heading: string }) => {
   return (
     <div className="relative lg:h-[500px] md:h-[350px] h-[220px] overflow-hidden text-center">
       {/* Video Background */}
@@ -19,7 +19,7 @@ const Banner = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-white md:py-0 xl:max-w-[1350px] lg:max-w-5xl md:max-w-[768px] sm:max-w-[640px] xl:px-4 md:mx-auto lg:px-6 sm:mx-auto sm:px-4 px-3">
         <h1 className="xl:text-[80px] xl:leading-[120px] md:text-6xl text-[42px] md:leading-[80px] font-bold">
-          About Us
+          {heading}
         </h1>
       </div>
     </div>
