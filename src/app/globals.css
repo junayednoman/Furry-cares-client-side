@@ -40,9 +40,9 @@ p {
   text-transform: uppercase;
 }
 .button:hover {
-  background-color: #e69622 !important;
+  background-color: #ffa726 !important;
   color: #fff !important;
-  border: 1px solid #e69622 !important;
+  border: 1px solid #ffa726 !important;
 }
 
 .ant-card-body {
@@ -137,7 +137,7 @@ p {
 }
 .ant-collapse-item-active .ant-collapse-header-text,
 .ant-collapse-item-active .ant-collapse-expand-icon {
-  color: #e69622 !important;
+  color: #ffa726 !important;
 }
 
 .ant-tabs-nav-wrap {
@@ -146,11 +146,11 @@ p {
 
 .ant-tabs-tab-active .ant-tabs-tab-btn {
   font-weight: 500;
-  color: #e69622 !important;
+  color: #ffa726 !important;
 }
 .ant-tabs-tab:hover .ant-tabs-tab-btn {
   font-weight: 500;
-  color: #e69622 !important;
+  color: #ffa726 !important;
 }
 
 .ant-tabs-tab .ant-tabs-tab-btn {
@@ -170,6 +170,47 @@ p {
   padding: 20px 0 !important;
 }
 
+.ant-pagination-item-active {
+  border: 1px solid #ffa726 !important;
+}
+.ant-pagination-item-active a {
+  color: #ffa726 !important;
+}
+.ant-pagination-item-container svg {
+  color: #ffa726 !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #ffa726 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+}
+
+.ant-menu-item-selected svg,
+.ant-menu-item-selected a {
+  color: white !important;
+}
+
+.dashMenuItems .ant-menu-item {
+  background-color: transparent;
+  color: #1b263b !important;
+  border-radius: 0 !important;
+}
+
+.dashboardSidebar {
+  background-color: #fff !important;
+  box-shadow: 0px 1px 53px -55px rgba(0, 0, 0, 0.68) !important;
+}
+
+.ant-upload.ant-upload-btn {
+  padding: 20px;
+}
+.ant-upload.ant-upload-drag:hover {
+  border-color: #2d2d2d !important;
+}
+/* .ant-upload:hover {
+  border: 1px dashed #ffa726 !important;
+} */
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
 

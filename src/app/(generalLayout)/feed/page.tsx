@@ -1,6 +1,7 @@
 import FeedFilter from "@/app/modules/feed/FeedFilter";
 import BigPostCard from "@/components/ui/BigPostCard";
 import FContainer from "@/components/ui/Container";
+import FPagination from "@/components/ui/Fpagination";
 import { TPost } from "@/types/post.type";
 const posts = [
   {
@@ -203,7 +204,7 @@ const Feed = () => {
       <FContainer>
         <div className="md:max-w-[1000px] sm:max-w-[400px] w-full mx-auto">
           <FeedFilter />
-          <div className="mt-8">
+          <div>
             {posts.map((post: TPost, index: number) => (
               <div
                 key={post._id}
@@ -215,6 +216,7 @@ const Feed = () => {
               </div>
             ))}
           </div>
+          <FPagination total={50} defaultCurrent={1} />
         </div>
       </FContainer>
     </div>

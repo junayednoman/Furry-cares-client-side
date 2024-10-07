@@ -1,7 +1,7 @@
 import React from "react";
-import { Card } from "antd";
+import { Card, Tooltip } from "antd";
 import Link from "next/link";
-import { Dot } from "lucide-react";
+import { BadgeDollarSign, Dot } from "lucide-react";
 import Heading5 from "../typography/Heading5";
 import { TUser } from "@/types/user.type";
 
@@ -11,6 +11,7 @@ interface PostCardProps {
   content: string;
   category: string;
   author: TUser;
+  isPremium: boolean;
 }
 
 const SmallPostCard = ({ post }: { post: PostCardProps }) => {
@@ -48,12 +49,22 @@ const SmallPostCard = ({ post }: { post: PostCardProps }) => {
               </Heading5>
             </Link>
           </div>
-          <div className="sm:mt-0 mt-7">
-            <Link className="text-black" href={"/"}>
-              <div className="bg-primaryBg px-3 py-1 rounded-[4px] inline capitalize font-medium">
-                <span>{category}</span>
-              </div>
-            </Link>
+          <div className="flex items-center gap-4">
+            <div className="sm:mt-0 mt-7">
+              <Link className="text-black" href={"/"}>
+                <div className="bg-primaryBg px-3 py-1 rounded-[4px] inline capitalize font-medium">
+                  <span>{category}</span>
+                </div>
+              </Link>
+            </div>
+            {post.isPremium && (
+              <Tooltip title="Premium content">
+                <div className="bg-[#FFC022] px-3 py-[3px] rounded-[4px] capitalize font-medium flex items-center justify-between text-center w-[100px]">
+                  <p className="text-[#fff]">Premium</p>
+                  <BadgeDollarSign size={16} className="text-[#fff] -mb-3" />
+                </div>
+              </Tooltip>
+            )}
           </div>
         </div>
       </div>

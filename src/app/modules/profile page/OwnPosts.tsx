@@ -1,3 +1,4 @@
+import FPagination from "@/components/ui/Fpagination";
 import SmallPostCard from "@/components/ui/SmallPostCard";
 import { TPost } from "@/types/post.type";
 
@@ -206,11 +207,14 @@ const OwnPosts = () => {
             index === posts.length - 1 && "border-b-0"
           } border-t-0 border-x-0 border-solid border-slate-200 py-6 ${
             index === 0 && "pt-0"
-          } ${index === posts.length - 1 && "pb-0"} px-6`}
+          } ${index === posts.length - 1 && "pb-0"} sm:px-6 px-4`}
         >
           <SmallPostCard post={post} />
         </div>
       ))}
+      <div className="mt-8">
+        <FPagination total={posts.length} defaultCurrent={1} />{" "}
+      </div>
     </div>
   );
 };

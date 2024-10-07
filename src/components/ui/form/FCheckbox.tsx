@@ -1,30 +1,23 @@
-import { Col, Form, Select } from "antd";
+import { Col, Form, Checkbox } from "antd";
 import { Controller } from "react-hook-form";
 import RInputError from "./FInputError";
-
-const { Option } = Select;
-
-type TSelectProps = {
+type TCheckboxProps = {
   name: string;
   label?: string;
-  placeholder?: string;
   disabled?: boolean;
   colSpanLg?: number;
   colSpanMd?: number;
-  options: { value: string | number | boolean; label: string }[];
-  mode?: "multiple";
+  onChange?: (e: any) => void;
 };
 
-const FSelect = ({
+const FCheckbox = ({
   name,
   label,
-  placeholder,
   disabled,
   colSpanLg,
   colSpanMd,
-  options,
-  mode,
-}: TSelectProps) => {
+  onChange,
+}: TCheckboxProps) => {
   return (
     <Col
       span={24}
@@ -38,25 +31,18 @@ const FSelect = ({
           render={({ field, fieldState: error }) => (
             <div className="w-full">
               <Form.Item
+                name={name}
                 htmlFor={name}
-                label={label}
-                className="mb-3 font-semibold"
+                className="mb-3 font-semibold text-text"
               >
-                <Select
-                  mode={mode}
-                  {...field}
+                <Checkbox
                   id={name}
-                  placeholder={placeholder}
                   disabled={disabled}
-                  className="block font-normal rounded-[4px] focus:border-accent focus:shadow-none hover:border-text"
-                  size="large"
+                  {...field}
+                  onChange={onChange}
                 >
-                  {options.map((option) => (
-                    <Option key={String(option.value)} value={option.value}>
-                      {option.label}
-                    </Option>
-                  ))}
-                </Select>
+                  {label}
+                </Checkbox>
                 {error && (
                   <RInputError message={error?.error?.message as string} />
                 )}
@@ -69,4 +55,4 @@ const FSelect = ({
   );
 };
 
-export default FSelect;
+export default FCheckbox;

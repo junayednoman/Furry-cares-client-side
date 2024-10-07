@@ -1,15 +1,24 @@
 import React from "react";
-import { Avatar, Card } from "antd";
+import { Avatar, Card, Tooltip } from "antd";
 import Link from "next/link";
 import Image from "next/image";
 import { TPost } from "@/types/post.type";
 import verifyIcon from "@/assets/verified.png";
+import { BadgeDollarSign } from "lucide-react";
 
 const VerticalPostCard = ({ post }: { post: TPost }) => {
   return (
     <Card className="border-none FCardShadow">
       <div className="rounded-md">
-        <div>
+        <div className="relative">
+          {post.isPremium && (
+            <Tooltip title="Premium content" className="absolute top-4 left-5">
+              <div className="bg-[#FFC022] px-3 py-[3px] rounded-[4px] capitalize font-medium flex items-center justify-between text-center w-[100px]">
+                <p className="text-[#fff]">Premium</p>
+                <BadgeDollarSign size={16} className="text-[#fff] -mb-3" />
+              </div>
+            </Tooltip>
+          )}
           <Link href={"/"}>
             <Image
               className="rounded-t-md w-full lg:h-[260px] h-[230px]"

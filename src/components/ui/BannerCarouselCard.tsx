@@ -1,19 +1,25 @@
 import React from "react";
-import { Card } from "antd";
+import { Card, Tooltip } from "antd";
 import Link from "next/link";
-import { Dot } from "lucide-react";
+import { BadgeDollarSign, Dot } from "lucide-react";
 import Heading2 from "../typography/Heading2";
 
 interface PostCardProps {
   imageUrl: string;
   heading: string;
-  tag: string;
+  category: string;
+  isPremium?: boolean;
 }
 
-const BannerCarouselCard: React.FC<PostCardProps> = ({ imageUrl, heading }) => {
+const BannerCarouselCard: React.FC<PostCardProps> = ({
+  imageUrl,
+  heading,
+  category,
+  isPremium,
+}) => {
   return (
     <Card
-      className="relative xl:min-h-[600px] lg:min-h-[600px] md:min-h-[500px] min-h-[350px] w-full overflow-hidden rounded-lg shadow-md group p-0 cursor-pointer"
+      className="relative xl:min-h-[600px] lg:min-h-[600px] md:min-h-[500px] min-h-[350px] w-full overflow-hidden border-none rounded-lg shadow-md group p-0 cursor-pointer"
       bodyStyle={{ padding: 0 }}
     >
       {/* Background Image with Gradient Overlay */}
@@ -49,12 +55,20 @@ const BannerCarouselCard: React.FC<PostCardProps> = ({ imageUrl, heading }) => {
           consectetur a odit, quasi tempora quaerat, sunt maxime adipisci
           voluptates esse explicabo incidunt?
         </p>
-        <div className="mt-5">
+        <div className="mt-4 flex items-center gap-4">
           <Link className="text-black" href={"/"}>
-            <div className="bg-primaryBg px-3 py-1 rounded-sm inline capitalize font-medium">
-              <span>{"Story"}</span>
+            <div className="bg-primaryBg px-3 py-1 rounded-[4px] inline capitalize font-medium">
+              <span>{category}</span>
             </div>
           </Link>
+          {isPremium && (
+            <Tooltip title="Premium content">
+              <div className="bg-[#FFC022] px-3 py-[3px] rounded-[4px] capitalize font-medium flex items-center justify-between text-center w-[100px]">
+                <p className="text-[#fff]">Premium</p>
+                <BadgeDollarSign size={16} className="text-[#fff] -mb-3" />
+              </div>
+            </Tooltip>
+          )}
         </div>
       </div>
     </Card>

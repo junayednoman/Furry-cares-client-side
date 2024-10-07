@@ -19,7 +19,7 @@ const FButton = ({
       htmlType={htmlType}
       href={link}
       onClick={onclick}
-      className={`Fshadow bg-accent py-[22px] px-7 uppercase text-sm font-montserrat font-semibold hover:bg-accentDark decoration-transparent text-white ${
+      className={`bg-accent py-[22px] px-7 sm:uppercase capitalize text-sm font-montserrat font-semibold hover:bg-accentDark decoration-transparent text-white ${
         wFull && "w-full"
       }`}
     >

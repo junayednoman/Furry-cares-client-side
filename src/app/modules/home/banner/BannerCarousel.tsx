@@ -7,7 +7,7 @@ const BannerCarousel = () => {
     <Carousel
       dots={true}
       arrows={true}
-      autoplay={true}
+      // autoplay={true}
       infinite={true}
       draggable={true}
     >
@@ -15,21 +15,23 @@ const BannerCarousel = () => {
         <BannerCarouselCard
           heading="Ultimate guide to finding the perfect furry"
           imageUrl="https://cdn.firstcry.com/education/2023/01/19165304/Names-Of-Pet-Animals-In-English-For-Kids.jpg"
-          tag="Tips"
+          category="Tip"
+          isPremium
         />
       </div>
       <div>
         <BannerCarouselCard
           heading="Golden retriever and white kitten cuddling on the grass,"
           imageUrl="https://www.petfoodprocessing.net/ext/resources/Articles/2022/03/032922_APPA-Generational-Report_Lead.jpg?height=667&t=1648555654&width=1080"
-          tag="Tips"
+          category="Story"
         />
       </div>
       <div>
         <BannerCarouselCard
+          isPremium
           heading="A golden retriever and a cat sitting in a flower garden,"
           imageUrl="https://images.pexels.com/photos/2061057/pexels-photo-2061057.jpeg?cs=srgb&dl=pexels-tranmautritam-2061057.jpg&fm=jpg"
-          tag="Tips"
+          category="Tips"
         />
       </div>
     </Carousel>

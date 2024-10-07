@@ -14,7 +14,8 @@ import {
   User,
 } from "lucide-react";
 import FDrawer from "../ui/FDRawer";
-import { Dropdown, MenuProps } from "antd";
+import { MenuProps } from "antd";
+import FDropdown from "../ui/FDropdown";
 
 const Header = () => {
   const user = {
@@ -82,7 +83,7 @@ const Header = () => {
             </div>
             <div className="md:flex items-center gap-8 font-medium hidden">
               <Link
-                className="relative group decoration-transparent"
+                className="relative group decoration-transparent text-text"
                 href={"/"}
               >
                 <span>Home</span>
@@ -90,7 +91,7 @@ const Header = () => {
               </Link>
 
               <Link
-                className="relative group decoration-transparent"
+                className="relative group decoration-transparent text-text"
                 href={"/feed"}
               >
                 <span>Feed</span>
@@ -98,7 +99,7 @@ const Header = () => {
               </Link>
 
               <Link
-                className="relative group decoration-transparent"
+                className="relative group decoration-transparent text-text"
                 href={"/about"}
               >
                 <span>About</span>
@@ -106,7 +107,7 @@ const Header = () => {
               </Link>
 
               <Link
-                className="relative group decoration-transparent"
+                className="relative group decoration-transparent text-text"
                 href={"/contact"}
               >
                 <span>Contact</span>
@@ -118,18 +119,12 @@ const Header = () => {
               <Search size={20} className="text-text cursor-pointer" />
 
               {/* <FButton link="/auth/login">Login</FButton> */}
-              <Dropdown
-                placement="bottomRight"
-                menu={{ items }}
-                trigger={["click"]}
-              >
-                <a className="rounded-full" onClick={(e) => e.preventDefault()}>
-                  <CircleUserRound
-                    size={23}
-                    className="text-text cursor-pointer"
-                  />
-                </a>
-              </Dropdown>
+              <FDropdown items={items}>
+                <CircleUserRound
+                  size={23}
+                  className="text-text cursor-pointer"
+                />
+              </FDropdown>
             </div>
             {/* mobile menu */}
             <div className="md:hidden block">
