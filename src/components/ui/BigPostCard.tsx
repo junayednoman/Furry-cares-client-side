@@ -21,7 +21,7 @@ const BigPostCard = ({ post }: { post: PostCardProps }) => {
         <div className="col-span-2">
           <Link href={"/"}>
             <Image
-              className="lg:min-h-[240px] md:min-h-[200px] min-h-[240px] w-full"
+              className="lg:min-h-[240px] md:min-h-[200px] min-h-[240px] w-full rounded-[8px]"
               src={thumbnail}
               width={450}
               height={200}

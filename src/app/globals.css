@@ -140,6 +140,36 @@ p {
   color: #e69622 !important;
 }
 
+.ant-tabs-nav-wrap {
+  padding: 0 20px !important;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  font-weight: 500;
+  color: #e69622 !important;
+}
+.ant-tabs-tab:hover .ant-tabs-tab-btn {
+  font-weight: 500;
+  color: #e69622 !important;
+}
+
+.ant-tabs-tab .ant-tabs-tab-btn {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.ant-tabs-nav-list {
+  gap: 20px !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: #f39c12 !important;
+}
+
+.ant-tabs-content-holder {
+  padding: 20px 0 !important;
+}
+
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
 

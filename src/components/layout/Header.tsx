@@ -4,10 +4,67 @@ import logoIcon from "@/assets/icon.svg";
 import FContainer from "../ui/Container";
 import Link from "next/link";
 import FButton from "../ui/FButton";
-import { AlignJustify, Moon, Search } from "lucide-react";
+import {
+  AlignJustify,
+  CircleUserRound,
+  ListCheckIcon,
+  LogOut,
+  Moon,
+  Search,
+  User,
+} from "lucide-react";
 import FDrawer from "../ui/FDRawer";
+import { Dropdown, MenuProps } from "antd";
 
 const Header = () => {
+  const user = {
+    role: "user",
+  };
+  const items: MenuProps["items"] = [
+    {
+      label: (
+        <div className="flex items-center gap-2">
+          <User size={14} />
+          <Link className="text-text" href="/profile">
+            Profile
+          </Link>
+        </div>
+      ),
+      key: "0",
+    },
+    {
+      label: (
+        <div className="flex items-center gap-2">
+          <ListCheckIcon size={14} />
+          <Link
+            className="text-text"
+            href={
+              user?.role === "admin"
+                ? `/dashboard/admin/manage-bikes`
+                : `/dashboard/user/my-rentals`
+            }
+          >
+            {user?.role === "admin" ? "Manage Rentals" : "My Rentals"}
+          </Link>
+        </div>
+      ),
+
+      key: "1",
+    },
+    {
+      type: "divider",
+    },
+    {
+      label: (
+        <div className="flex items-center gap-2 text-red-600">
+          <LogOut size={14} />
+          <span>Log Out</span>
+        </div>
+      ),
+
+      key: "3",
+    },
+  ];
   return (
     <header>
       <div className="py-6 headerBorder">
@@ -59,7 +116,20 @@ const Header = () => {
             <div className="md:flex items-center gap-6 hidden">
               <Moon size={20} className="text-text cursor-pointer" />
               <Search size={20} className="text-text cursor-pointer" />
-              <FButton link="/auth/login">Login</FButton>
+
+              {/* <FButton link="/auth/login">Login</FButton> */}
+              <Dropdown
+                placement="bottomRight"
+                menu={{ items }}
+                trigger={["click"]}
+              >
+                <a className="rounded-full" onClick={(e) => e.preventDefault()}>
+                  <CircleUserRound
+                    size={23}
+                    className="text-text cursor-pointer"
+                  />
+                </a>
+              </Dropdown>
             </div>
             {/* mobile menu */}
             <div className="md:hidden block">

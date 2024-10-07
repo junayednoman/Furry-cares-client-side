@@ -1,7 +1,6 @@
-import FeedFilter from "@/app/modules/feed/FeedFilter";
-import BigPostCard from "@/components/ui/BigPostCard";
-import FContainer from "@/components/ui/Container";
+import FollowingOrFollowerItem from "@/components/ui/FollowingOrFollowerItem";
 import { TPost } from "@/types/post.type";
+
 const posts = [
   {
     _id: "64b1a8e7f9a33a1b47b1c101",
@@ -197,28 +196,23 @@ const posts = [
   },
 ];
 
-const Feed = () => {
+const Followers = () => {
   return (
-    <div className="md:py-16 py-12">
-      <FContainer>
-        <div className="md:max-w-[1000px] sm:max-w-[400px] w-full mx-auto">
-          <FeedFilter />
-          <div className="mt-8">
-            {posts.map((post: TPost, index: number) => (
-              <div
-                key={post._id}
-                className={`border-b ${
-                  index === posts.length - 1 && "border-b-0"
-                } border-t-0 border-x-0 border-solid border-slate-200 py-8`}
-              >
-                <BigPostCard post={post} />
-              </div>
-            ))}
-          </div>
+    <>
+      {posts.map((post: TPost, index: number) => (
+        <div
+          className={`border-b ${
+            index === posts.length - 1 && "border-b-0"
+          } border-t-0 border-x-0 border-solid border-slate-200 py-5 ${
+            index === 0 && "pt-0"
+          } ${index === posts.length - 1 && "pb-0"} sm:px-6 px-4`}
+          key={index}
+        >
+          <FollowingOrFollowerItem user={post.author} />
         </div>
-      </FContainer>
-    </div>
+      ))}
+    </>
   );
 };
 
-export default Feed;
+export default Followers;

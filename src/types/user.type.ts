@@ -5,6 +5,7 @@ export type TUser = {
   _id: string
   name: string
   email: string
+  designation: string
   password: string
   bio: string
   profilePicture: string
