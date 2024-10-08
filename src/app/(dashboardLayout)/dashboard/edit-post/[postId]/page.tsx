@@ -15,7 +15,7 @@ import { useMemo, useRef, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
-const CreatePost = () => {
+const EditPost = () => {
   const [isPremium, setIsPremium] = useState<boolean>(false);
   const handleSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log("data, ", data);
@@ -80,7 +80,7 @@ const CreatePost = () => {
 
   return (
     <>
-      <DashboardSectionTitle heading="Create Post" />
+      <DashboardSectionTitle heading="Edit Post" />
       <div className="flex xl:flex-row flex-col gap-12 mt-7">
         <div className="xl:max-w-[600px] w-full -mt-1">
           <FForm handleFormSubmit={handleSubmit}>
@@ -149,4 +149,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default EditPost;

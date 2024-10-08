@@ -37,6 +37,7 @@ const FUploading = ({
         </label>
         <div className="mt-1">
           <Dragger
+            className="bg-white"
             multiple={multiple}
             accept=".jpg,.jpeg,.png,.gif,.webp"
             id={name}

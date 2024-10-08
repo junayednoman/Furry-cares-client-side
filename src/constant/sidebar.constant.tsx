@@ -16,7 +16,7 @@ export const userMenuItems = [
   {
     key: "3",
     icon: <ListTodo size={16} />,
-    label: <Link href={"/dashboard/user/my-rentals"}>My Rentals</Link>,
+    label: <Link href={"/dashboard/posts"}>Posts</Link>,
   },
 ];
 

@@ -173,16 +173,17 @@ p {
 .ant-pagination-item-active {
   border: 1px solid #ffa726 !important;
 }
+
 .ant-pagination-item-active a {
   color: #ffa726 !important;
 }
+
 .ant-pagination-item-container svg {
   color: #ffa726 !important;
 }
 
 .ant-menu-item-selected {
   background-color: #ffa726 !important;
-  border-radius: 0 !important;
   color: #fff !important;
 }
 
@@ -194,7 +195,7 @@ p {
 .dashMenuItems .ant-menu-item {
   background-color: transparent;
   color: #1b263b !important;
-  border-radius: 0 !important;
+  border-radius: 10px;
 }
 
 .dashboardSidebar {
@@ -210,6 +211,10 @@ p {
 
 .ant-upload.ant-upload-btn {
   padding: 20px;
+}
+
+.ant-upload.ant-upload-drag {
+  background-color: #fff;
 }
 .ant-upload.ant-upload-drag:hover {
   border-color: #2d2d2d !important;
