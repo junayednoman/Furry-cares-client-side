@@ -31,7 +31,11 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
       >
         <div className="p-4">
           <Link href={`/dashboard/profile`} className="inline-block">
-            <h3 className="md:text-[21px] text-xl font-bold uppercase text-primaryColor">
+            <h3
+              className={`${
+                collapsed ? "text-lg" : "text-[22px]"
+              } font-bold uppercase text-primaryColor`}
+            >
               <span className="text-accent">Furry</span>
               <span
                 className={`${

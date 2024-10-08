@@ -202,12 +202,19 @@ p {
   box-shadow: 0px 1px 53px -55px rgba(0, 0, 0, 0.68) !important;
 }
 
+.dashboardHeader {
+  background-color: #fff;
+  box-shadow: 0px 2px 53px -30px rgba(0, 0, 0, 0.68);
+  z-index: 99 !important;
+}
+
 .ant-upload.ant-upload-btn {
   padding: 20px;
 }
 .ant-upload.ant-upload-drag:hover {
   border-color: #2d2d2d !important;
 }
+
 /* .ant-upload:hover {
   border: 1px dashed #ffa726 !important;
 } */

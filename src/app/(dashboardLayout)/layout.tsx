@@ -120,7 +120,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </Header>
           <Content
-            className="md:py-8 py-5 md:px-12 px-6 bg-[#fffcf8] dark:bg-darkPrimary"
+            className="md:py-8 py-5 md:px-12 px-4 bg-[#fffcf8] dark:bg-darkPrimary"
             style={{
               minHeight: 280,
               // backgroundColor: "#fffcf8",
