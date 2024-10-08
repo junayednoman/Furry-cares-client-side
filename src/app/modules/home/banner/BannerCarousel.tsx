@@ -7,7 +7,7 @@ const BannerCarousel = () => {
     <Carousel
       dots={true}
       arrows={true}
-      // autoplay={true}
+      autoplay={true}
       infinite={true}
       draggable={true}
     >

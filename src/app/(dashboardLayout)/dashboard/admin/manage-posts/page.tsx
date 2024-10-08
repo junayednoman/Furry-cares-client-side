@@ -1,9 +1,7 @@
 "use client";
 import DashboardSectionTitle from "@/components/ui/DashboardSectionTitle";
-import { Table, Tag } from "antd";
-import { Pencil, Trash2 } from "lucide-react";
-import Link from "next/link";
-
+import { message, Popconfirm, PopconfirmProps, Table, Tag } from "antd";
+import { Trash2 } from "lucide-react";
 const items = [
   {
     key: 1,
@@ -89,6 +87,11 @@ export type TTableProps = {
 };
 
 const Posts = () => {
+  const confirm: PopconfirmProps["onConfirm"] = (e) => {
+    console.log(e);
+    message.success("Click on Yes");
+  };
+
   const columns = [
     {
       title: "Title",
@@ -127,22 +130,29 @@ const Posts = () => {
     },
     {
       title: "Actions",
-      render: ({ key }: { key: string }) => (
-        <div className="flex  items-center gap-2">
-          <Link href={`/dashboard/edit-post/${key}`}>
-            <Tag
-              color="blue"
-              className="flex items-center justify-center p-[6px] px-2 cursor-pointer"
-            >
-              <Pencil size={17} />
-            </Tag>
-          </Link>
+      render: ({ isPublished }: { isPublished: boolean }) => (
+        <div className="flex items-center gap-2">
           <Tag
-            color="red"
-            className="flex items-center justify-center p-[6px] px-2 cursor-pointer"
+            color={isPublished ? "gray" : "green-inverse"}
+            className="flex items-center justify-center p-[6px] px-2 cursor-pointer rounded-md"
           >
-            <Trash2 size={17} />
+            {isPublished ? "Draft" : "Publish"}
           </Tag>
+
+          <Popconfirm
+            title="Delete the user"
+            description="Are you sure to delete this user?"
+            onConfirm={confirm}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Tag
+              color="red-inverse"
+              className="flex items-center justify-center p-2 cursor-pointer rounded-md"
+            >
+              <Trash2 size={17} />
+            </Tag>
+          </Popconfirm>
         </div>
       ),
       key: "address",
@@ -151,7 +161,7 @@ const Posts = () => {
 
   return (
     <div>
-      <DashboardSectionTitle heading="My Posts" />
+      <DashboardSectionTitle heading="all Posts" />
 
       <div className="mt-6">
         <Table

@@ -228,6 +228,33 @@ p {
   border-color: #2d2d2d !important;
 }
 
+.ant-popconfirm-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+.ant-btn-primary {
+  color: white !important;
+  background-color: #f39c12 !important;
+}
+.mySearchInput input {
+  height: 60px;
+  margin-top: -20px;
+  border: none;
+}
+.mySearchInput p {
+  display: none;
+}
+.mySearchInput input::placeholder {
+  font-weight: 500;
+  font-size: 15px;
+  color: #2d2d2d7c;
+}
+
+.searchModal .ant-modal-content {
+  padding: 20px 0 !important;
+}
 /* .ant-upload:hover {
   border: 1px dashed #ffa726 !important;
 } */

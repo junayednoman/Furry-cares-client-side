@@ -18,7 +18,7 @@ const PricingPlan = ({
   description,
 }: TFreePlanProps) => {
   return (
-    <div className="sm:w-[400px] w-full rounded-[10px] border border-solid border-[#00000006] hover:border-text duration-300 FCardShadow p-5 flex justify-between flex-col">
+    <div className="sm:w-[400px] w-full rounded-[10px] border border-solid border-[#00000006] hover:border-accent duration-300 FCardShadow p-5 flex justify-between flex-col">
       <div>
         <h4 className="text-xl font-semibold text-text">{title}</h4>
         <div className="flex items-center gap-1 mt-3">

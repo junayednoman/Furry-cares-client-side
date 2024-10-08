@@ -7,7 +7,7 @@ import Link from "next/link";
 const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
   const user = {
     name: "John Doe",
-    role: "user",
+    role: "admin",
   };
   let menuItems;
   if (user?.role === "user") {

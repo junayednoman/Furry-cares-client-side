@@ -16,8 +16,11 @@ import {
 import FDrawer from "../ui/FDRawer";
 import { MenuProps } from "antd";
 import FDropdown from "../ui/FDropdown";
+import { useState } from "react";
+import SearchModal from "@/app/modules/others/SearchModal";
 
 const Header = () => {
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const items: MenuProps["items"] = [
     {
       label: (
@@ -56,6 +59,11 @@ const Header = () => {
       key: "3",
     },
   ];
+
+  // handle search modal
+  const handleOpenSearchModal = () => {
+    setIsSearchModalOpen(true);
+  };
   return (
     <header>
       <div className="py-6 headerBorder">
@@ -114,7 +122,19 @@ const Header = () => {
             </div>
             <div className="md:flex items-center gap-6 hidden">
               <Moon size={20} className="text-text cursor-pointer" />
-              <Search size={20} className="text-text cursor-pointer" />
+
+              {/* show search modal */}
+              <div>
+                <Search
+                  onClick={handleOpenSearchModal}
+                  size={20}
+                  className="text-text cursor-pointer"
+                />
+                <SearchModal
+                  isModalOpen={isSearchModalOpen}
+                  setIsModalOpen={setIsSearchModalOpen}
+                />
+              </div>
 
               {/* <FButton link="/auth/login">Login</FButton> */}
               <FDropdown items={items}>
