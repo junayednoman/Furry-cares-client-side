@@ -2,11 +2,11 @@ import Followers from "@/app/modules/profile page/Followers";
 import Followings from "@/app/modules/profile page/Followings";
 import OwnPosts from "@/app/modules/profile page/OwnPosts";
 import FContainer from "@/components/ui/Container";
-import FButton from "@/components/ui/FButton";
 import { Tabs } from "antd";
 import { Calendar } from "lucide-react";
 import Image from "next/image";
 import verifyIcon from "@/assets/verified.png";
+import UpdateProfile from "@/app/modules/profile page/UpdateProfile";
 
 const ProfilePage = () => {
   const tabsItems = [
@@ -50,7 +50,7 @@ const ProfilePage = () => {
             </div>
 
             <div>
-              <FButton>Edit Profile</FButton>
+              <UpdateProfile />
               {/* <div className="flex gap-4 items-center">
                 <div className="p-[9px] rounded-full border border-solid border-slate-500 flex items-center justify-center cursor-pointer">
                   <Ellipsis className="text-text" />

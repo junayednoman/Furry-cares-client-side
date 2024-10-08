@@ -1,6 +1,7 @@
 import { adminMenuItems, userMenuItems } from "@/constant/sidebar.constant";
-import { Menu } from "antd";
+import { Divider, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
+import { LogOut } from "lucide-react";
 import Link from "next/link";
 
 const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
@@ -52,6 +53,18 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
           mode="inline"
           defaultSelectedKeys={["1"]}
           items={menuItems}
+        />
+        <Divider className="pt-2 mt-2" />
+        <Menu
+          className="bg-white px-3 logoutItem"
+          mode="inline"
+          items={[
+            {
+              key: "logout",
+              icon: <LogOut className="text-red-600" size={14} />,
+              label: <span className="text-red-600">Logout</span>,
+            },
+          ]}
         />
       </Sider>
     </div>

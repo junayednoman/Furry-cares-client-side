@@ -80,7 +80,10 @@ const EditPost = () => {
 
   return (
     <>
-      <DashboardSectionTitle heading="Edit Post" />
+      <div className="flex items-center justify-between">
+        <DashboardSectionTitle heading="Edit Post" />
+        <FButton>Publish</FButton>
+      </div>
       <div className="flex xl:flex-row flex-col gap-12 mt-7">
         <div className="xl:max-w-[600px] w-full -mt-1">
           <FForm handleFormSubmit={handleSubmit}>
@@ -122,7 +125,7 @@ const EditPost = () => {
                   </Popover>
                 </div>
               </div>
-              <FButton htmlType="submit">Publish</FButton>
+              <FButton htmlType="submit">Update</FButton>
             </div>
           </FForm>
         </div>

@@ -187,6 +187,14 @@ p {
   color: #fff !important;
 }
 
+.logoutItem .ant-menu-item-selected {
+  background-color: transparent !important;
+}
+.logoutItem .ant-menu-item-selected svg,
+.ant-menu-item-selected a {
+  color: red !important;
+}
+
 .ant-menu-item-selected svg,
 .ant-menu-item-selected a {
   color: white !important;

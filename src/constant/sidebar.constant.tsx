@@ -6,7 +6,7 @@ export const userMenuItems = [
   {
     key: "1",
     icon: <UserOutlined />,
-    label: <Link href={"/dashboard/user"}>Profile</Link>,
+    label: <Link href={"/dashboard/profile"}>Profile</Link>,
   },
   {
     key: "2",
@@ -16,7 +16,7 @@ export const userMenuItems = [
   {
     key: "3",
     icon: <ListTodo size={16} />,
-    label: <Link href={"/dashboard/posts"}>Posts</Link>,
+    label: <Link href={"/dashboard/posts"}>My Posts</Link>,
   },
 ];
 

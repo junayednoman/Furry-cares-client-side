@@ -18,9 +18,6 @@ import { MenuProps } from "antd";
 import FDropdown from "../ui/FDropdown";
 
 const Header = () => {
-  const user = {
-    role: "user",
-  };
   const items: MenuProps["items"] = [
     {
       label: (
@@ -37,15 +34,8 @@ const Header = () => {
       label: (
         <div className="flex items-center gap-2">
           <ListCheckIcon size={14} />
-          <Link
-            className="text-text"
-            href={
-              user?.role === "admin"
-                ? `/dashboard/admin/manage-bikes`
-                : `/dashboard/user/my-rentals`
-            }
-          >
-            {user?.role === "admin" ? "Manage Rentals" : "My Rentals"}
+          <Link className="text-text" href="/dashboard/posts">
+            My Posts
           </Link>
         </div>
       ),
@@ -113,6 +103,14 @@ const Header = () => {
                 <span>Contact</span>
                 <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
               </Link>
+
+              <Link
+                className="relative group decoration-transparent text-text"
+                href={"/pricing"}
+              >
+                <span>Pricing</span>
+                <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+              </Link>
             </div>
             <div className="md:flex items-center gap-6 hidden">
               <Moon size={20} className="text-text cursor-pointer" />
@@ -160,6 +158,14 @@ const Header = () => {
                       href={"/contact"}
                     >
                       <span>Contact</span>
+                      <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+                    </Link>
+
+                    <Link
+                      className="relative group decoration-transparent text-text"
+                      href={"/pricing"}
+                    >
+                      <span>Pricing</span>
                       <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                   </div>

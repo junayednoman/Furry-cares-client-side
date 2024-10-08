@@ -12,6 +12,7 @@ type Props = {
   colSpanLg?: number;
   colSpanMd?: number;
   multiple?: boolean;
+  description?: string;
 };
 
 const FUploading = ({
@@ -23,6 +24,7 @@ const FUploading = ({
   colSpanLg,
   colSpanMd,
   multiple = false,
+  description,
 }: Props) => {
   return (
     <Col
@@ -55,9 +57,9 @@ const FUploading = ({
             <h4 className="font-semibold text-lg mt-3">
               Click or drag file to this area to upload
             </h4>
-            <p className="text-sm text-text mt-1">
-              Support for a single or bulk upload. Strictly prohibit from
-              uploading company data or other band files
+            <p className="text-sm mt-1 text-slate-500">
+              {description ||
+                "Strictly prohibit from uploading company data or other band files"}
             </p>
           </Dragger>
         </div>
