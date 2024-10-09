@@ -4,20 +4,26 @@ import FButton from "@/components/ui/FButton";
 import FForm from "@/components/ui/form/FForm";
 import FInput from "@/components/ui/form/FInput";
 import FSectionTitle from "@/components/ui/FSectionTitle";
+import { useAuthMutation } from "@/hooks/auth";
 import { loginSchema } from "@/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-
+const defaultValues = {
+  email: "junayednoman05@gmail.com",
+  password: "noman05",
+};
 const Login = () => {
+  const { mutate: handleLogin } = useAuthMutation("register", "/auth/login");
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("data, ", data);
+    handleLogin(data);
   };
   return (
     <FContainer>
       <div className="md:max-w-[500px] mx-auto w-full md:py-20 py-16">
         <FSectionTitle heading="Login" subHeading="Login to your account" />
         <FForm
+          defaultValues={defaultValues}
           resolver={zodResolver(loginSchema)}
           handleFormSubmit={handleFormSubmit}
         >
@@ -30,7 +36,7 @@ const Login = () => {
             />
             <FInput
               name="password"
-              type="password"
+              // type="password"
               label="Password"
               placeholder="Enter your password"
             />

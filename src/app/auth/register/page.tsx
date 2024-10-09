@@ -4,14 +4,19 @@ import FButton from "@/components/ui/FButton";
 import FForm from "@/components/ui/form/FForm";
 import FInput from "@/components/ui/form/FInput";
 import FSectionTitle from "@/components/ui/FSectionTitle";
+import { useAuthMutation } from "@/hooks/auth";
 import { registrationSchema } from "@/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const Register = () => {
+  const { mutate: handleRegister } = useAuthMutation(
+    "register",
+    "/auth/register"
+  );
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("data, ", data);
+    handleRegister(data);
   };
   return (
     <FContainer>

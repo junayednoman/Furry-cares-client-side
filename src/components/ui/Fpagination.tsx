@@ -1,26 +1,37 @@
 "use client";
-import { Pagination, PaginationProps } from "antd";
-import { useState } from "react";
+import { Pagination } from "antd";
+import { Dispatch, SetStateAction } from "react";
 
 type TPaginationProps = {
-  defaultCurrent?: number;
+  setPageSize: Dispatch<SetStateAction<number>>;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+  currentPage: number;
+  pageSize: number;
   total: number;
 };
 
-const FPagination = ({ defaultCurrent = 1, total }: TPaginationProps) => {
-  const [pageSize, setPageSize] = useState(5);
-  const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
-    current,
-    pageSize
-  ) => {
-    setPageSize(pageSize);
+const FPagination = ({
+  setPageSize,
+  setCurrentPage,
+  pageSize,
+  total,
+  currentPage,
+}: TPaginationProps) => {
+  const handlePageChange = (page: number, pageSize?: number) => {
+    setCurrentPage(page);
+    if (pageSize) {
+      setPageSize(pageSize);
+    }
+    console.log("Current Page:", page, "Page Size:", pageSize, total);
+    // Call your data fetching function here to load the new page data
   };
 
   return (
     <Pagination
+      onChange={handlePageChange}
       showSizeChanger
-      onShowSizeChange={onShowSizeChange}
-      defaultCurrent={defaultCurrent}
+      // onShowSizeChange={onShowSizeChange}
+      defaultCurrent={currentPage}
       total={total}
       pageSize={pageSize}
     />

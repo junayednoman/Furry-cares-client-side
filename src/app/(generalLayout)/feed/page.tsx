@@ -4,7 +4,6 @@ import BigPostCard from "@/components/ui/BigPostCard";
 import FContainer from "@/components/ui/Container";
 import FPagination from "@/components/ui/Fpagination";
 import { useHandleQuery } from "@/hooks/useHandleQuery";
-
 import { TPost } from "@/types/post.type";
 import NoData from "@/components/ui/NoData";
 import BigPostSkeleton from "../skeletons/BigPostSkeleton";
@@ -12,10 +11,16 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const Feed = () => {
+  // pagination
+  const [pageSize, setPageSize] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  // console.log("pagesize: ", pageSize, "currentPage:", currentPage);
+
   const categoryFromSearchParams = useSearchParams().get("category");
   const [category, setCategory] = useState<string | null>(
     categoryFromSearchParams || null
   );
+
   // set date range
   const [daysBefore, setDaysBefore] = useState<string | null>(null);
   const [sorting, setSorting] = useState<string | null>(null);
@@ -28,14 +33,24 @@ const Feed = () => {
       category,
       daysBefore,
       sort: sorting,
-      limit: 10,
+      limit: pageSize,
+      page: currentPage,
     }
   );
 
   // refetch when category, timePosted or tags changes
   useEffect(() => {
     refetch();
-  }, [category, daysBefore, sorting, categoryFromSearchParams]);
+  }, [
+    category,
+    daysBefore,
+    sorting,
+    categoryFromSearchParams,
+    pageSize,
+    currentPage,
+  ]);
+
+  console.log("data, ", data);
 
   return (
     <div className="md:py-16 py-12">
@@ -58,16 +73,16 @@ const Feed = () => {
                 <BigPostSkeleton />
               </div>
             </div>
-          ) : data?.data?.length <= 0 || isError ? (
+          ) : data?.data?.result?.length <= 0 || isError ? (
             <NoData />
           ) : (
             <>
               <div>
-                {data?.data?.map((post: TPost, index: number) => (
+                {data?.data?.result?.map((post: TPost, index: number) => (
                   <div
                     key={post._id}
                     className={`border-b ${
-                      index === data?.data?.length - 1 && "border-b-0"
+                      index === data?.data?.result?.length - 1 && "border-b-0"
                     } border-t-0 border-x-0 border-solid border-slate-200 py-8`}
                   >
                     <BigPostCard post={post} />
@@ -75,7 +90,13 @@ const Feed = () => {
                 ))}
               </div>
 
-              <FPagination total={50} defaultCurrent={1} />
+              <FPagination
+                total={data?.data?.meta?.total}
+                currentPage={currentPage}
+                pageSize={pageSize}
+                setCurrentPage={setCurrentPage}
+                setPageSize={setPageSize}
+              />
             </>
           )}
         </div>
