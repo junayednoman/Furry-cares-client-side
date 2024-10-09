@@ -27,7 +27,7 @@ const Pricing = () => {
       <FContainer>
         <FSectionTitle
           heading="Pricing Plans"
-          subHeading="Choose the Perfect Plan for Your Pet Care Journey"
+          subHeading="Choose the Perfect Plan for Your Journey"
         />
         <div className="mt-10 flex md:flex-row flex-col md:items-start items-center justify-center lg:gap-8 md:gap-x-6 gap-y-6">
           <PricingPlan

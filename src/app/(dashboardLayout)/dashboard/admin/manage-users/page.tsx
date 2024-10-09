@@ -1,7 +1,14 @@
 "use client";
 import DashboardSectionTitle from "@/components/ui/DashboardSectionTitle";
-import { message, Popconfirm, PopconfirmProps, Table, Tag } from "antd";
-import { Trash2 } from "lucide-react";
+import {
+  message,
+  Popconfirm,
+  PopconfirmProps,
+  Table,
+  Tag,
+  Tooltip,
+} from "antd";
+import { Trash2, UserRoundCog } from "lucide-react";
 const items = [
   {
     key: 1,
@@ -121,8 +128,26 @@ const Users = () => {
 
     {
       title: "Actions",
-      render: ({}) => (
-        <div className="flex items-center gap-2">
+      render: ({ role }: { role: "user" | "admin" }) => (
+        <div className="flex items-center gap-1">
+          <Popconfirm
+            title="Make admin"
+            description={`Are you sure to make this ${
+              role === "user" ? "user an admin" : "admin a user"
+            }?`}
+            onConfirm={confirm}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Tooltip title={`${role === "user" ? "Make admin" : "Make user"}`}>
+              <Tag
+                color="blue-inverse"
+                className="flex items-center justify-center p-2 cursor-pointer rounded-md"
+              >
+                <UserRoundCog size={17} />
+              </Tag>
+            </Tooltip>
+          </Popconfirm>
           <Popconfirm
             title="Delete the user"
             description="Are you sure to delete this user?"

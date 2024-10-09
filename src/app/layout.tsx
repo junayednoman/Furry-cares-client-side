@@ -35,11 +35,7 @@ export default function RootLayout({
         className={`${montserrat.variable} ${lato.variable} font-montserrat`}
       >
         <Providers>
-          <AntdRegistry>
-            {/* <StyleProvider> */}
-            {children}
-            {/* </StyleProvider> */}
-          </AntdRegistry>
+          <AntdRegistry>{children}</AntdRegistry>
         </Providers>
       </body>
     </html>
