@@ -3,18 +3,9 @@ import { Card } from "antd";
 import Link from "next/link";
 import { Dot } from "lucide-react";
 import Heading3 from "../typography/Heading3";
+import { TPost } from "@/types/post.type";
 
-interface ClassicPostsCardProps {
-  imageUrl: string;
-  heading: string;
-  tag: string;
-}
-
-const ClassicPostsCard: React.FC<ClassicPostsCardProps> = ({
-  imageUrl,
-  heading,
-  tag,
-}) => {
+const ClassicPostsCard = ({ post }: { post: TPost }) => {
   return (
     <Card
       className="relative sm:min-h-[280px] min-h-[250px] w-full overflow-hidden rounded-lg shadow-md group p-0 cursor-pointer"
@@ -24,7 +15,7 @@ const ClassicPostsCard: React.FC<ClassicPostsCardProps> = ({
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
         style={{
-          backgroundImage: `url(${imageUrl})`,
+          backgroundImage: `url(${post?.thumbnail})`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
@@ -32,23 +23,30 @@ const ClassicPostsCard: React.FC<ClassicPostsCardProps> = ({
 
       {/* Content Overlay */}
       <div className="absolute inset-0 flex flex-col justify-end sm:p-8 p-7 py-6">
-        {/* Tag */}
+        {/* category */}
         <div className="w-fit text-primaryBg flex items-center">
           <Link
             className="text-primaryBg font-medium underline uppercase"
-            href={`/category}`}
+            href={`/feed?category=${post?.category}`}
           >
-            {tag}
+            {post?.category}
           </Link>
           <Dot className="-ml-2" size={40} />
-          <Link href={"/"} className="font-medium mb-0 -ml-2 text-primaryBg">
-            <p className="font-montserrat text-primaryBg">By Junayed Noman</p>
+          <Link
+            href={`/profile/${post?.author?._id}`}
+            className="font-medium mb-0 -ml-2 text-primaryBg"
+          >
+            <p className="font-montserrat text-primaryBg">
+              By {post?.author?.name}
+            </p>
           </Link>
         </div>
         {/* Heading */}
         <Link href={"/"}>
           <Heading3 color="white">
-            {heading.length > 50 ? heading.substring(0, 50) + "..." : heading}
+            {post?.title?.length > 50
+              ? post?.title?.substring(0, 50) + "..."
+              : post?.title}
           </Heading3>
         </Link>
       </div>

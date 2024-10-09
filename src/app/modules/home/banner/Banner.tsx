@@ -1,21 +1,11 @@
 import FContainer from "@/components/ui/Container";
 import BannerCarousel from "./BannerCarousel";
 import ClassicPostsCard from "@/components/ui/ClassicPostCard";
-import getFeaturedPosts from "@/services/posts/getFeaturedPosts";
+import getFeaturedPosts from "@/services/posts";
 
 const Banner = async () => {
-  const posts = await getFeaturedPosts();
+  const posts = await getFeaturedPosts("/posts?sort=-votes");
   console.log("posts, ", posts);
-
-  // console.log("ppppppppppppp, ", "ppppppppppppp2");
-  // if (!posts) {
-  //   console.log("ppppppppppppp, ", "ppppppppppppp");
-  //   return <p>loading...pppppppppppppppppppppppp</p>;
-  // }
-  // if (!posts.data) {
-  //   console.log("dddddddddddddddd, ", "dddddddddddddddd");
-  //   return <p>loading...</p>;
-  // }
 
   return (
     <div className="pt-10 overflow-hidden">
@@ -25,17 +15,8 @@ const Banner = async () => {
             <BannerCarousel posts={posts?.data?.slice(0, 3)} />
           </div>
           <div className="xl:col-span-2 grid xl:grid-cols-1 xl:gap-0 md:gap-6 gap-4 lg:grid-cols-2 grid-cols-1 xl:space-y-6">
-            <ClassicPostsCard
-              heading="Golden retriever and white kitten cuddling on the grass, cute pet photography"
-              imageUrl="
-              https://www.foodmanufacture.co.uk/var/wrbm_gb_food_pharma/storage/images/_aliases/wrbm_large/publications/food-beverage-nutrition/foodmanufacture.co.uk/article/2021/09/30/pet-food-processing-how-are-human-and-animal-tastes-converging/12885940-1-eng-GB/Pet-food-processing-how-are-human-and-animal-tastes-converging.jpg"
-              tag="Tips"
-            />
-            <ClassicPostsCard
-              heading="Golden retriever and white kitten cuddling on the grass, cute pet photography"
-              imageUrl="https://thumbs.dreamstime.com/b/little-girls-dog-lying-floor-smiling-prone-golden-retriever-them-33595883.jpg"
-              tag="Tips"
-            />
+            <ClassicPostsCard post={posts?.data[3]} />
+            <ClassicPostsCard post={posts?.data[4]} />
           </div>
         </div>
       </FContainer>

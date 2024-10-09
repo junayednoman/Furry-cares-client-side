@@ -26,7 +26,7 @@ const Header = () => {
       label: (
         <div className="flex items-center gap-2">
           <User size={14} />
-          <Link className="text-text" href="/profile">
+          <Link className="text-text" href="/dashboard/profile">
             Profile
           </Link>
         </div>

@@ -11,8 +11,9 @@ type TSelectProps = {
   disabled?: boolean;
   colSpanLg?: number;
   colSpanMd?: number;
-  options: { value: string | number | boolean; label: string }[];
+  options: { value: string | number | boolean | null; label: string }[];
   mode?: "multiple";
+  selectOnChange?: any;
 };
 
 const FSelect = ({
@@ -24,6 +25,7 @@ const FSelect = ({
   colSpanMd,
   options,
   mode,
+  selectOnChange,
 }: TSelectProps) => {
   return (
     <Col
@@ -35,7 +37,8 @@ const FSelect = ({
       <div className="flex items-center justify-center">
         <Controller
           name={name}
-          render={({ field, fieldState: error }) => (
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          render={({ field: { onChange, ...fields }, fieldState: error }) => (
             <div className="w-full">
               <Form.Item
                 htmlFor={name}
@@ -44,7 +47,8 @@ const FSelect = ({
               >
                 <Select
                   mode={mode}
-                  {...field}
+                  onChange={selectOnChange}
+                  {...fields}
                   id={name}
                   placeholder={placeholder}
                   disabled={disabled}

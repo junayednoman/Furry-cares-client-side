@@ -15,12 +15,7 @@ const BannerCarousel = ({ posts }: { posts: TPost[] }) => {
     >
       {posts.map((post) => (
         <div key={post._id}>
-          <BannerCarouselCard
-            heading={post.title}
-            imageUrl={post.thumbnail}
-            category={post.category}
-            isPremium={post.isPremium}
-          />
+          <BannerCarouselCard post={post} />
         </div>
       ))}
     </Carousel>

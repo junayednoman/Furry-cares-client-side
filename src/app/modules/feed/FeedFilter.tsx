@@ -1,9 +1,14 @@
 "use client";
 import FForm from "@/components/ui/form/FForm";
 import FSelect from "@/components/ui/form/FSelect";
+import { Dispatch, SetStateAction } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const categories = [
+  {
+    value: null,
+    label: "All",
+  },
   {
     value: "tip",
     label: "Tip",
@@ -14,68 +19,82 @@ const categories = [
   },
 ];
 
-const times = [
+const days = [
   {
-    value: "any time",
+    value: "",
     label: "Any time",
   },
   {
-    value: "last 24 hours",
+    value: "1",
     label: "Last 24 hours",
   },
   {
-    value: "last 1 week",
+    value: "7",
     label: "Last 1 week",
   },
   {
-    value: "last 15 days",
+    value: "15",
     label: "Last 15 days",
   },
   {
-    value: "last month",
+    value: "30",
     label: "Last month",
   },
 ];
 
-const tags = [
+const sortings = [
   {
-    value: "health",
-    label: "Health",
+    value: null,
+    label: "Reset",
   },
   {
-    value: "story",
-    label: "Story",
+    value: "votes",
+    label: "Low to high",
   },
   {
-    value: "exercise",
-    label: "Exercise",
-  },
-  {
-    value: "grooming",
-    label: "Grooming",
+    value: "-votes",
+    label: "High to low",
   },
 ];
 
-const FeedFilter = () => {
+type TProps = {
+  setCategory: Dispatch<SetStateAction<string | null>>;
+  setTimePosted: Dispatch<SetStateAction<string | null>>;
+  setSorting: Dispatch<SetStateAction<string | null>>;
+};
+
+const FeedFilter = ({ setCategory, setTimePosted, setSorting }: TProps) => {
   const handleFilter: SubmitHandler<FieldValues> = (data) => {
     console.log("data, ", data);
   };
+
   return (
     <div className="md:p-6 p-5 rounded-md border border-slate-200 border-solid bg-[#fbfdfa]">
       <FForm handleFormSubmit={handleFilter}>
         <div className="flex md:flex-row flex-col items-center md:gap-8 gap-4">
           <div className="w-full">
             <FSelect
+              selectOnChange={(value: string) => setCategory(value)}
               options={categories}
               name="category"
               placeholder="Select Category"
             />
           </div>
           <div className="w-full">
-            <FSelect options={times} name="time" placeholder="Time posted" />
+            <FSelect
+              selectOnChange={(value: string) => setTimePosted(value)}
+              options={days}
+              name="time"
+              placeholder="Time posted"
+            />
           </div>
           <div className="w-full">
-            <FSelect options={tags} name="tags" placeholder="Filter by tags" />
+            <FSelect
+              selectOnChange={(value: string) => setSorting(value)}
+              options={sortings}
+              name="sorting"
+              placeholder="Sort by votes"
+            />
           </div>
         </div>
       </FForm>

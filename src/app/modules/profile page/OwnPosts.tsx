@@ -1,5 +1,9 @@
+"use client";
+import Loading from "@/app/(generalLayout)/loading";
 import FPagination from "@/components/ui/Fpagination";
+import NoData from "@/components/ui/NoData";
 import SmallPostCard from "@/components/ui/SmallPostCard";
+import { useHandleQuery } from "@/hooks/useHandleQuery";
 import { TPost } from "@/types/post.type";
 
 const posts = [
@@ -52,7 +56,7 @@ const posts = [
     __v: 0,
   },
   {
-    _id: "64b1a8e7f9a33a1b47b1c102",
+    _id: "64b1a8e7f9a33a1b47b1c10dsf2",
     author: {
       coverPhoto: "https://example.com/images/emma-cover.jpg",
       isVerified: false,
@@ -197,24 +201,40 @@ const posts = [
   },
 ];
 
-const OwnPosts = () => {
+const OwnPosts = ({ userId }: { userId: string }) => {
+  const { data, isFetching, isLoading, isError } = useHandleQuery(
+    "getUserPosts",
+    `/posts/user/${userId}`
+  );
+
+  if (isLoading || isFetching) {
+    return <Loading />;
+  }
+
   return (
     <div>
-      {posts.map((post: TPost, index: number) => (
-        <div
-          key={post._id}
-          className={`border-b ${
-            index === posts.length - 1 && "border-b-0"
-          } border-t-0 border-x-0 border-solid border-slate-200 py-6 ${
-            index === 0 && "pt-0"
-          } ${index === posts.length - 1 && "pb-0"} sm:px-6 px-4`}
-        >
-          <SmallPostCard post={post} />
-        </div>
-      ))}
-      <div className="mt-8">
-        <FPagination total={posts.length} defaultCurrent={1} />{" "}
-      </div>
+      {data?.data?.length <= 0 || isError ? (
+        <NoData />
+      ) : (
+        <>
+          {data?.data?.map((post: TPost, index: number) => (
+            <div
+              key={post._id}
+              className={`border-b ${
+                index === posts.length - 1 && "border-b-0"
+              } border-t-0 border-x-0 border-solid border-slate-200 py-6 ${
+                index === 0 && "pt-0"
+              } ${index === posts.length - 1 && "pb-0"} sm:px-6 px-4`}
+            >
+              <SmallPostCard post={post} />
+            </div>
+          ))}
+
+          <div className="mt-8">
+            <FPagination total={posts.length} defaultCurrent={1} />{" "}
+          </div>
+        </>
+      )}
     </div>
   );
 };

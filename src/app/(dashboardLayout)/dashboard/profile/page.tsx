@@ -1,3 +1,4 @@
+"use client";
 import Followers from "@/app/modules/profile page/Followers";
 import Followings from "@/app/modules/profile page/Followings";
 import OwnPosts from "@/app/modules/profile page/OwnPosts";
@@ -6,8 +7,19 @@ import { Tabs } from "antd";
 import { Calendar } from "lucide-react";
 import Image from "next/image";
 import verifyIcon from "@/assets/verified.png";
+import { useHandleQuery } from "@/hooks/useHandleQuery";
 
 const ProfilePage = () => {
+  // const {
+  //   data: postData,
+  //   isFetching,
+  //   isLoading,
+  //   isError,
+  // } = useHandleQuery("get-profile", "/users", {
+  //   userId: "66faa25f3d380f3fcf53f260",
+  // });
+  // console.log("postData, ", postData);
+  console.log("log, ");
   const tabsItems = [
     {
       label: "Posts",

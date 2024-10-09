@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BadgeDollarSign, Dot } from "lucide-react";
 import Heading5 from "../typography/Heading5";
 import { TUser } from "@/types/user.type";
+import moment from "moment";
 
 interface PostCardProps {
   thumbnail: string;
@@ -12,10 +13,11 @@ interface PostCardProps {
   category: string;
   author: TUser;
   isPremium: boolean;
+  createdAt: string;
 }
 
 const SmallPostCard = ({ post }: { post: PostCardProps }) => {
-  const { thumbnail, title, category, author } = post;
+  const { thumbnail, title, category, author, createdAt } = post;
   return (
     <Card className="flex flex-row border-none p-0 duration-300">
       <div className="flex sm:flex-row flex-col md:gap-6 gap-3">
@@ -40,7 +42,7 @@ const SmallPostCard = ({ post }: { post: PostCardProps }) => {
               <Dot className="-ml-2 text-slate-300" size={35} />
 
               <p className="font-montserrat font-semibold mb-0 -ml-2 text-slate-400">
-                16 Minutes ago
+                {moment(createdAt).fromNow()}
               </p>
             </div>
             <Link href={"/"} className="-mt-1 inline-block">

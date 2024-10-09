@@ -2,7 +2,7 @@
 import FContainer from "@/components/ui/Container";
 import { Skeleton } from "antd";
 
-const loading = () => {
+const BannerSkeleton = () => {
   return (
     <div className="pt-10">
       <FContainer>
@@ -29,4 +29,4 @@ const loading = () => {
   );
 };
 
-export default loading;
+export default BannerSkeleton;

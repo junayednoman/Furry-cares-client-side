@@ -4,15 +4,14 @@ import { ReactNode } from "react";
 
 const GeneralLayout = ({
   children,
-  homeBanner,
 }: {
   children: ReactNode;
   homeBanner: ReactNode;
+  featuredStory: ReactNode;
 }) => {
   return (
     <>
       <Header />
-      {homeBanner}
       {children}
       <Footer />
     </>

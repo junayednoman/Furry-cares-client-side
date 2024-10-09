@@ -10,7 +10,7 @@ const Heading3 = ({
   return (
     <h2
       style={{ color: color ? color : "" }}
-      className={`text-text lg:text-[29px] md:text-2xl text-[22px] sm:leading-[35px] leading-[30px] font-semibold mb-0`}
+      className={`text-text lg:text-[27px] md:text-2xl text-[22px] sm:leading-[35px] leading-[30px] font-semibold mb-0`}
     >
       {children}
     </h2>

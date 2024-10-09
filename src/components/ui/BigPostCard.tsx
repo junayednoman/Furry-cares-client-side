@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Heading3 from "../typography/Heading3";
 import { BadgeDollarSign, Dot } from "lucide-react";
+import moment from "moment";
+import { TUser } from "@/types/user.type";
 interface PostCardProps {
   _id: string;
   thumbnail: string;
@@ -11,10 +13,22 @@ interface PostCardProps {
   content: string;
   category: string;
   isPremium: boolean;
+  createdAt: string;
+  votes: number;
+  author: TUser;
 }
 
 const BigPostCard = ({ post }: { post: PostCardProps }) => {
-  const { thumbnail, title, content, category, isPremium } = post;
+  const {
+    thumbnail,
+    title,
+    content,
+    category,
+    isPremium,
+    createdAt,
+    votes,
+    author,
+  } = post || {};
   return (
     <Card className="flex flex-row border-none p-0 duration-300">
       <div className="grid md:grid-cols-5 grid-cols-1 md:gap-10 gap-y-3">
@@ -35,7 +49,7 @@ const BigPostCard = ({ post }: { post: PostCardProps }) => {
               <div className=" flex items-center -mt-2">
                 <Link
                   className="text-slate-600 font-semibold capitalize"
-                  href={`/category}`}
+                  href={`/profile/${author?._id}`}
                 >
                   <p className="font-montserrat md:text-base">
                     By Junayed Noman
@@ -44,7 +58,7 @@ const BigPostCard = ({ post }: { post: PostCardProps }) => {
                 <Dot className="-ml-2 text-slate-300" size={40} />
 
                 <p className="font-montserrat font-semibold mb-0 -ml-2 text-slate-400">
-                  16 Minutes ago
+                  {moment(createdAt).fromNow()}
                 </p>
               </div>
             </div>
@@ -58,7 +72,13 @@ const BigPostCard = ({ post }: { post: PostCardProps }) => {
             </p>
           </div>
           <div className="mt-4 flex items-center gap-4">
-            <Link className="text-black" href={"/"}>
+            <Link href={""}>
+              <div className="bg-primaryBg px-3 py-1 rounded-[4px] inline capitalize font-medium">
+                <span>{votes} Votes</span>
+              </div>
+            </Link>
+
+            <Link className="text-black" href={`/feed?category=${category}`}>
               <div className="bg-primaryBg px-3 py-1 rounded-[4px] inline capitalize font-medium">
                 <span>{category}</span>
               </div>

@@ -1,8 +1,7 @@
-import envConfig from "@/config";
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: envConfig.base_url,
+  baseURL: 'http://localhost:5000/api/v1',
 });
 
 export default axiosInstance;

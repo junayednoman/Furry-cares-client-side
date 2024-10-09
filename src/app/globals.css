@@ -18,6 +18,10 @@ p {
   font-family: var(--font-lato);
   color: #2d2d2d;
 }
+a {
+  text-decoration: none !important;
+  color: #2d2d2d;
+}
 
 .FCardShadow {
   transition: 0.3s ease !important;
@@ -255,6 +259,7 @@ p {
 .searchModal .ant-modal-content {
   padding: 20px 0 !important;
 }
+
 /* .ant-upload:hover {
   border: 1px dashed #ffa726 !important;
 } */
