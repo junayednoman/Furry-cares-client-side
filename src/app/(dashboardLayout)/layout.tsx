@@ -2,19 +2,16 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button, Layout, MenuProps } from "antd";
 import { useEffect, useState } from "react";
-import {
-  CircleUserRound,
-  Home,
-  ListCheckIcon,
-  LogOut,
-  User,
-} from "lucide-react";
-import Link from "next/link";
+import { CircleUserRound, LogOut } from "lucide-react";
 import Sidebar from "../modules/dashboard/Sidebar";
 import FDropdown from "@/components/ui/FDropdown";
+import { items } from "@/constant/sidebar.constant";
+import { ItemType } from "antd/es/menu/interface";
+import { useUserContext } from "@/context/auth.provider";
 
 const { Header, Content } = Layout;
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const { handleLogout } = useUserContext();
   const [collapsed, setCollapsed] = useState(false);
   useEffect(() => {
     if (window.innerWidth < 610) {
@@ -22,60 +19,14 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  const user = {
-    name: "John Doe",
-    role: "user",
-  };
-
-  //header drop down options
-  const items: MenuProps["items"] = [
+  const dropdownItems: MenuProps["items"] = [
+    ...(items as ItemType[]),
     {
       label: (
-        <div className="flex items-center gap-2">
-          <Home size={14} />
-          <Link className="text-text" href="/">
-            Home
-          </Link>
-        </div>
-      ),
-      key: "0",
-    },
-    {
-      label: (
-        <div className="flex items-center gap-2">
-          <User size={14} />
-          <Link className="text-text" href="/profile">
-            Profile
-          </Link>
-        </div>
-      ),
-      key: "2",
-    },
-    {
-      label: (
-        <div className="flex items-center gap-2">
-          <ListCheckIcon size={14} />
-          <Link
-            className="text-text"
-            href={
-              user?.role === "admin"
-                ? `/dashboard/admin/manage-bikes`
-                : `/dashboard/user/my-rentals`
-            }
-          >
-            {user?.role === "admin" ? "Manage Rentals" : "My Rentals"}
-          </Link>
-        </div>
-      ),
-
-      key: "1",
-    },
-    {
-      type: "divider",
-    },
-    {
-      label: (
-        <div className="flex items-center gap-2 text-red-600">
+        <div
+          onClick={() => handleLogout()}
+          className="flex items-center gap-2 text-red-600"
+        >
           <LogOut size={14} />
           <span>Log Out</span>
         </div>
@@ -84,6 +35,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       key: "3",
     },
   ];
+
   return (
     <div>
       <Layout>
@@ -111,7 +63,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 }}
               />
               <div className="max-h-[50px]">
-                <FDropdown items={items}>
+                <FDropdown items={dropdownItems}>
                   <p className="border-2 border-white cursor-pointer max-h-[40px] flex items-center justify-center bg-accent rounded-full p-2">
                     <CircleUserRound className="text-white" size={22} />
                   </p>

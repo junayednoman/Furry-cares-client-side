@@ -70,13 +70,10 @@ const LatestPosts = () => {
     ]
   );
 
-  const {
-    data: postData,
-    isFetching,
-    isLoading,
-    isError,
-  } = useHandleQuery("get-latest-posts", "/posts?sort=-createdAt");
-  console.log("data, ", postData);
+  const { data, isFetching, isLoading, isError } = useHandleQuery(
+    "get-latest-posts",
+    "/posts?sort=-createdAt"
+  );
 
   if (isFetching || isLoading) {
     return (
@@ -87,6 +84,8 @@ const LatestPosts = () => {
     );
   }
 
+  const postData = data?.data?.result;
+
   return (
     <>
       <div className="md:py-20 py-16 overflow-hidden">
@@ -95,13 +94,13 @@ const LatestPosts = () => {
             heading="Latest posts"
             subHeading="Check out the latest posts"
           />
-          {isError || !postData.data ? (
+          {isError || !postData ? (
             <NoData />
           ) : (
             <div className="xl:mx-10">
               <div className="navigation-wrapper w-full relative">
                 <div ref={sliderRef} className="keen-slider mt-10">
-                  {postData?.data.map((post: TPost, index: number) => (
+                  {postData?.map((post: TPost, index: number) => (
                     <div
                       key={post._id}
                       className={`keen-slider__slide px-3 pb-6 number-slide${

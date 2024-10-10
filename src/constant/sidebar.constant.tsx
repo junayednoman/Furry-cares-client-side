@@ -1,22 +1,31 @@
 import { UserOutlined } from "@ant-design/icons";
-import { Bike, NotebookPen, User, Users } from "lucide-react";
+import { MenuProps } from "antd";
+
+import {
+  Bike,
+  Home,
+  ListCheckIcon,
+  NotebookPen,
+  User,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 
 export const userMenuItems = [
   {
     key: "1",
     icon: <UserOutlined />,
-    label: <Link href={"/dashboard/profile"}>Profile</Link>,
+    label: <Link href={"/profile"}>Profile</Link>,
   },
   {
     key: "2",
     icon: <Bike size={16} />,
-    label: <Link href={"/dashboard/author/create-post"}>Create Post</Link>,
+    label: <Link href={"/author/create-post"}>Create Post</Link>,
   },
   {
     key: "3",
     icon: <NotebookPen size={16} />,
-    label: <Link href={"/dashboard/author/posts"}>My Posts</Link>,
+    label: <Link href={"/author/posts"}>My Posts</Link>,
   },
 ];
 
@@ -24,16 +33,56 @@ export const adminMenuItems = [
   {
     key: "1",
     icon: <User size={16} />,
-    label: <Link href={"/dashboard/profile"}>Profile</Link>,
+    label: <Link href={"/profile"}>Profile</Link>,
   },
   {
     key: "2",
     icon: <NotebookPen size={16} />,
-    label: <Link href={"/dashboard/admin/manage-posts"}>Manage Posts</Link>,
+    label: <Link href={"/admin/manage-posts"}>Manage Posts</Link>,
   },
   {
     key: "4",
     icon: <Users size={16} />,
-    label: <Link href={"/dashboard/admin/manage-users"}>Users</Link>,
+    label: <Link href={"/admin/manage-users"}>Users</Link>,
+  },
+];
+
+export const items: MenuProps["items"] = [
+  {
+    label: (
+      <div className="flex items-center gap-2">
+        <Home size={14} />
+        <Link className="text-text" href="/">
+          Home
+        </Link>
+      </div>
+    ),
+    key: "0",
+  },
+  {
+    label: (
+      <div className="flex items-center gap-2">
+        <User size={14} />
+        <Link className="text-text" href="/profile">
+          Profile
+        </Link>
+      </div>
+    ),
+    key: "1",
+  },
+  {
+    label: (
+      <div className="flex items-center gap-2">
+        <ListCheckIcon size={14} />
+        <Link className="text-text" href="/author/posts">
+          My Posts
+        </Link>
+      </div>
+    ),
+
+    key: "2",
+  },
+  {
+    type: "divider",
   },
 ];

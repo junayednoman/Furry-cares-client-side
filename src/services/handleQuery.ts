@@ -1,5 +1,4 @@
 import axiosInstance from "@/hooks/axiosInstance"
-import { delay } from "@/utils/delay";
 
 const handleQuery = async (url: string, params?: Record<string, any>) => {
   try {

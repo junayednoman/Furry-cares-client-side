@@ -18,9 +18,15 @@ const AuthorsSkeleton = () => {
               active
             ></Skeleton.Image>
             <div className="text-center">
-              <Skeleton.Node className="w-[160px] mx-auto mt-[10px] h-[22px]"></Skeleton.Node>
+              <Skeleton.Node
+                active
+                className="w-[160px] mx-auto mt-[10px] h-[22px]"
+              ></Skeleton.Node>
               <br />
-              <Skeleton.Node className="w-[100px] mt-2 h-[15px]"></Skeleton.Node>
+              <Skeleton.Node
+                active
+                className="w-[100px] mt-2 h-[15px]"
+              ></Skeleton.Node>
             </div>
           </div>
           <div className="sm:block hidden">
@@ -29,9 +35,15 @@ const AuthorsSkeleton = () => {
               active
             ></Skeleton.Image>
             <div className="text-center">
-              <Skeleton.Node className="w-[160px] mx-auto mt-[10px] h-[22px]"></Skeleton.Node>
+              <Skeleton.Node
+                active
+                className="w-[160px] mx-auto mt-[10px] h-[22px]"
+              ></Skeleton.Node>
               <br />
-              <Skeleton.Node className="w-[100px] mt-2 h-[15px]"></Skeleton.Node>
+              <Skeleton.Node
+                active
+                className="w-[100px] mt-2 h-[15px]"
+              ></Skeleton.Node>
             </div>
           </div>
           <div className="lg:block hidden">
@@ -40,9 +52,15 @@ const AuthorsSkeleton = () => {
               active
             ></Skeleton.Image>
             <div className="text-center">
-              <Skeleton.Node className="w-[160px] mx-auto mt-[10px] h-[22px]"></Skeleton.Node>
+              <Skeleton.Node
+                active
+                className="w-[160px] mx-auto mt-[10px] h-[22px]"
+              ></Skeleton.Node>
               <br />
-              <Skeleton.Node className="w-[100px] mt-2 h-[15px]"></Skeleton.Node>
+              <Skeleton.Node
+                active
+                className="w-[100px] mt-2 h-[15px]"
+              ></Skeleton.Node>
             </div>
           </div>
         </div>

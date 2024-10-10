@@ -7,7 +7,6 @@ import { Tabs } from "antd";
 import { Calendar } from "lucide-react";
 import Image from "next/image";
 import verifyIcon from "@/assets/verified.png";
-import { useHandleQuery } from "@/hooks/useHandleQuery";
 
 const ProfilePage = () => {
   // const {

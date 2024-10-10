@@ -11,7 +11,6 @@ export const useAuthMutation = (key: string, url: string) => {
     mutationKey: [key],
     mutationFn: async (payload: FieldValues) => await handleAuthMutation(url, payload),
     onSuccess: (data) => {
-      console.log('data, ', data);
       toast.success(data.message || "Mutation Successful");
       router.push("/")
     },

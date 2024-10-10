@@ -20,15 +20,30 @@ const FeaturedStoriesSkeleton = ({
               className="w-full min-h-[280px]"
               active
             ></Skeleton.Image>
-            <Skeleton.Node className="w-1/2 mt-1 h-[15px]"></Skeleton.Node>
-            <Skeleton.Node className="w-full mt-[6px] h-[30px]"></Skeleton.Node>
-            <Skeleton.Node className="w-full mt-[6px] h-[30px]"></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-1/2 mt-1 h-[15px]"
+            ></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-full mt-[6px] h-[30px]"
+            ></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-full mt-[6px] h-[30px]"
+            ></Skeleton.Node>
 
             <div className="flex items-center gap-2 mt-4">
               <Skeleton.Avatar size={60}></Skeleton.Avatar>
               <div className="flex flex-col gap-[6px]">
-                <Skeleton.Node className="h-[17px] w-[100px]"></Skeleton.Node>
-                <Skeleton.Node className="h-[12px] w-[100px]"></Skeleton.Node>
+                <Skeleton.Node
+                  active
+                  className="h-[17px] w-[100px]"
+                ></Skeleton.Node>
+                <Skeleton.Node
+                  active
+                  className="h-[12px] w-[100px]"
+                ></Skeleton.Node>
               </div>
             </div>
           </div>
@@ -37,15 +52,30 @@ const FeaturedStoriesSkeleton = ({
               className="w-full min-h-[280px]"
               active
             ></Skeleton.Image>
-            <Skeleton.Node className="w-1/2 mt-1 h-[15px]"></Skeleton.Node>
-            <Skeleton.Node className="w-full mt-[6px] h-[30px]"></Skeleton.Node>
-            <Skeleton.Node className="w-full mt-[6px] h-[30px]"></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-1/2 mt-1 h-[15px]"
+            ></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-full mt-[6px] h-[30px]"
+            ></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-full mt-[6px] h-[30px]"
+            ></Skeleton.Node>
 
             <div className="flex items-center gap-2 mt-4">
               <Skeleton.Avatar size={60}></Skeleton.Avatar>
               <div className="flex flex-col gap-[6px]">
-                <Skeleton.Node className="h-[17px] w-[100px]"></Skeleton.Node>
-                <Skeleton.Node className="h-[12px] w-[100px]"></Skeleton.Node>
+                <Skeleton.Node
+                  active
+                  className="h-[17px] w-[100px]"
+                ></Skeleton.Node>
+                <Skeleton.Node
+                  active
+                  className="h-[12px] w-[100px]"
+                ></Skeleton.Node>
               </div>
             </div>
           </div>
@@ -54,15 +84,30 @@ const FeaturedStoriesSkeleton = ({
               className="w-full min-h-[280px]"
               active
             ></Skeleton.Image>
-            <Skeleton.Node className="w-1/2 mt-1 h-[15px]"></Skeleton.Node>
-            <Skeleton.Node className="w-full mt-[6px] h-[30px]"></Skeleton.Node>
-            <Skeleton.Node className="w-full mt-[6px] h-[30px]"></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-1/2 mt-1 h-[15px]"
+            ></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-full mt-[6px] h-[30px]"
+            ></Skeleton.Node>
+            <Skeleton.Node
+              active
+              className="w-full mt-[6px] h-[30px]"
+            ></Skeleton.Node>
 
             <div className="flex items-center gap-2 mt-4">
               <Skeleton.Avatar size={60}></Skeleton.Avatar>
               <div className="flex flex-col gap-[6px]">
-                <Skeleton.Node className="h-[17px] w-[100px]"></Skeleton.Node>
-                <Skeleton.Node className="h-[12px] w-[100px]"></Skeleton.Node>
+                <Skeleton.Node
+                  active
+                  className="h-[17px] w-[100px]"
+                ></Skeleton.Node>
+                <Skeleton.Node
+                  active
+                  className="h-[12px] w-[100px]"
+                ></Skeleton.Node>
               </div>
             </div>
           </div>

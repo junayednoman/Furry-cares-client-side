@@ -7,50 +7,37 @@ import FButton from "../ui/FButton";
 import {
   AlignJustify,
   CircleUserRound,
-  ListCheckIcon,
   LogOut,
   Moon,
   Search,
   User,
 } from "lucide-react";
 import FDrawer from "../ui/FDRawer";
-import { MenuProps } from "antd";
 import FDropdown from "../ui/FDropdown";
 import { useState } from "react";
 import SearchModal from "@/app/modules/others/SearchModal";
+import { useUserContext } from "@/context/auth.provider";
+import { items } from "@/constant/sidebar.constant";
+import { MenuProps, Spin } from "antd";
+import { ItemType } from "antd/es/menu/interface";
 
 const Header = () => {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const items: MenuProps["items"] = [
-    {
-      label: (
-        <div className="flex items-center gap-2">
-          <User size={14} />
-          <Link className="text-text" href="/dashboard/profile">
-            Profile
-          </Link>
-        </div>
-      ),
-      key: "0",
-    },
-    {
-      label: (
-        <div className="flex items-center gap-2">
-          <ListCheckIcon size={14} />
-          <Link className="text-text" href="/dashboard/posts">
-            My Posts
-          </Link>
-        </div>
-      ),
+  const { user, handleLogout, loading: userLoading } = useUserContext();
 
-      key: "1",
-    },
-    {
-      type: "divider",
-    },
+  // handle search modal
+  const handleOpenSearchModal = () => {
+    setIsSearchModalOpen(true);
+  };
+
+  const dropdownItems: MenuProps["items"] = [
+    ...(items as ItemType[]),
     {
       label: (
-        <div className="flex items-center gap-2 text-red-600">
+        <div
+          onClick={() => handleLogout()}
+          className="flex items-center gap-2 text-red-600"
+        >
           <LogOut size={14} />
           <span>Log Out</span>
         </div>
@@ -60,10 +47,6 @@ const Header = () => {
     },
   ];
 
-  // handle search modal
-  const handleOpenSearchModal = () => {
-    setIsSearchModalOpen(true);
-  };
   return (
     <header>
       <div className="py-6 headerBorder">
@@ -136,13 +119,18 @@ const Header = () => {
                 />
               </div>
 
-              {/* <FButton link="/auth/login">Login</FButton> */}
-              <FDropdown items={items}>
-                <CircleUserRound
-                  size={23}
-                  className="text-text cursor-pointer"
-                />
-              </FDropdown>
+              <Spin spinning={userLoading} className="text-accent">
+                {user ? (
+                  <FDropdown items={dropdownItems}>
+                    <CircleUserRound
+                      size={23}
+                      className="text-text cursor-pointer"
+                    />
+                  </FDropdown>
+                ) : (
+                  <FButton link="/auth/login">Login</FButton>
+                )}
+              </Spin>
             </div>
             {/* mobile menu */}
             <div className="md:hidden block">
@@ -192,7 +180,16 @@ const Header = () => {
                   <div className="flex items-center justify-end mt-8 gap-6">
                     <Moon size={20} className="text-text cursor-pointer" />
                     <Search size={20} className="text-text cursor-pointer" />
-                    <FButton link="/auth/login">Login</FButton>
+                    {user ? (
+                      <FDropdown items={dropdownItems}>
+                        <CircleUserRound
+                          size={23}
+                          className="text-text cursor-pointer"
+                        />
+                      </FDropdown>
+                    ) : (
+                      <FButton link="/auth/login">Login</FButton>
+                    )}
                   </div>
                 </div>
               </FDrawer>

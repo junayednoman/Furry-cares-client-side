@@ -4,19 +4,39 @@ import FButton from "@/components/ui/FButton";
 import FForm from "@/components/ui/form/FForm";
 import FInput from "@/components/ui/form/FInput";
 import FSectionTitle from "@/components/ui/FSectionTitle";
+import { useUserContext } from "@/context/auth.provider";
 import { useAuthMutation } from "@/hooks/auth";
 import { loginSchema } from "@/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 const defaultValues = {
   email: "junayednoman05@gmail.com",
   password: "noman05",
 };
 const Login = () => {
-  const { mutate: handleLogin } = useAuthMutation("register", "/auth/login");
+  const { setLoading: setUserLoading } = useUserContext();
+  const redirectTo = useSearchParams().get("redirect") || "/";
+  const router = useRouter();
+  const {
+    mutate: handleLogin,
+    isPending,
+    isError,
+    isSuccess,
+  } = useAuthMutation("register", "/auth/login");
+
+  // redirect if logged in
+  useEffect(() => {
+    if (!isPending && !isError && isSuccess) {
+      router.push(redirectTo);
+    }
+  }, [isPending, isError, isSuccess]);
+
   const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
     handleLogin(data);
+    setUserLoading(true);
   };
   return (
     <FContainer>
@@ -41,7 +61,7 @@ const Login = () => {
               placeholder="Enter your password"
             />
             <FButton wFull htmlType="submit">
-              Login
+              {isPending ? "Loading..." : "Login"}
             </FButton>
           </div>
         </FForm>

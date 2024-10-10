@@ -1,6 +1,5 @@
 "use client";
 import Loading from "@/app/(generalLayout)/loading";
-import FPagination from "@/components/ui/Fpagination";
 import NoData from "@/components/ui/NoData";
 import SmallPostCard from "@/components/ui/SmallPostCard";
 import { useHandleQuery } from "@/hooks/useHandleQuery";
@@ -231,7 +230,7 @@ const OwnPosts = ({ userId }: { userId: string }) => {
           ))}
 
           <div className="mt-8">
-            <FPagination total={posts.length} defaultCurrent={1} />{" "}
+            {/* <FPagination  setPageSize={setPageSize} setCurrentPage={setCurrentPage} currentPage={currentPage} pageSize={pageSize} total={posts.length} />{" "} */}
           </div>
         </>
       )}

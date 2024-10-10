@@ -22,7 +22,6 @@ const FPagination = ({
     if (pageSize) {
       setPageSize(pageSize);
     }
-    console.log("Current Page:", page, "Page Size:", pageSize, total);
     // Call your data fetching function here to load the new page data
   };
 

@@ -69,17 +69,15 @@ const FeaturedStories = () => {
     ]
   );
 
-  const {
-    data: postData,
-    isFetching,
-    isLoading,
-    isError,
-  } = useHandleQuery("get-featured-stories", "/posts", {
-    category: "story",
-    sort: "-votes",
-    limit: 6,
-  });
-  console.log("featured data, ", postData);
+  const { data, isFetching, isLoading, isError } = useHandleQuery(
+    "get-featured-stories",
+    "/posts",
+    {
+      category: "story",
+      sort: "-votes",
+      limit: 6,
+    }
+  );
 
   if (isFetching || isLoading) {
     return (
@@ -90,6 +88,8 @@ const FeaturedStories = () => {
     );
   }
 
+  const postData = data?.data?.result;
+
   return (
     <>
       <div className="md:py-20 py-16 overflow-hidden">
@@ -98,13 +98,13 @@ const FeaturedStories = () => {
             heading="featured stories"
             subHeading="reader's choice"
           />
-          {isError || !postData.data ? (
+          {isError || !postData ? (
             <NoData />
           ) : (
             <div className="xl:mx-10">
               <div className="navigation-wrapper w-full relative">
                 <div ref={sliderRef} className="keen-slider mt-10">
-                  {postData?.data.map((post: TPost, index: number) => (
+                  {postData?.map((post: TPost, index: number) => (
                     <div
                       key={post._id}
                       className={`keen-slider__slide px-3 pb-6 number-slide${

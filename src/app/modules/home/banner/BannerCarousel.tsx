@@ -4,7 +4,6 @@ import { TPost } from "@/types/post.type";
 import { Carousel } from "antd";
 
 const BannerCarousel = ({ posts }: { posts: TPost[] }) => {
-  console.log("posts, ", posts);
   return (
     <Carousel
       dots={true}

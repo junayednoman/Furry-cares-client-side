@@ -42,15 +42,15 @@ const Feed = () => {
   useEffect(() => {
     refetch();
   }, [
+    categoryFromSearchParams,
     category,
     daysBefore,
     sorting,
-    categoryFromSearchParams,
     pageSize,
     currentPage,
   ]);
 
-  console.log("data, ", data);
+  const postData = data?.data?.result;
 
   return (
     <div className="md:py-16 py-12">
@@ -73,16 +73,16 @@ const Feed = () => {
                 <BigPostSkeleton />
               </div>
             </div>
-          ) : data?.data?.result?.length <= 0 || isError ? (
+          ) : postData?.length <= 0 || isError ? (
             <NoData />
           ) : (
             <>
               <div>
-                {data?.data?.result?.map((post: TPost, index: number) => (
+                {postData?.map((post: TPost, index: number) => (
                   <div
                     key={post._id}
                     className={`border-b ${
-                      index === data?.data?.result?.length - 1 && "border-b-0"
+                      index === postData?.length - 1 && "border-b-0"
                     } border-t-0 border-x-0 border-solid border-slate-200 py-8`}
                   >
                     <BigPostCard post={post} />

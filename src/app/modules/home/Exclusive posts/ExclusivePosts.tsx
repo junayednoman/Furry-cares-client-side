@@ -70,13 +70,10 @@ const ExclusiveTips = () => {
     ]
   );
 
-  const {
-    data: postData,
-    isFetching,
-    isLoading,
-    isError,
-  } = useHandleQuery("get-exclusive-tips", "/posts?category=tip");
-  console.log("data, ", postData);
+  const { data, isFetching, isLoading, isError } = useHandleQuery(
+    "get-exclusive-tips",
+    "/posts?category=tip"
+  );
 
   if (isFetching || isLoading) {
     return (
@@ -87,6 +84,8 @@ const ExclusiveTips = () => {
     );
   }
 
+  const postData = data?.data?.result;
+
   return (
     <>
       <div className="md:py-20 py-16 overflow-hidden">
@@ -95,13 +94,13 @@ const ExclusiveTips = () => {
             heading="exclusive tips"
             subHeading=" Keep your pet healthy"
           />
-          {isError || !postData.data ? (
+          {isError || !postData ? (
             <NoData />
           ) : (
             <div className="xl:mx-10">
               <div className="navigation-wrapper w-full relative">
                 <div ref={sliderRef} className="keen-slider mt-10">
-                  {postData?.data.map((post: TPost, index: number) => (
+                  {postData?.map((post: TPost, index: number) => (
                     <div
                       key={post._id}
                       className={`keen-slider__slide px-3 pb-6 number-slide${

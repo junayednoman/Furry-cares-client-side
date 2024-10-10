@@ -1,20 +1,19 @@
 import { adminMenuItems, userMenuItems } from "@/constant/sidebar.constant";
+import { useUserContext } from "@/context/auth.provider";
 import { Divider, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 
 const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
-  const user = {
-    name: "John Doe",
-    role: "admin",
-  };
+  const { user, handleLogout } = useUserContext();
   let menuItems;
   if (user?.role === "user") {
     menuItems = userMenuItems;
   } else if (user?.role === "admin") {
     menuItems = adminMenuItems;
   }
+
   return (
     <div>
       <Sider
@@ -60,8 +59,9 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
           mode="inline"
           items={[
             {
+              onClick: () => handleLogout(),
               key: "logout",
-              icon: <LogOut className="text-red-600" size={14} />,
+              icon: <LogOut color={"red"} className="text-red-600" size={14} />,
               label: <span className="text-red-600">Logout</span>,
             },
           ]}

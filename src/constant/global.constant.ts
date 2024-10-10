@@ -50,3 +50,5 @@ export const tagOptions = [
   { value: "pet video", label: "Pet Video" },
   { value: "pet story", label: "Pet Story" },
 ]
+
+export const protectedRoutes = ["/author", "/admin", '/profile'];
