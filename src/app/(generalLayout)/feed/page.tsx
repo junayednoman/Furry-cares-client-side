@@ -35,6 +35,7 @@ const Feed = () => {
       sort: sorting,
       limit: pageSize,
       page: currentPage,
+      isPublished: true,
     }
   );
 

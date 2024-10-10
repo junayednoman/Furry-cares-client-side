@@ -13,8 +13,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 const defaultValues = {
-  email: "junayednoman05@gmail.com",
-  password: "noman05",
+  email: "junayednomna05@gmail.com",
+  password: "password123",
 };
 const Login = () => {
   const { setLoading: setUserLoading } = useUserContext();

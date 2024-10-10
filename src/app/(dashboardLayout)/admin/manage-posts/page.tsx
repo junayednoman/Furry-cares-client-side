@@ -1,97 +1,69 @@
 "use client";
 import DashboardSectionTitle from "@/components/ui/DashboardSectionTitle";
-import { message, Popconfirm, PopconfirmProps, Table, Tag } from "antd";
-import { Trash2 } from "lucide-react";
-const items = [
-  {
-    key: 1,
-    title: "Introduction to JavaScript",
-    category: "Programming",
-    votes: 53,
-    isPremium: false,
-    isPublished: true,
-  },
-  {
-    key: 2,
-    title: "Mastering React",
-    category: "Web Development",
-    votes: 654,
-    isPremium: true,
-    isPublished: true,
-  },
-  {
-    key: 3,
-    title: "UI/UX Design Fundamentals",
-    category: "Design",
-    votes: 43,
-    isPremium: false,
-    isPublished: false,
-  },
-  {
-    key: 4,
-    title: "Data Structures in Python",
-    category: "Programming",
-    votes: 53,
-    isPremium: true,
-    isPublished: true,
-  },
-  {
-    key: 5,
-    title: "SEO Best Practices",
-    category: "Digital Marketing",
-    votes: 984,
-    isPremium: false,
-    isPublished: false,
-  },
-  {
-    key: 6,
-    title: "Project Management 101",
-    category: "Business",
-    votes: 345,
-    isPremium: true,
-    isPublished: false,
-  },
-  {
-    key: 7,
-    title: "Advanced CSS Techniques",
-    category: "Web Development",
-    votes: 435,
-    isPremium: true,
-    isPublished: true,
-  },
-  {
-    key: 8,
-    title: "Introduction to Machine Learning",
-    category: "Data Science",
-    votes: 62,
-  },
-  {
-    key: 9,
-    title: "Financial Analysis for Beginners",
-    category: "Finance",
-    votes: 23,
-  },
-  {
-    key: 10,
-    title: "Social Media Marketing",
-    category: "Digital Marketing",
-    votes: 334,
-  },
-];
+import { useDeleteData, usePartialUpdate } from "@/hooks/mutation";
+import { useHandleQuery } from "@/hooks/useHandleQuery";
+import { TPost } from "@/types/post.type";
+import { Popconfirm, Spin, Table, Tag } from "antd";
+import { BookCheck, NotepadTextDashed, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
-export type TTableProps = {
-  startTime: string;
-  _id: string;
-  // bikeId: TBike;
-  // userId: TUser;
-};
+export type TTableProps = Pick<
+  TPost,
+  "title" | "category" | "votes" | "isPremium" | "isPublished" | "_id"
+>;
 
 const Posts = () => {
-  const confirm: PopconfirmProps["onConfirm"] = (e) => {
-    console.log(e);
-    message.success("Click on Yes");
+  const [postIdToBeDeleted, setPostIdToBeDeleted] = useState("");
+  const [postIdToChangePublishStatus, setPostIdToChangePublishStatus] =
+    useState("");
+  const {
+    data,
+    isFetching,
+    refetch: refetchPostData,
+  } = useHandleQuery("all-posts", `/posts`);
+
+  const postData = data?.data?.result;
+
+  // update publish status
+  const {
+    mutate: updatePublishStatus,
+    isPending: isPublishPending,
+    isSuccess: isPublishSuccess,
+  } = usePartialUpdate(
+    "update-publish-status",
+    `/posts/publish/${postIdToChangePublishStatus}`
+  );
+
+  useEffect(() => {
+    refetchPostData();
+  }, [isPublishSuccess]);
+
+  // delete post
+  const { mutateAsync: deletePost } = useDeleteData(
+    "delete-posts",
+    `/posts/${postIdToBeDeleted}`
+  );
+  const handlePostDelete = async () => {
+    await deletePost();
+    refetchPostData();
   };
 
+  const postItems = postData?.map((post: TTableProps) => ({
+    key: post._id,
+    title: post.title,
+    category: post.category,
+    votes: post.votes,
+    isPremium: post.isPremium,
+    isPublished: post.isPublished,
+  }));
+
+  console.log("postItems, ", postData);
+  // handle publish and draft post
+  const handleUpdatePublishStatus = async (isPublished: boolean) => {
+    updatePublishStatus({ isPublished: !isPublished });
+  };
+
+  console.log("id, ", postIdToChangePublishStatus);
   const columns = [
     {
       title: "Title",
@@ -115,7 +87,7 @@ const Posts = () => {
           {isPublished ? (
             <Tag color="green">Published</Tag>
           ) : (
-            <Tag color="yellow">Draft</Tag>
+            <Tag color="default">Draft</Tag>
           )}
         </p>
       ),
@@ -124,27 +96,42 @@ const Posts = () => {
     {
       title: "Content Type",
       render: ({ isPremium }: { isPremium: boolean }) => (
-        <p>{isPremium ? "Premium" : "Free"}</p>
+        <p>
+          {isPremium ? (
+            <Tag color="gold">Premium</Tag>
+          ) : (
+            <Tag color="purple">Free</Tag>
+          )}
+        </p>
       ),
       key: "tenantName",
     },
     {
       title: "Actions",
-      render: ({ isPublished }: { isPublished: boolean }) => (
-        <div className="flex items-center gap-2">
-          <Tag
-            color={isPublished ? "gray" : "green-inverse"}
-            className="flex items-center justify-center p-[6px] px-2 cursor-pointer rounded-md"
-          >
-            {isPublished ? "Draft" : "Publish"}
-          </Tag>
+      render: ({ isPublished, key }: { isPublished: boolean; key: string }) => (
+        <div className="flex items-center gap-1">
+          <Spin spinning={isPublishPending}>
+            <Tag
+              onMouseEnter={() => setPostIdToChangePublishStatus(key)}
+              onClick={() => handleUpdatePublishStatus(isPublished)}
+              color={isPublished ? "gray" : "green-inverse"}
+              className="flex items-center justify-center p-[6px] px-2 cursor-pointer rounded-md"
+            >
+              {isPublished ? (
+                <NotepadTextDashed size={20} />
+              ) : (
+                <BookCheck size={20} />
+              )}
+            </Tag>
+          </Spin>
 
           <Popconfirm
             title="Delete the user"
             description="Are you sure to delete this user?"
-            onConfirm={confirm}
+            onConfirm={handlePostDelete}
             okText="Yes"
             cancelText="No"
+            onOpenChange={() => setPostIdToBeDeleted(key)}
           >
             <Tag
               color="red-inverse"
@@ -161,12 +148,12 @@ const Posts = () => {
 
   return (
     <div>
-      <DashboardSectionTitle heading="all Posts" />
+      <DashboardSectionTitle heading="All posts" />
 
       <div className="mt-6">
         <Table
-          dataSource={items}
-          // loading={isFetching}
+          loading={isFetching}
+          dataSource={postItems}
           columns={columns}
           scroll={{ x: 800 }}
         />

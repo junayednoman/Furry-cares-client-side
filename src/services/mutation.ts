@@ -40,6 +40,7 @@ export const handleUpdateFormData = async (url: string, formData: FormData) => {
     });
     return data;
   } catch (error: any) {
+    console.log('error inside, ', error?.response?.data);
     throw new Error(error?.response?.data?.message || "unable to update!");
   }
 }

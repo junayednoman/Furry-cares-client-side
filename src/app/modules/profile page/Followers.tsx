@@ -3,6 +3,7 @@ import NoData from "@/components/ui/NoData";
 import { TUser } from "@/types/user.type";
 
 const Followers = ({ user }: { user: TUser }) => {
+  console.log("user, ", user);
   return (
     <>
       {user?.followers?.length < 1 ? (

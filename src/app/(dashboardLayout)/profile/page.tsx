@@ -52,6 +52,8 @@ const ProfilePage = () => {
     },
   ];
 
+  console.log("lengsit, ", user?.following?.length);
+
   return (
     <>
       <div className="max-w-[850px] border border-solid border-slate-200 rounded-t-[8px]">
@@ -109,7 +111,7 @@ const ProfilePage = () => {
           </div>
           <div className="flex items-center gap-8 mt-1">
             <p className="mt-3 text-[15px]">
-              {user?.followings?.length}{" "}
+              {user?.following?.length}{" "}
               <span className="text-[#b3b3b3]">Followings</span>
             </p>
             <p className="mt-3 text-[15px]">
