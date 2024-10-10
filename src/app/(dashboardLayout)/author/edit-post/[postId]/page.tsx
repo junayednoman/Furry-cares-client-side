@@ -43,7 +43,7 @@ const EditPost = ({ params }: { params: { postId: string } }) => {
 
   const { user } = useUserContext();
   const [content, setContent] = useState<string>("");
-  console.log("postData?.content, ", content);
+
   const [isPremium, setIsPremium] = useState<boolean>(false);
   const [thumbnail, setThumbnail] = useState<any | undefined>(undefined);
   const {
@@ -73,7 +73,6 @@ const EditPost = ({ params }: { params: { postId: string } }) => {
     if (thumbnail) {
       formData.append("thumbnail", thumbnail?.originFileObj);
     }
-    console.log("content, ", data);
 
     updatePost(formData);
   };

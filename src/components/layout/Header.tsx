@@ -10,7 +10,6 @@ import {
   LogOut,
   Moon,
   Search,
-  User,
 } from "lucide-react";
 import FDrawer from "../ui/FDRawer";
 import FDropdown from "../ui/FDropdown";

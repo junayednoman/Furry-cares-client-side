@@ -18,11 +18,11 @@ const TopAuthors = async () => {
           heading="Top Authors"
           subHeading="Meet the top authors"
         />
-        {!userData?.data ? (
+        {!userData?.data?.result ? (
           <AuthorsSkeleton withHeading={false} />
         ) : (
           <div className="grid md:grid-cols-3 grid-cols-1 items-center lg:gap-16 gap-4 mt-10 xl:max-w-[950px] md:w-full w-[85%] mx-auto">
-            {userData?.data?.map((author: TUser) => (
+            {userData?.data?.result?.map((author: TUser) => (
               <div
                 key={author._id}
                 className="text-center FCardShadow rounded-md bg-white"

@@ -2,18 +2,9 @@ import React from "react";
 import { Card } from "antd";
 import Link from "next/link";
 import { Dot } from "lucide-react";
-import { TUser } from "@/types/user.type";
+import { TPost } from "@/types/post.type";
 
-interface PostCardProps {
-  thumbnail: string;
-  title: string;
-  content: string;
-  category: string;
-  author: TUser;
-  isPremium: boolean;
-}
-
-const MiniPostCard = ({ post }: { post: PostCardProps }) => {
+const MiniPostCard = ({ post }: { post: TPost }) => {
   const { thumbnail, title, author } = post;
 
   return (

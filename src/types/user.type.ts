@@ -11,6 +11,7 @@ export type TUser = {
   profilePicture: string
   role: string
   followers: TUser[]
+  followerCount: number;
   following: TUser[]
   isDeleted: boolean
   createdAt: string

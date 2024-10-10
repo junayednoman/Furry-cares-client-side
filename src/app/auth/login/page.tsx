@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/app/(generalLayout)/loading";
 import FContainer from "@/components/ui/Container";
 import FButton from "@/components/ui/FButton";
 import FForm from "@/components/ui/form/FForm";
@@ -10,16 +11,20 @@ import { loginSchema } from "@/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+
 const defaultValues = {
   email: "junayednomna05@gmail.com",
   password: "password123",
 };
-const Login = () => {
+
+const LoginForm = () => {
   const { setLoading: setUserLoading } = useUserContext();
-  const redirectTo = useSearchParams().get("redirect") || "/";
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams?.get("redirect") || "/";
   const router = useRouter();
+
   const {
     mutate: handleLogin,
     isPending,
@@ -38,6 +43,7 @@ const Login = () => {
     handleLogin(data);
     setUserLoading(true);
   };
+
   return (
     <FContainer>
       <div className="md:max-w-[500px] mx-auto w-full md:py-20 py-16">
@@ -56,7 +62,6 @@ const Login = () => {
             />
             <FInput
               name="password"
-              // type="password"
               label="Password"
               placeholder="Enter your password"
             />
@@ -67,7 +72,7 @@ const Login = () => {
         </FForm>
         <div className="mt-8 flex justify-between items-center sm:text-base text-[15px]">
           <p>
-            Don not have an account?{" "}
+            Don’t have an account?{" "}
             <Link className=" font-semibold text-accent" href="/auth/register">
               Register
             </Link>
@@ -85,5 +90,11 @@ const Login = () => {
     </FContainer>
   );
 };
+
+const Login = () => (
+  <Suspense fallback={<Loading />}>
+    <LoginForm />
+  </Suspense>
+);
 
 export default Login;

@@ -36,6 +36,7 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
         profilePicture:
           "https://img.freepik.com/free-photo/bearded-man-with-striped-shirt_273609-7180.jpg",
         role: "author",
+        followerCount: 0,
         followers: [],
         following: [],
         isDeleted: false,
@@ -84,6 +85,7 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
         profilePicture:
           "https://t3.ftcdn.net/jpg/02/00/90/24/360_F_200902415_G4eZ9Ok3Ypd4SZZKjc8nqJyFVp1eOD6V.jpg",
         role: "author",
+        followerCount: 0,
         followers: [],
         following: [],
         isDeleted: false,
@@ -132,6 +134,7 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
         profilePicture:
           "https://t3.ftcdn.net/jpg/02/00/90/24/360_F_200902415_G4eZ9Ok3Ypd4SZZKjc8nqJyFVp1eOD6V.jpg",
         role: "author",
+        followerCount: 0,
         followers: [],
         following: [],
         isDeleted: false,
@@ -180,6 +183,7 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
         profilePicture:
           "https://t3.ftcdn.net/jpg/02/00/90/24/360_F_200902415_G4eZ9Ok3Ypd4SZZKjc8nqJyFVp1eOD6V.jpg",
         role: "author",
+        followerCount: 0,
         followers: [],
         following: [],
         isDeleted: false,

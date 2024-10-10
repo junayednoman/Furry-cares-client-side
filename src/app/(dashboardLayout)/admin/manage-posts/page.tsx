@@ -57,13 +57,11 @@ const Posts = () => {
     isPublished: post.isPublished,
   }));
 
-  console.log("postItems, ", postData);
   // handle publish and draft post
   const handleUpdatePublishStatus = async (isPublished: boolean) => {
     updatePublishStatus({ isPublished: !isPublished });
   };
 
-  console.log("id, ", postIdToChangePublishStatus);
   const columns = [
     {
       title: "Title",

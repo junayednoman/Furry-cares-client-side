@@ -10,11 +10,13 @@ import "./globals.css";
 const montserrat = Montserrat({
   weight: ["500", "600", "700"],
   variable: "--font-montserrat",
+  subsets: ["latin"],
 });
 
 const lato = Lato({
   weight: ["300", "400", "700"],
   variable: "--font-lato",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {

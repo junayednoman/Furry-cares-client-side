@@ -1,119 +1,88 @@
 "use client";
 import DashboardSectionTitle from "@/components/ui/DashboardSectionTitle";
-import {
-  message,
-  Popconfirm,
-  PopconfirmProps,
-  Table,
-  Tag,
-  Tooltip,
-} from "antd";
-import { Trash2, UserRoundCog } from "lucide-react";
-const items = [
-  {
-    key: 1,
-    title: "Introduction to JavaScript",
-    role: "user",
-    email: "example@gmail.com",
-    votes: 53,
-    isPremium: false,
-    isPublished: true,
-  },
-  {
-    key: 2,
-    title: "Mastering React",
-    role: "admin",
-    email: "example@gmail.com",
-    votes: 654,
-    isPremium: true,
-    isPublished: true,
-  },
-  {
-    key: 3,
-    title: "UI/UX Design Fundamentals",
-    role: "user",
-    email: "example@gmail.com",
-    votes: 43,
-    isPremium: false,
-    isPublished: false,
-  },
-  {
-    key: 4,
-    title: "Data Structures in Python",
-    role: "admin",
-    email: "example@gmail.com",
-    votes: 53,
-    isPremium: true,
-    isPublished: true,
-  },
-  {
-    key: 5,
-    title: "SEO Best Practices",
-    role: "user",
-    email: "example@gmail.com",
-    votes: 984,
-    isPremium: false,
-    isPublished: false,
-  },
-  {
-    key: 6,
-    title: "Project Management 101",
-    role: "admin",
-    email: "example@gmail.com",
-    votes: 345,
-    isPremium: true,
-    isPublished: false,
-  },
-  {
-    key: 7,
-    title: "Advanced CSS Techniques",
-    role: "user",
-    email: "example@gmail.com",
-    votes: 435,
-    isPremium: true,
-    isPublished: true,
-  },
-  {
-    key: 8,
-    title: "Introduction to Machine Learning",
-    role: "admin",
-    email: "example@gmail.com",
-    votes: 62,
-  },
-  {
-    key: 9,
-    title: "Financial Analysis for Beginners",
-    role: "admin",
-    email: "example@gmail.com",
-    votes: 23,
-  },
-  {
-    key: 10,
-    title: "Social Media Marketing",
-    role: "user",
-    email: "example@gmail.com",
-    votes: 334,
-  },
-];
+import { useDeleteData, usePartialUpdate } from "@/hooks/mutation";
+import { useHandleQuery } from "@/hooks/useHandleQuery";
+import { TUser } from "@/types/user.type";
+import { Popconfirm, Table, Tag, Tooltip } from "antd";
+import { ArchiveRestore, Eye, Trash2, UserRoundCog } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
-export type TTableProps = {
-  startTime: string;
-  _id: string;
-  // bikeId: TBike;
-  // userId: TUser;
-};
-
-const confirm: PopconfirmProps["onConfirm"] = (e) => {
-  console.log(e);
-  message.success("Click on Yes");
-};
+export type TTableProps = Pick<
+  TUser,
+  | "name"
+  | "email"
+  | "role"
+  | "followerCount"
+  | "_id"
+  | "profilePicture"
+  | "isDeleted"
+>;
 
 const Users = () => {
+  const [userIdToBeDeleted, setUserIdToBeDeleted] = useState<string>("");
+  const {
+    data,
+    isFetching,
+    refetch: refetchPostData,
+  } = useHandleQuery("all-users", `/users`);
+
+  const userData = data?.data?.result;
+
+  const userItems = userData?.map((user: TTableProps) => ({
+    key: user?._id,
+    name: user?.name,
+    email: user?.email,
+    role: user?.role,
+    followers: user?.followerCount,
+    profilePicture: user?.profilePicture,
+    isDeleted: user?.isDeleted,
+  }));
+
+  // handle update user role and delete user
+  const { mutateAsync: updateUserRole } = usePartialUpdate(
+    "update-user-role",
+    "/users"
+  );
+  const { mutateAsync: deleteUser } = useDeleteData(
+    "delete-user-role",
+    `/users/${userIdToBeDeleted}`
+  );
+
+  const handleUpdateUserRole = async (userId: string) => {
+    await updateUserRole({ userId });
+    refetchPostData();
+  };
+  const handleUserDelete = async () => {
+    await deleteUser();
+    refetchPostData();
+  };
+
   const columns = [
     {
-      title: "Title",
-      dataIndex: "title",
-      key: "title",
+      title: "Image",
+      key: "image",
+      render: ({
+        profilePicture,
+        name,
+      }: {
+        profilePicture: string;
+        name: string;
+      }) => (
+        <Image
+          className="rounded-md"
+          src={profilePicture}
+          width={70}
+          height={70}
+          alt={name}
+        />
+      ),
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
     },
     {
       title: "Email",
@@ -125,17 +94,43 @@ const Users = () => {
       dataIndex: "role",
       key: "role",
     },
+    {
+      title: "Followers",
+      key: "followers",
+      render: ({ followers }: { followers: number }) => <p>{followers}</p>,
+    },
+    {
+      title: "User Status",
+      key: "isDeleted",
+      render: ({ isDeleted }: { isDeleted: boolean }) => (
+        <p>
+          {isDeleted ? (
+            <Tag color="red">Deleted</Tag>
+          ) : (
+            <Tag color="success">Active</Tag>
+          )}
+        </p>
+      ),
+    },
 
     {
       title: "Actions",
-      render: ({ role }: { role: "user" | "admin" }) => (
+      render: ({
+        role,
+        key,
+        isDeleted,
+      }: {
+        role: "user" | "admin";
+        key: string;
+        isDeleted: boolean;
+      }) => (
         <div className="flex items-center gap-1">
           <Popconfirm
             title="Make admin"
-            description={`Are you sure to make this ${
-              role === "user" ? "user an admin" : "admin a user"
+            description={`Are you sure to change the user role to ${
+              role === "user" ? "'admin'" : "'user'"
             }?`}
-            onConfirm={confirm}
+            onConfirm={() => handleUpdateUserRole(key)}
             okText="Yes"
             cancelText="No"
           >
@@ -148,20 +143,43 @@ const Users = () => {
               </Tag>
             </Tooltip>
           </Popconfirm>
-          <Popconfirm
-            title="Delete the user"
-            description="Are you sure to delete this user?"
-            onConfirm={confirm}
-            okText="Yes"
-            cancelText="No"
-          >
+          <Tooltip title={`${isDeleted ? "Restore" : "Delete"} the user`}>
+            <Popconfirm
+              title={`${isDeleted ? "Restore" : "Delete"} the user`}
+              description={`Are you sure to ${
+                isDeleted ? "restore" : "delete"
+              } this user?`}
+              onConfirm={handleUserDelete}
+              onPopupClick={() => setUserIdToBeDeleted(key)}
+              okText="Yes"
+              cancelText="No"
+            >
+              {!isDeleted ? (
+                <Tag
+                  color="red-inverse"
+                  className="flex items-center justify-center p-2 cursor-pointer rounded-md"
+                >
+                  <Trash2 size={17} />
+                </Tag>
+              ) : (
+                <Tag
+                  color="green-inverse"
+                  className="flex items-center justify-center p-2 cursor-pointer rounded-md"
+                >
+                  <ArchiveRestore size={17} />
+                </Tag>
+              )}
+            </Popconfirm>
+          </Tooltip>
+          <Link href={`/profile/${key}`}>
+            {" "}
             <Tag
-              color="red-inverse"
+              color="blue-inverse"
               className="flex items-center justify-center p-2 cursor-pointer rounded-md"
             >
-              <Trash2 size={17} />
+              <Eye size={17} />
             </Tag>
-          </Popconfirm>
+          </Link>
         </div>
       ),
       key: "actions",
@@ -174,8 +192,8 @@ const Users = () => {
 
       <div className="mt-6">
         <Table
-          dataSource={items}
-          // loading={isFetching}
+          dataSource={userItems}
+          loading={isFetching}
           columns={columns}
           scroll={{ x: 800 }}
         />
