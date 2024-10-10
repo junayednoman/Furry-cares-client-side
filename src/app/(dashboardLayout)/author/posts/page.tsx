@@ -1,11 +1,13 @@
 "use client";
 import DashboardSectionTitle from "@/components/ui/DashboardSectionTitle";
 import { useUserContext } from "@/context/auth.provider";
+import { useDeleteData } from "@/hooks/mutation";
 import { useHandleQuery } from "@/hooks/useHandleQuery";
 import { TPost } from "@/types/post.type";
-import { Table, Tag } from "antd";
+import { Popconfirm, Table, Tag } from "antd";
 import { Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 export type TTableProps = Pick<
   TPost,
@@ -14,12 +16,26 @@ export type TTableProps = Pick<
 
 const Posts = () => {
   const { user } = useUserContext();
-  const { data, isFetching, isLoading } = useHandleQuery(
-    "my-posts",
-    `/posts/user/${user?._id}`
-  );
+  const [postIdToBeDeleted, setPostIdToBeDeleted] = useState("");
+  const {
+    data,
+    isFetching,
+    isLoading,
+    refetch: refetchPostData,
+  } = useHandleQuery("my-posts", `/posts/user/${user?._id}`);
 
+  console.log("userIdToBeDeleted, ", postIdToBeDeleted);
   const postData = data?.data?.result;
+
+  // delete post
+  const { mutateAsync: deletePost } = useDeleteData(
+    "delete-posts",
+    `/posts/${postIdToBeDeleted}`
+  );
+  const handlePostDelete = async () => {
+    await deletePost();
+    refetchPostData();
+  };
 
   const postItems = postData?.map((post: TTableProps) => ({
     key: post._id,
@@ -80,17 +96,26 @@ const Posts = () => {
           <Link href={`/author/edit-post/${key}`}>
             <Tag
               color="blue-inverse"
-              className="flex items-center justify-center p-2 cursor-pointer"
+              className="flex items-center justify-center p-2 cursor-pointer rounded-md"
             >
               <Pencil size={17} />
             </Tag>
           </Link>
-          <Tag
-            color="red-inverse"
-            className="flex items-center justify-center p-2 cursor-pointer"
+          <Popconfirm
+            title="Delete the post"
+            description="Are you sure to delete this post?"
+            onConfirm={handlePostDelete}
+            onOpenChange={() => setPostIdToBeDeleted(key)}
+            okText="Yes"
+            cancelText="No"
           >
-            <Trash2 size={17} />
-          </Tag>
+            <Tag
+              color="red-inverse"
+              className="flex items-center justify-center p-2 cursor-pointer rounded-md"
+            >
+              <Trash2 size={17} />
+            </Tag>
+          </Popconfirm>
         </div>
       ),
       key: "address",

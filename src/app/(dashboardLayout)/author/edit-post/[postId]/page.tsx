@@ -94,7 +94,7 @@ const EditPost = ({ params }: { params: { postId: string } }) => {
       height: "600px",
       toolbar: true,
       readonly: false,
-      placeholder: "Start typings...",
+      placeholder: "",
 
       buttons: [
         "bold",

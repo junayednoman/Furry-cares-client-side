@@ -14,7 +14,7 @@ export const handlePostFormData = async (url: string, formData: FormData) => {
     return data;
   } catch (error: any) {
     console.log('error insie, ', error?.response?.data);
-    throw new Error(error?.response?.data?.message || "Something went wrong!");
+    throw new Error(error?.response?.data?.message || "unable to create post!");
   }
 }
 
@@ -27,7 +27,7 @@ export const handlePost = async (url: string, payload: FieldValues) => {
     });
     return data;
   } catch (error: any) {
-    throw new Error(error?.response?.data?.message || "Something went wrong!");
+    throw new Error(error?.response?.data?.message || "unable to create post!");
   }
 }
 
@@ -40,7 +40,7 @@ export const handleUpdateFormData = async (url: string, formData: FormData) => {
     });
     return data;
   } catch (error: any) {
-    throw new Error(error?.response?.data?.message || "Something went wrong!");
+    throw new Error(error?.response?.data?.message || "unable to update!");
   }
 }
 
@@ -53,6 +53,15 @@ export const handlePatch = async (url: string, formData: FieldValues) => {
     });
     return data;
   } catch (error: any) {
-    throw new Error(error?.response?.data?.message || "Something went wrong!");
+    throw new Error(error?.response?.data?.message || "unable to update!");
+  }
+}
+
+export const handleDelete = async (url: string) => {
+  try {
+    const { data } = await axiosInstance.delete(url);
+    return data;
+  } catch (error: any) {
+    throw new Error(error?.response?.data?.message || "Unable to delete!");
   }
 }
