@@ -43,7 +43,7 @@ const FTextArea = ({
                   id={name}
                   placeholder={placeholder}
                   disabled={disabled}
-                  className="block font-normal rounded-none focus:border-primaryColor focus:shadow-none hover:border-primaryColor dark:text-gray-300 hover:dark:bg-primaryColor hover:dark:border-gray-300 focus:dark:bg-primaryColor focus:dark:border-gray-300 dark:bg-primaryColor dark:border-gray-500"
+                  className="block font-normal rounded-md focus:border-primaryColor focus:shadow-none hover:border-primaryColor dark:text-gray-300 hover:dark:bg-primaryColor hover:dark:border-gray-300 focus:dark:bg-primaryColor focus:dark:border-gray-300 dark:bg-primaryColor dark:border-gray-500"
                   size="large"
                   rows={rows}
                 />

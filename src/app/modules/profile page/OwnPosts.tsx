@@ -36,36 +36,36 @@ const OwnPosts = ({ userId }: { userId: string }) => {
     return <Loading />;
   }
 
+  if (isError || !postData || postData?.length < 1) {
+    return <NoData />;
+  }
+
   return (
     <div>
-      {data?.data?.length <= 0 || isError ? (
-        <NoData />
-      ) : (
+      {postData?.map((post: TPost, index: number) => (
         <>
-          {postData?.map((post: TPost, index: number) => (
-            <div
-              key={post._id}
-              className={`border-b ${
-                index === postData?.length - 1 && "border-b-0"
-              } border-t-0 border-x-0 border-solid border-slate-200 py-6 ${
-                index === 0 && "pt-0"
-              } ${index === postData?.length - 1 && "pb-0"} sm:px-6 px-4`}
-            >
-              <SmallPostCard post={post} />
-            </div>
-          ))}
-
-          <div className="mt-8">
-            <FPagination
-              total={data?.data?.meta?.total}
-              currentPage={currentPage}
-              pageSize={pageSize}
-              setCurrentPage={setCurrentPage}
-              setPageSize={setPageSize}
-            />
+          <div
+            key={post._id}
+            className={`border-b ${
+              index === postData?.length - 1 && "border-b-0"
+            } border-t-0 border-x-0 border-solid border-slate-200 py-6 ${
+              index === 0 && "pt-0"
+            } ${index === postData?.length - 1 && "pb-0"} sm:px-6 px-4`}
+          >
+            <SmallPostCard post={post} />
           </div>
         </>
-      )}
+      ))}
+
+      <div className="mt-8">
+        <FPagination
+          total={data?.data?.meta?.total}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          setCurrentPage={setCurrentPage}
+          setPageSize={setPageSize}
+        />
+      </div>
     </div>
   );
 };

@@ -41,8 +41,8 @@ const VerticalPostCard = ({ post }: { post: TPost }) => {
             className="text-text hover:text-accent inline-block mt-1"
           >
             <h4 className="text-[19px] font-semibold">
-              {post?.title?.length > 60
-                ? post?.title?.substring(0, 60) + "..."
+              {post?.title?.length > 50
+                ? post?.title?.substring(0, 50) + "..."
                 : post?.title}
             </h4>
           </Link>

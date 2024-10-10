@@ -1,6 +1,6 @@
 "use client";
 import FForm from "@/components/ui/form/FForm";
-import FSelect from "@/components/ui/form/FSelect";
+import FSelectLive from "@/components/ui/form/FSelectLive";
 import { Dispatch, SetStateAction } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
@@ -73,7 +73,7 @@ const FeedFilter = ({ setCategory, setTimePosted, setSorting }: TProps) => {
       <FForm handleFormSubmit={handleFilter}>
         <div className="flex md:flex-row flex-col items-center md:gap-8 gap-4">
           <div className="w-full">
-            <FSelect
+            <FSelectLive
               selectOnChange={(value: string) => setCategory(value)}
               options={categories}
               name="category"
@@ -81,7 +81,7 @@ const FeedFilter = ({ setCategory, setTimePosted, setSorting }: TProps) => {
             />
           </div>
           <div className="w-full">
-            <FSelect
+            <FSelectLive
               selectOnChange={(value: string) => setTimePosted(value)}
               options={days}
               name="time"
@@ -89,7 +89,7 @@ const FeedFilter = ({ setCategory, setTimePosted, setSorting }: TProps) => {
             />
           </div>
           <div className="w-full">
-            <FSelect
+            <FSelectLive
               selectOnChange={(value: string) => setSorting(value)}
               options={sortings}
               name="sorting"

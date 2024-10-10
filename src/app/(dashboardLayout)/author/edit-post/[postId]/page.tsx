@@ -1,30 +1,86 @@
 "use client";
+import Loading from "@/app/(generalLayout)/loading";
 import DashboardSectionTitle from "@/components/ui/DashboardSectionTitle";
 import FButton from "@/components/ui/FButton";
 import FCheckbox from "@/components/ui/form/FCheckbox";
 import FForm from "@/components/ui/form/FForm";
 import FInput from "@/components/ui/form/FInput";
 import FSelect from "@/components/ui/form/FSelect";
+import FTextArea from "@/components/ui/form/FTextArea";
 import FUploading from "@/components/ui/form/FUploading";
-import { categoryOptions, tagOptions } from "@/constant/global.constant";
-import { Popover } from "antd";
+import NoData from "@/components/ui/NoData";
+import { categoryOptions, postTags } from "@/constant/global.constant";
+import { useUserContext } from "@/context/auth.provider";
+import { usePartialUpdate, useUpdateWithFormData } from "@/hooks/mutation";
+import { useHandleQuery } from "@/hooks/useHandleQuery";
+import { Popover, Spin } from "antd";
 import { IJoditEditorProps } from "jodit-react";
 import { Info } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
-const EditPost = () => {
+const EditPost = ({ params }: { params: { postId: string } }) => {
+  // update publish status
+  const {
+    mutate: updatePublishStatus,
+    isPending: isPublishPending,
+    isSuccess: isPublishSuccess,
+  } = usePartialUpdate(
+    "update-publish-status",
+    `/posts/publish/${params?.postId}`
+  );
+  // load post data by post id
+  const {
+    data,
+    isFetching,
+    isLoading,
+    isError,
+    isSuccess,
+    refetch: refetchPostData,
+  } = useHandleQuery("my-posts", `/posts/${params.postId}`);
+
+  const { user } = useUserContext();
+  const [content, setContent] = useState<string>("");
+  console.log("postData?.content, ", content);
   const [isPremium, setIsPremium] = useState<boolean>(false);
-  const handleSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("data, ", data);
+  const [thumbnail, setThumbnail] = useState<any | undefined>(undefined);
+  const {
+    mutate: updatePost,
+    isPending: isUpdatePending,
+    isSuccess: isUpdateSuccess,
+  } = useUpdateWithFormData("update-post", `/posts/${params.postId}`);
+
+  useEffect(() => {
+    refetchPostData();
+  }, [isPublishSuccess, isUpdateSuccess]);
+
+  // set default values for content and checkbox
+  useEffect(() => {
+    if (data?.data) {
+      setContent(data?.data?.content || "");
+      setIsPremium(data?.data?.isPremium || false);
+    }
+  }, [data?.data]);
+
+  const handleUpdatePost: SubmitHandler<FieldValues> = (data) => {
+    const formData = new FormData();
+    data.isPremium = isPremium;
+    data.content = content;
+    data.author = user?._id;
+    formData.append("data", JSON.stringify(data));
+    if (thumbnail) {
+      formData.append("thumbnail", thumbnail?.originFileObj);
+    }
+    console.log("content, ", data);
+
+    updatePost(formData);
   };
-  console.log("isPremium, ", isPremium);
 
   // handle image uploading
-  const handleImageUpload = (file: File) => {
-    console.log("file, ", file);
+  const handleThumbnailUpload = (file: any) => {
+    setThumbnail(file.fileList[0]);
   };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,8 +89,6 @@ const EditPost = () => {
 
   // for rich text editor
   const editor = useRef(null);
-  const [content, setContent] = useState("");
-  console.log("content, ", content);
   const config: IJoditEditorProps["config"] = useMemo(
     () => ({
       height: "600px",
@@ -74,26 +128,69 @@ const EditPost = () => {
         "print", // Print
       ],
     }),
-
     []
   );
 
+  // let loading if data is loading
+  if (isLoading || isFetching) {
+    return <Loading />;
+  }
+  if (isError || !isSuccess || !data?.data) {
+    return <NoData />;
+  }
+
+  const postData = data?.data;
+
+  // handle publish and draft post
+  const handleUpdatePublishStatus = () => {
+    const isPublished = postData?.isPublished ? false : true;
+    updatePublishStatus({ isPublished });
+  };
+
+  // set default valuess
+  const defaultValues = {
+    title: postData?.title,
+    category: postData?.category,
+    tags: postData?.tags,
+    excerpt: postData?.excerpt,
+  };
+
+  const defaultThumbnailList = [
+    {
+      uid: "1",
+      name: postData?.title,
+      status: "done",
+      url: postData?.thumbnail,
+    },
+  ];
+
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-2">
         <DashboardSectionTitle heading="Edit Post" />
-        <FButton>Publish</FButton>
+        <Spin spinning={isPublishPending}>
+          <FButton onclick={handleUpdatePublishStatus}>
+            {postData?.isPublished ? "Draft" : "Publish"}
+          </FButton>
+        </Spin>
       </div>
       <div className="flex xl:flex-row flex-col gap-12 mt-7">
         <div className="xl:max-w-[600px] w-full -mt-1">
-          <FForm handleFormSubmit={handleSubmit}>
+          <FForm
+            defaultValues={defaultValues}
+            handleFormSubmit={handleUpdatePost}
+          >
             <div className="space-y-2">
               <FInput
                 name="title"
                 label="Title"
                 placeholder="Enter post title"
               />
-              <FUploading label="Thumbnail" onChange={handleImageUpload} />
+              <FUploading
+                defaultFileList={defaultThumbnailList}
+                label="Thumbnail"
+                onChange={handleThumbnailUpload}
+              />
               <FSelect
                 options={categoryOptions}
                 name="category"
@@ -102,14 +199,16 @@ const EditPost = () => {
               />
               <FSelect
                 mode="multiple"
-                options={tagOptions}
+                options={postTags}
                 name="tags"
                 label="Tags"
                 placeholder="Select tags"
               />
+              <FTextArea name="excerpt" label="Excerpt" rows={4} />
               <div className="flex items-center gap-2">
                 <div>
                   <FCheckbox
+                    defaultChecked={postData?.isPremium}
                     onChange={handleCheckboxChange}
                     name="isPremium"
                     label="Keep as Premium"
@@ -125,7 +224,10 @@ const EditPost = () => {
                   </Popover>
                 </div>
               </div>
-              <FButton htmlType="submit">Update</FButton>
+
+              <FButton disabled={isUpdatePending} htmlType="submit">
+                {isUpdatePending ? "Updating..." : "Update"}
+              </FButton>
             </div>
           </FForm>
         </div>
@@ -139,11 +241,7 @@ const EditPost = () => {
               ref={editor}
               value={content}
               config={config}
-              // tabIndex={1} // tabIndex of textarea
               onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-              onChange={(newContent) => {
-                setContent(newContent);
-              }}
             />
           </div>
         </div>

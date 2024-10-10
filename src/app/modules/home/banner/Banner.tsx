@@ -2,7 +2,7 @@ import FContainer from "@/components/ui/Container";
 import BannerCarousel from "./BannerCarousel";
 import ClassicPostsCard from "@/components/ui/ClassicPostCard";
 import getFeaturedPosts from "@/services/posts";
-import NoData from "@/components/ui/NoData";
+import BannerSkeleton from "@/app/(generalLayout)/skeletons/BannerSkeleton";
 
 const Banner = async () => {
   const posts = await getFeaturedPosts("/posts?sort=-votes");
@@ -12,7 +12,7 @@ const Banner = async () => {
     <div className="pt-10 overflow-hidden">
       <FContainer>
         {!postData || postData?.length < 1 ? (
-          <NoData />
+          <BannerSkeleton />
         ) : (
           <div className="grid xl:grid-cols-5 grid-cols-1 md:gap-6 gap-4">
             <div className="xl:col-span-3">

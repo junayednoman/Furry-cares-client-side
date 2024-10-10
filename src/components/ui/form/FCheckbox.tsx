@@ -8,6 +8,7 @@ type TCheckboxProps = {
   colSpanLg?: number;
   colSpanMd?: number;
   onChange?: (e: any) => void;
+  defaultChecked?: boolean;
 };
 
 const FCheckbox = ({
@@ -17,6 +18,7 @@ const FCheckbox = ({
   colSpanLg,
   colSpanMd,
   onChange,
+  defaultChecked = false,
 }: TCheckboxProps) => {
   return (
     <Col
@@ -36,6 +38,7 @@ const FCheckbox = ({
                 className="mb-3 font-semibold text-text"
               >
                 <Checkbox
+                  defaultChecked={defaultChecked}
                   id={name}
                   disabled={disabled}
                   {...field}

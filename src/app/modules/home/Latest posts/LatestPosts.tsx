@@ -8,7 +8,6 @@ import { useState } from "react";
 import { TPost } from "@/types/post.type";
 import { useHandleQuery } from "@/hooks/useHandleQuery";
 import FeaturedStoriesSkeleton from "@/app/(generalLayout)/skeletons/FeaturedStoriesSkeleton";
-import NoData from "@/components/ui/NoData";
 const LatestPosts = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -75,7 +74,9 @@ const LatestPosts = () => {
     "/posts?sort=-createdAt"
   );
 
-  if (isFetching || isLoading) {
+  const postData = data?.data?.result;
+
+  if (isFetching || isLoading || isError || !postData || postData?.length < 1) {
     return (
       <FeaturedStoriesSkeleton
         heading="Latest posts"
@@ -83,8 +84,6 @@ const LatestPosts = () => {
       />
     );
   }
-
-  const postData = data?.data?.result;
 
   return (
     <>
@@ -94,47 +93,43 @@ const LatestPosts = () => {
             heading="Latest posts"
             subHeading="Check out the latest posts"
           />
-          {isError || !postData ? (
-            <NoData />
-          ) : (
-            <div className="xl:mx-10">
-              <div className="navigation-wrapper w-full relative">
-                <div ref={sliderRef} className="keen-slider mt-10">
-                  {postData?.map((post: TPost, index: number) => (
-                    <div
-                      key={post._id}
-                      className={`keen-slider__slide px-3 pb-6 number-slide${
-                        index + 1
-                      }`}
-                    >
-                      <VerticalPostCard post={post} />
-                    </div>
-                  ))}
-                </div>
-                {loaded && instanceRef.current && (
-                  <>
-                    <Arrow
-                      left
-                      onClick={(e: any) =>
-                        e.stopPropagation() || instanceRef.current?.prev()
-                      }
-                      disabled={currentSlide === 0}
-                    />
-
-                    <Arrow
-                      onClick={(e: any) =>
-                        e.stopPropagation() || instanceRef.current?.next()
-                      }
-                      disabled={
-                        currentSlide ===
-                        instanceRef.current.track.details.slides.length - 1
-                      }
-                    />
-                  </>
-                )}
+          <div className="xl:mx-10">
+            <div className="navigation-wrapper w-full relative">
+              <div ref={sliderRef} className="keen-slider mt-10">
+                {postData?.map((post: TPost, index: number) => (
+                  <div
+                    key={post._id}
+                    className={`keen-slider__slide px-3 pb-6 number-slide${
+                      index + 1
+                    }`}
+                  >
+                    <VerticalPostCard post={post} />
+                  </div>
+                ))}
               </div>
+              {loaded && instanceRef.current && (
+                <>
+                  <Arrow
+                    left
+                    onClick={(e: any) =>
+                      e.stopPropagation() || instanceRef.current?.prev()
+                    }
+                    disabled={currentSlide === 0}
+                  />
+
+                  <Arrow
+                    onClick={(e: any) =>
+                      e.stopPropagation() || instanceRef.current?.next()
+                    }
+                    disabled={
+                      currentSlide ===
+                      instanceRef?.current?.track?.details?.slides?.length - 1
+                    }
+                  />
+                </>
+              )}
             </div>
-          )}
+          </div>
         </FContainer>
       </div>
     </>

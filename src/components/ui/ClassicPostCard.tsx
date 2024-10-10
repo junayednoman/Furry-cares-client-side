@@ -44,8 +44,8 @@ const ClassicPostsCard = ({ post }: { post: TPost }) => {
         {/* Heading */}
         <Link href={"/"}>
           <Heading3 color="white">
-            {post?.title?.length > 50
-              ? post?.title?.substring(0, 50) + "..."
+            {post?.title?.length > 45
+              ? post?.title?.substring(0, 45) + "..."
               : post?.title}
           </Heading3>
         </Link>

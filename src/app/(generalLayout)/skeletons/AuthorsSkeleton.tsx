@@ -3,14 +3,16 @@ import FContainer from "@/components/ui/Container";
 import FSectionTitle from "@/components/ui/FSectionTitle";
 import { Skeleton } from "antd";
 
-const AuthorsSkeleton = () => {
+const AuthorsSkeleton = ({ withHeading = true }: { withHeading?: boolean }) => {
   return (
-    <div className="md:py-20 py-16 overflow-hidden">
+    <div className={`${withHeading ? "md:py-20 py-16" : ""} overflow-hidden`}>
       <FContainer>
-        <FSectionTitle
-          heading={"Top Authors"}
-          subHeading={"Meet the top authors"}
-        />
+        {withHeading && (
+          <FSectionTitle
+            heading={"Top Authors"}
+            subHeading={"Meet the top authors"}
+          />
+        )}
         <div className="grid md:grid-cols-3 grid-cols-1 items-center lg:gap-16 gap-4 mt-10 xl:max-w-[950px] md:w-full w-[85%] mx-auto">
           <div className="">
             <Skeleton.Image

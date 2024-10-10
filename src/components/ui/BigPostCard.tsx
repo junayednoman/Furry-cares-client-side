@@ -5,24 +5,13 @@ import Image from "next/image";
 import Heading3 from "../typography/Heading3";
 import { BadgeDollarSign, Dot } from "lucide-react";
 import moment from "moment";
-import { TUser } from "@/types/user.type";
-interface PostCardProps {
-  _id: string;
-  thumbnail: string;
-  title: string;
-  content: string;
-  category: string;
-  isPremium: boolean;
-  createdAt: string;
-  votes: number;
-  author: TUser;
-}
+import { TPost } from "@/types/post.type";
 
-const BigPostCard = ({ post }: { post: PostCardProps }) => {
+const BigPostCard = ({ post }: { post: TPost }) => {
   const {
     thumbnail,
     title,
-    content,
+    excerpt,
     category,
     isPremium,
     createdAt,
@@ -67,8 +56,8 @@ const BigPostCard = ({ post }: { post: PostCardProps }) => {
                 {title.length > 60 ? title.slice(0, 60) + "..." : title}
               </Heading3>
             </Link>
-            <p className="md:my-5 my-3 text-slate-600 lg:text-base">
-              {content.length > 100 ? content.slice(0, 100) + "..." : content}
+            <p className="md:my-5 my-3 text-slate-600 text-base">
+              {excerpt!.length > 100 ? excerpt!.slice(0, 100) + "..." : excerpt}
             </p>
           </div>
           <div className="mt-4 flex items-center gap-4">

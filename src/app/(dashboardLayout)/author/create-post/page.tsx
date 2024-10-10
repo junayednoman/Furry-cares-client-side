@@ -5,9 +5,12 @@ import FCheckbox from "@/components/ui/form/FCheckbox";
 import FForm from "@/components/ui/form/FForm";
 import FInput from "@/components/ui/form/FInput";
 import FSelect from "@/components/ui/form/FSelect";
+import FTextArea from "@/components/ui/form/FTextArea";
 import FUploading from "@/components/ui/form/FUploading";
-import { categoryOptions, tagOptions } from "@/constant/global.constant";
-import { Popover } from "antd";
+import { categoryOptions, postTags } from "@/constant/global.constant";
+import { useUserContext } from "@/context/auth.provider";
+import { usePostWithFormData } from "@/hooks/mutation";
+import { Popover, Spin } from "antd";
 import { IJoditEditorProps } from "jodit-react";
 import { Info } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -16,15 +19,32 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
 const CreatePost = () => {
+  const { user } = useUserContext();
+  const [content, setContent] = useState<string>("");
   const [isPremium, setIsPremium] = useState<boolean>(false);
+  const [thumbnail, setThumbnail] = useState<any | undefined>(undefined);
+  const { mutate: createPost, isPending } = usePostWithFormData(
+    "create-post",
+    "/posts"
+  );
+
   const handleSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("data, ", data);
+    const formData = new FormData();
+    data.isPremium = isPremium;
+    data.content = content;
+    data.author = user?._id;
+    formData.append("data", JSON.stringify(data));
+
+    if (thumbnail) {
+      formData.append("thumbnail", thumbnail?.originFileObj);
+    }
+
+    createPost(formData);
   };
-  console.log("isPremium, ", isPremium);
 
   // handle image uploading
-  const handleImageUpload = (file: File) => {
-    console.log("file, ", file);
+  const handleThumbnailUpload = (file: any) => {
+    setThumbnail(file.fileList[0]);
   };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,8 +53,6 @@ const CreatePost = () => {
 
   // for rich text editor
   const editor = useRef(null);
-  const [content, setContent] = useState("");
-  console.log("content, ", content);
   const config: IJoditEditorProps["config"] = useMemo(
     () => ({
       height: "600px",
@@ -90,7 +108,7 @@ const CreatePost = () => {
                 label="Title"
                 placeholder="Enter post title"
               />
-              <FUploading label="Thumbnail" onChange={handleImageUpload} />
+              <FUploading label="Thumbnail" onChange={handleThumbnailUpload} />
               <FSelect
                 options={categoryOptions}
                 name="category"
@@ -99,11 +117,12 @@ const CreatePost = () => {
               />
               <FSelect
                 mode="multiple"
-                options={tagOptions}
+                options={postTags}
                 name="tags"
                 label="Tags"
                 placeholder="Select tags"
               />
+              <FTextArea name="excerpt" label="Excerpt" rows={4} />
               <div className="flex items-center gap-2">
                 <div>
                   <FCheckbox
@@ -122,7 +141,11 @@ const CreatePost = () => {
                   </Popover>
                 </div>
               </div>
-              <FButton htmlType="submit">Publish</FButton>
+              <Spin spinning={isPending}>
+                <FButton htmlType="submit">
+                  {isPending ? "Publishing..." : "Publish"}
+                </FButton>
+              </Spin>
             </div>
           </FForm>
         </div>
@@ -136,11 +159,7 @@ const CreatePost = () => {
               ref={editor}
               value={content}
               config={config}
-              // tabIndex={1} // tabIndex of textarea
               onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-              onChange={(newContent) => {
-                setContent(newContent);
-              }}
             />
           </div>
         </div>

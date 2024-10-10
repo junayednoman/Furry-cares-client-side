@@ -4,7 +4,8 @@ export type TPost = {
   _id: string
   author: TUser
   title: string
-  content: string
+  content?: string
+  excerpt?: string
   thumbnail: string
   category: string
   tags: string[]

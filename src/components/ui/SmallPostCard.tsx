@@ -3,20 +3,10 @@ import { Card, Tooltip } from "antd";
 import Link from "next/link";
 import { BadgeDollarSign, Dot } from "lucide-react";
 import Heading5 from "../typography/Heading5";
-import { TUser } from "@/types/user.type";
 import moment from "moment";
+import { TPost } from "@/types/post.type";
 
-interface PostCardProps {
-  thumbnail: string;
-  title: string;
-  content: string;
-  category: string;
-  author: TUser;
-  isPremium: boolean;
-  createdAt: string;
-}
-
-const SmallPostCard = ({ post }: { post: PostCardProps }) => {
+const SmallPostCard = ({ post }: { post: TPost }) => {
   const { thumbnail, title, category, author, createdAt } = post;
   return (
     <Card className="flex flex-row border-none p-0 duration-300">

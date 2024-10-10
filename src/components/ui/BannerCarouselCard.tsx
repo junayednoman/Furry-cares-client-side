@@ -43,12 +43,16 @@ const BannerCarouselCard = ({ post }: { post: TPost }) => {
         </div>
         {/* Heading */}
         <Link href={"/"}>
-          <Heading2 color="white">{post?.title}</Heading2>
+          <Heading2 color="white">
+            {post?.title.length > 53
+              ? `${post?.title.slice(0, 53)}...`
+              : post?.title}
+          </Heading2>
         </Link>
         <p className="text-white md:text-lg md:mt-6 mt-4 md:block hidden">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta
-          consectetur a odit, quasi tempora quaerat, sunt maxime adipisci
-          voluptates esse explicabo incidunt?
+          {post?.excerpt!.length > 150
+            ? `${post?.excerpt!.slice(0, 150)}...`
+            : post?.excerpt}
         </p>
         <div className="mt-4 flex items-center gap-4">
           <Link

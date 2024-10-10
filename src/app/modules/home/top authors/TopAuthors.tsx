@@ -1,7 +1,7 @@
+import AuthorsSkeleton from "@/app/(generalLayout)/skeletons/AuthorsSkeleton";
 import Heading5 from "@/components/typography/Heading5";
 import FContainer from "@/components/ui/Container";
 import FSectionTitle from "@/components/ui/FSectionTitle";
-import NoData from "@/components/ui/NoData";
 import getData from "@/services/posts";
 import { TUser } from "@/types/user.type";
 import Link from "next/link";
@@ -19,7 +19,7 @@ const TopAuthors = async () => {
           subHeading="Meet the top authors"
         />
         {!userData?.data ? (
-          <NoData />
+          <AuthorsSkeleton withHeading={false} />
         ) : (
           <div className="grid md:grid-cols-3 grid-cols-1 items-center lg:gap-16 gap-4 mt-10 xl:max-w-[950px] md:w-full w-[85%] mx-auto">
             {userData?.data?.map((author: TUser) => (

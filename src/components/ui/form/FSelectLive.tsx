@@ -13,9 +13,10 @@ type TSelectProps = {
   colSpanMd?: number;
   options: { value: string | number | boolean | null; label: string }[];
   mode?: "multiple";
+  selectOnChange?: any;
 };
 
-const FSelect = ({
+const FSelectLive = ({
   name,
   label,
   placeholder,
@@ -24,6 +25,7 @@ const FSelect = ({
   colSpanMd,
   options,
   mode,
+  selectOnChange,
 }: TSelectProps) => {
   return (
     <Col
@@ -36,7 +38,7 @@ const FSelect = ({
         <Controller
           name={name}
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          render={({ field, fieldState: error }) => (
+          render={({ field: { onChange, ...fields }, fieldState: error }) => (
             <div className="w-full">
               <Form.Item
                 htmlFor={name}
@@ -45,7 +47,8 @@ const FSelect = ({
               >
                 <Select
                   mode={mode}
-                  {...field}
+                  onChange={selectOnChange}
+                  {...fields}
                   id={name}
                   placeholder={placeholder}
                   disabled={disabled}
@@ -70,4 +73,4 @@ const FSelect = ({
   );
 };
 
-export default FSelect;
+export default FSelectLive;

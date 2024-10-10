@@ -5,6 +5,7 @@ type RButtonProps = {
   wFull?: boolean;
   onclick?: () => void;
   htmlType?: "button" | "submit" | "reset";
+  disabled?: boolean;
 };
 const FButton = ({
   children,
@@ -12,9 +13,11 @@ const FButton = ({
   wFull,
   onclick,
   htmlType,
+  disabled = false,
 }: RButtonProps) => {
   return (
     <Button
+      disabled={disabled}
       type="link"
       htmlType={htmlType}
       href={link}
