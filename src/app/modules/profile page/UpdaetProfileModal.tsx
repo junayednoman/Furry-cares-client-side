@@ -6,9 +6,9 @@ import { Modal, Spin } from "antd";
 import { Dispatch, useState } from "react";
 import FUploading from "@/components/ui/form/FUploading";
 import FButton from "@/components/ui/FButton";
-import { useMutationFormData } from "@/hooks/mutation";
 import { TUser } from "@/types/user.type";
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
+import { useUpdateWithFormData } from "@/hooks/mutation";
 type TModalProps = {
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -50,7 +50,7 @@ const UpdateProfileModal = ({
     mutate: updateProfile,
     isPending,
     isSuccess,
-  } = useMutationFormData("update-profile", "/users/update-profile");
+  } = useUpdateWithFormData("update-profile", "/users/update-profile");
 
   const [profilePicture, setProfilePicture] = useState<any | undefined>(
     undefined

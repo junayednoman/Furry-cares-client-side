@@ -3,7 +3,7 @@ import Followers from "@/app/modules/profile page/Followers";
 import Followings from "@/app/modules/profile page/Followings";
 import OwnPosts from "@/app/modules/profile page/OwnPosts";
 import FContainer from "@/components/ui/Container";
-import { Tabs } from "antd";
+import { Spin, Tabs } from "antd";
 import { Calendar, Ellipsis } from "lucide-react";
 import Image from "next/image";
 import verifyIcon from "@/assets/verified.png";
@@ -13,11 +13,26 @@ import moment from "moment";
 import Loading from "../../loading";
 import NoData from "@/components/ui/NoData";
 import FButton from "@/components/ui/FButton";
+import { usePost } from "@/hooks/mutation";
+import { useUserContext } from "@/context/auth.provider";
+import UpdateProfileModal from "@/app/modules/profile page/UpdaetProfileModal";
+import { useState } from "react";
 
 const ProfilePage = ({ params }: { params: { userId: string } }) => {
-  const { data, isFetching, isLoading, isError } = useHandleQuery(
+  const { user: currentUser } = useUserContext();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { data, isFetching, isLoading, isError, refetch } = useHandleQuery(
     "get-profile",
     `/users/user/${params?.userId}`
+  );
+
+  const { mutate: handleFollow, isPending: followPending } = usePost(
+    "follow",
+    `/users/follow`
+  );
+  const { mutate: handleUnFollow, isPending: unFollowPending } = usePost(
+    "follow",
+    `/users/unfollow`
   );
 
   if (isLoading || isFetching) {
@@ -29,6 +44,11 @@ const ProfilePage = ({ params }: { params: { userId: string } }) => {
   }
 
   const user: TUser = data?.data;
+  const followerIds = user?.followers?.map((item: TUser) => {
+    const id = item?._id;
+    return id;
+  });
+
   const tabsItems = [
     {
       label: "Posts",
@@ -46,6 +66,17 @@ const ProfilePage = ({ params }: { params: { userId: string } }) => {
       children: <Followings user={user} />,
     },
   ];
+
+  // handle following
+  const handleFollowing = () => {
+    handleFollow({ followingId: user?._id });
+    refetch();
+  };
+
+  const handleUnFollowing = () => {
+    handleUnFollow({ unFollowingId: user?._id });
+    refetch();
+  };
 
   return (
     <div className="md:py-14 py-3">
@@ -74,7 +105,27 @@ const ProfilePage = ({ params }: { params: { userId: string } }) => {
                 <div className="p-[9px] rounded-full border border-solid border-slate-500 flex items-center justify-center cursor-pointer">
                   <Ellipsis className="text-text" />
                 </div>
-                <FButton>Follow</FButton>
+                {currentUser?._id === user?._id ? (
+                  <>
+                    <FButton onclick={() => setIsModalOpen(true)}>
+                      Edit Profile
+                    </FButton>
+                    <UpdateProfileModal
+                      profile={user}
+                      refetch={refetch}
+                      setIsModalOpen={setIsModalOpen}
+                      isModalOpen={isModalOpen}
+                    />
+                  </>
+                ) : (
+                  <Spin spinning={followPending || unFollowPending}>
+                    {followerIds.includes(currentUser?._id as string) ? (
+                      <FButton onclick={handleUnFollowing}>Unfollow</FButton>
+                    ) : (
+                      <FButton onclick={handleFollowing}>Follow</FButton>
+                    )}
+                  </Spin>
+                )}
               </div>
             </div>
           </div>
