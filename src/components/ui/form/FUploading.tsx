@@ -13,6 +13,7 @@ type Props = {
   colSpanMd?: number;
   multiple?: boolean;
   description?: string;
+  defaultFileList?: any[];
 };
 
 const FUploading = ({
@@ -25,6 +26,7 @@ const FUploading = ({
   colSpanMd,
   multiple = false,
   description,
+  defaultFileList = [],
 }: Props) => {
   return (
     <Col
@@ -39,6 +41,7 @@ const FUploading = ({
         </label>
         <div className="mt-1">
           <Dragger
+            defaultFileList={defaultFileList}
             className="bg-white"
             multiple={multiple}
             accept=".jpg,.jpeg,.png,.gif,.webp"

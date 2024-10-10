@@ -1,3 +1,4 @@
+"use server"
 import axiosInstance from "@/hooks/axiosInstance"
 
 const handleQuery = async (url: string, params?: Record<string, any>) => {
