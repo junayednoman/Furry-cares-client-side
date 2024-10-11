@@ -57,10 +57,6 @@ const UpdateProfileModal = ({
   );
   const [coverPhoto, setCoverPhoto] = useState<any | undefined>(undefined);
 
-  const handleModalCancel = () => {
-    setIsModalOpen(false);
-  };
-
   const handleProfileUpdate: SubmitHandler<FieldValues> = (data) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
@@ -94,7 +90,7 @@ const UpdateProfileModal = ({
         footer={null}
         title="Update Profile"
         open={isModalOpen}
-        onCancel={handleModalCancel}
+        onCancel={() => setIsModalOpen(false)}
       >
         <Spin spinning={isPending}>
           <FForm

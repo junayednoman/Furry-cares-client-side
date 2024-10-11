@@ -4,7 +4,7 @@ import { useHandleQuery } from "@/hooks/useHandleQuery";
 import HTMLReactParser from "html-react-parser/lib/index";
 import Loading from "../../loading";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import Link from "next/link";
 import verifyIcon from "@/assets/verified.png";
@@ -22,10 +22,22 @@ import {
 } from "react-share";
 import { FloatButton } from "antd";
 import { ShareAltOutlined } from "@ant-design/icons";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import NoData from "@/components/ui/NoData";
+import { usePartialUpdate } from "@/hooks/mutation";
+import { useUserContext } from "@/context/auth.provider";
+import LoginModal from "@/app/modules/profile page/LoginModal";
+import spinImg from "@/assets/spin.svg";
 
 const PostDetails = ({ params }: { params: { postId: string } }) => {
   const postId = params.postId;
-  const { data, isLoading, refetch } = useHandleQuery(
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const { user } = useUserContext();
+  const { mutateAsync: updatePostVote, isPending } = usePartialUpdate(
+    "update-post-vote",
+    `/posts/vote`
+  );
+  const { data, isLoading, refetch, isError } = useHandleQuery(
     "get-single-post",
     `posts/${postId}`
   );
@@ -37,13 +49,32 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
   if (isLoading) {
     return <Loading />;
   }
-
+  if (!data?.data || isError) {
+    return (
+      <div className="h-[90vh] flex items-center justify-center">
+        <NoData />;
+      </div>
+    );
+  }
   const postData = data?.data;
+
+  const handleUpVote = async (voteType: "up" | "down") => {
+    if (!user) {
+      return setIsLoginModalOpen(true);
+    }
+    const voteData = {
+      postId: postData?._id,
+      voteType,
+      userId: user?._id,
+    };
+    await updatePostVote(voteData);
+    refetch();
+  };
 
   return (
     <div className="md:p-16 py-10 postDetailPage">
       <FContainer>
-        <div className="text-center max-w-[1100px] mx-auto md:space-y-8 space-y-5">
+        <div className="text-center max-w-[1100px] mx-auto space-y-3">
           <p className="text-gray-400">
             {moment(postData?.createdAt).format("DD MMMM, YYYY")}
           </p>
@@ -51,7 +82,7 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
             {postData?.title}
           </h1>
           <div className="flex items-center justify-between">
-            <div>
+            <div className="">
               <Link href={`/profile/${postData?.author?._id}`}>
                 <div className="flex items-center gap-3 mt-3">
                   <div
@@ -82,9 +113,34 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
                 </div>
               </Link>
             </div>
-            <div className="flex items-center gap-3">
-              <h5>Share this post: </h5>
-              <div className="flex items-center gap-1"></div>
+            <div className="space-y-0">
+              <ChevronUp
+                onClick={() => handleUpVote("up")}
+                size={30}
+                className={`text-text cursor-pointer translate-y-3 hover:text-accentDark duration-300 ${
+                  postData?.upVotes.includes(user?._id) && "text-accentDark"
+                }`}
+              />
+              <div>
+                {isPending ? (
+                  <Image
+                    width={30}
+                    height={30}
+                    className="max-w-[25px] max-h-[25px]"
+                    src={spinImg}
+                    alt="loading"
+                  />
+                ) : (
+                  <p className="font-semibold text-sm">{postData?.votes}</p>
+                )}
+              </div>
+              <ChevronDown
+                onClick={() => handleUpVote("down")}
+                size={30}
+                className={`text-text cursor-pointer -translate-y-2 hover:text-accentDark duration-300 ${
+                  postData?.downVotes.includes(user?._id) && "text-accentDark"
+                }`}
+              />
             </div>
           </div>
           <div>
@@ -157,6 +213,12 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
       <div className="gotop">
         <FloatButton.BackTop className="xl:mr-9 lg:mr-0 sm:-mr-1 -mr-1 xl:bottom-16 md:bottom-8 bottom-5" />
       </div>
+
+      {/* login modal */}
+      <LoginModal
+        isModalOpen={isLoginModalOpen}
+        setIsModalOpen={setIsLoginModalOpen}
+      />
     </div>
   );
 };

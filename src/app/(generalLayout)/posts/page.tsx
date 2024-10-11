@@ -26,7 +26,7 @@ const Feed = () => {
   const [sorting, setSorting] = useState<string | null>(null);
 
   // fetch posts based on category, timePosted and tags
-  const { data, isFetching, isLoading, isError, refetch } = useHandleQuery(
+  const { data, isLoading, isError, refetch } = useHandleQuery(
     "getPosts",
     "/posts",
     {
@@ -62,7 +62,7 @@ const Feed = () => {
             setTimePosted={setDaysBefore}
             setSorting={setSorting}
           />
-          {isLoading || isFetching ? (
+          {isLoading ? (
             <div className="md:mt-4 mt-1">
               <div className="border-t-0 border-b border-x-0 border-solid border-slate-200 py-6">
                 <BigPostSkeleton />

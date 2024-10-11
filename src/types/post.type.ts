@@ -10,7 +10,9 @@ export type TPost = {
   category: string
   tags: string[]
   isPremium: boolean
-  votes: number
+  votes: number;
+  upVotes: string[]
+  downVotes: string[]
   comments: TComment[]
   isDeleted: boolean
   isPublished: boolean
