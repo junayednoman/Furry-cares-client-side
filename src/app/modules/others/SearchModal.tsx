@@ -53,6 +53,8 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
       category: "tip",
       tags: ["cats", "pet care", "new owners"],
       isPremium: false,
+      upVotes: ["64a1f7d8e7a33f1b47b1c201", "64a1f7d8e7a33f1b47b1c202"],
+      downVotes: [],
       votes: 150,
       comments: [
         {
@@ -102,6 +104,8 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
       category: "story",
       tags: ["dog", "rescue", "adoption"],
       isPremium: true,
+      upVotes: ["64a1f7d8e7a33f1b47b1c201", "64a1f7d8e7a33f1b47b1c202"],
+      downVotes: [],
       votes: 240,
       comments: [
         {
@@ -151,6 +155,8 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
       category: "tip",
       tags: ["health", "vet visits", "pet care"],
       isPremium: false,
+      upVotes: ["64a1f7d8e7a33f1b47b1c201", "64a1f7d8e7a33f1b47b1c202"],
+      downVotes: [],
       votes: 320,
       comments: [
         {
@@ -200,6 +206,8 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
       category: "story",
       tags: ["dog", "rescue", "adoption"],
       isPremium: true,
+      upVotes: ["64a1f7d8e7a33f1b47b1c201", "64a1f7d8e7a33f1b47b1c202"],
+      downVotes: [],
       votes: 240,
       comments: [
         {
