@@ -1,29 +1,31 @@
-import { ReactNode, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import { Drawer } from "antd";
 
 const FDrawer = ({
   children,
   openBtn,
   title,
+  setMenuDrawerOpen,
+  menuDrawer,
 }: {
   children: ReactNode;
   openBtn: ReactNode;
   title?: string;
+  setMenuDrawerOpen: Dispatch<SetStateAction<boolean>>;
+  menuDrawer: boolean;
 }) => {
-  const [open, setOpen] = useState(false);
-
   const showDrawer = () => {
-    setOpen(true);
+    setMenuDrawerOpen(true);
   };
 
   const onClose = () => {
-    setOpen(false);
+    setMenuDrawerOpen(false);
   };
 
   return (
     <>
       <div onClick={showDrawer}>{openBtn}</div>
-      <Drawer title={title} onClose={onClose} open={open}>
+      <Drawer title={title} onClose={onClose} open={menuDrawer}>
         {children}
       </Drawer>
     </>

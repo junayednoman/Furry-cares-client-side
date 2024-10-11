@@ -9,11 +9,11 @@ import { TPost } from "@/types/post.type";
 const SmallPostCard = ({ post }: { post: TPost }) => {
   const { thumbnail, title, category, author, createdAt } = post;
   return (
-    <Card className="flex flex-row border-none p-0 duration-300">
+    <Card className=" border-none p-0 duration-300">
       <div className="flex sm:flex-row flex-col md:gap-6 gap-3">
         <Link
           href={"/"}
-          className="inline-block sm:h-[140px] h-[210px] md:w-[250px] sm:w-[320px] w-full object-cover rounded-md"
+          className="inline-block sm:h-[140px] h-[210px] md:w-[250px] sm:w-[320px] sm:min-w-[220px] sm:max-w-[220px] w-full object-cover rounded-md"
         >
           <div
             className={`bg-cover bg-center bg-no-repeat w-full h-full rounded-md`}

@@ -57,7 +57,7 @@ const BannerCarouselCard = ({ post }: { post: TPost }) => {
         <div className="mt-4 flex items-center gap-4">
           <Link
             className="text-black"
-            href={`/feed?category=${post?.category}`}
+            href={`/posts?category=${post?.category}`}
           >
             <div className="bg-primaryBg px-3 py-1 rounded-[4px] inline capitalize font-medium">
               <span>{post?.category}</span>

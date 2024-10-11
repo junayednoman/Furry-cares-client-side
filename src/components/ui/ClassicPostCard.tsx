@@ -27,7 +27,7 @@ const ClassicPostsCard = ({ post }: { post: TPost }) => {
         <div className="w-fit text-primaryBg flex items-center">
           <Link
             className="text-primaryBg font-medium underline uppercase"
-            href={`/feed?category=${post?.category}`}
+            href={`/posts?category=${post?.category}`}
           >
             {post?.category}
           </Link>

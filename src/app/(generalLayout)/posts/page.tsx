@@ -1,5 +1,4 @@
 "use client";
-import FeedFilter from "@/app/modules/feed/FeedFilter";
 import BigPostCard from "@/components/ui/BigPostCard";
 import FContainer from "@/components/ui/Container";
 import FPagination from "@/components/ui/Fpagination";
@@ -9,6 +8,7 @@ import NoData from "@/components/ui/NoData";
 import BigPostSkeleton from "../skeletons/BigPostSkeleton";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import FeedFilter from "@/app/modules/feed/FeedFilter";
 
 const Feed = () => {
   // pagination

@@ -2,6 +2,7 @@
 import { Button } from "antd";
 import { FrownOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
+import FContainer from "@/components/ui/Container";
 
 const ErrorPage = ({
   error,
@@ -13,15 +14,15 @@ const ErrorPage = ({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
-      <div className="max-w-[600px] text-center bg-white p-10 rounded-lg FCardShadow space-y-6">
+    <FContainer>
+      <div className="text-center bg-white p-10 rounded-lg mx-auto space-y-6 md:py-20 py-10">
         <FrownOutlined className="text-6xl text-red-500 mb-5" />
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
           Oops! Something went wrong
         </h1>
         <p className="text-lg text-gray-600 mb-6">
           {error.message ||
-            "We're sorry, but the page you're looking for cannot be found or an error occurred."}
+            "An unexpected error occurred. Please try again later."}
         </p>
         <div className="flex items-center justify-center gap-3">
           <Button
@@ -45,7 +46,7 @@ const ErrorPage = ({
           </Button>
         </div>
       </div>
-    </div>
+    </FContainer>
   );
 };
 

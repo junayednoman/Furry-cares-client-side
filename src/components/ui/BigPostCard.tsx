@@ -22,7 +22,7 @@ const BigPostCard = ({ post }: { post: TPost }) => {
     <Card className="flex flex-row border-none p-0 duration-300">
       <div className="grid md:grid-cols-5 grid-cols-1 md:gap-10 gap-y-3">
         <div className="col-span-2">
-          <Link href={"/"}>
+          <Link href={`/posts/${post?._id}`}>
             <Image
               className="lg:min-h-[240px] md:min-h-[200px] min-h-[240px] w-full rounded-[8px]"
               src={thumbnail}
@@ -51,7 +51,7 @@ const BigPostCard = ({ post }: { post: TPost }) => {
                 </p>
               </div>
             </div>
-            <Link href={"/"}>
+            <Link href={`/posts/${post?._id}`}>
               <Heading3>
                 {title.length > 60 ? title.slice(0, 60) + "..." : title}
               </Heading3>
@@ -67,7 +67,7 @@ const BigPostCard = ({ post }: { post: TPost }) => {
               </div>
             </Link>
 
-            <Link className="text-black" href={`/feed?category=${category}`}>
+            <Link className="text-black" href={`/posts?category=${category}`}>
               <div className="bg-primaryBg px-3 py-1 rounded-[4px] inline capitalize font-medium">
                 <span>{category}</span>
               </div>

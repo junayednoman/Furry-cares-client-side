@@ -12,6 +12,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-montserrat);
+  color: #2d2d2d;
 }
 
 p {
@@ -260,9 +261,25 @@ a {
   padding: 20px 0 !important;
 }
 
-/* .ant-upload:hover {
-  border: 1px dashed #ffa726 !important;
-} */
+.postDetailPage img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.postDetailPage p {
+  line-height: 25px;
+}
+.postDetailPage a {
+  color: blue;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.ant-float-btn-icon {
+  margin-top: 0;
+}
+
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
 

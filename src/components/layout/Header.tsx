@@ -23,10 +23,12 @@ import { ItemType } from "antd/es/menu/interface";
 const Header = () => {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const { user, handleLogout, loading: userLoading } = useUserContext();
+  const [isMenuDrawerOpen, setMenuDrawerOpen] = useState(false);
 
   // handle search modal
   const handleOpenSearchModal = () => {
     setIsSearchModalOpen(true);
+    setMenuDrawerOpen(false);
   };
 
   const dropdownItems: MenuProps["items"] = [
@@ -61,7 +63,7 @@ const Header = () => {
                 <h4 className="font-semibold text-2xl text-text">Furrys</h4>
               </Link>
             </div>
-            <div className="md:flex items-center gap-8 font-medium hidden">
+            <div className="lg:flex items-center gap-8 font-medium hidden">
               <Link
                 className="relative group decoration-transparent text-text"
                 href={"/"}
@@ -72,7 +74,7 @@ const Header = () => {
 
               <Link
                 className="relative group decoration-transparent text-text"
-                href={"/feed"}
+                href={"/posts"}
               >
                 <span>Feed</span>
                 <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
@@ -102,7 +104,7 @@ const Header = () => {
                 <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
               </Link>
             </div>
-            <div className="md:flex items-center gap-6 hidden">
+            <div className="lg:flex items-center gap-6 hidden">
               <Moon size={20} className="text-text cursor-pointer" />
 
               {/* show search modal */}
@@ -132,11 +134,16 @@ const Header = () => {
               </Spin>
             </div>
             {/* mobile menu */}
-            <div className="md:hidden block">
-              <FDrawer openBtn={<AlignJustify className="text-text" />}>
+            <div className="lg:hidden block">
+              <FDrawer
+                menuDrawer={isMenuDrawerOpen}
+                setMenuDrawerOpen={setMenuDrawerOpen}
+                openBtn={<AlignJustify className="text-text" />}
+              >
                 <div>
                   <div className="flex flex-col items-end gap-8 font-medium text-text">
                     <Link
+                      onClick={() => setMenuDrawerOpen(false)}
                       className="relative group decoration-transparent text-text"
                       href={"/"}
                     >
@@ -145,14 +152,16 @@ const Header = () => {
                     </Link>
 
                     <Link
+                      onClick={() => setMenuDrawerOpen(false)}
                       className="relative group decoration-transparent text-text"
-                      href={"/feed"}
+                      href={"/posts"}
                     >
                       <span>Feed</span>
                       <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-accent transition-all duration-300 group-hover:w-full"></span>
                     </Link>
 
                     <Link
+                      onClick={() => setMenuDrawerOpen(false)}
                       className="relative group decoration-transparent text-text"
                       href={"/about"}
                     >
@@ -161,6 +170,7 @@ const Header = () => {
                     </Link>
 
                     <Link
+                      onClick={() => setMenuDrawerOpen(false)}
                       className="relative group decoration-transparent text-text"
                       href={"/contact"}
                     >
@@ -169,6 +179,7 @@ const Header = () => {
                     </Link>
 
                     <Link
+                      onClick={() => setMenuDrawerOpen(false)}
                       className="relative group decoration-transparent text-text"
                       href={"/pricing"}
                     >
@@ -178,7 +189,11 @@ const Header = () => {
                   </div>
                   <div className="flex items-center justify-end mt-8 gap-6">
                     <Moon size={20} className="text-text cursor-pointer" />
-                    <Search size={20} className="text-text cursor-pointer" />
+                    <Search
+                      onClick={handleOpenSearchModal}
+                      size={20}
+                      className="text-text cursor-pointer"
+                    />
                     {user ? (
                       <FDropdown items={dropdownItems}>
                         <CircleUserRound
