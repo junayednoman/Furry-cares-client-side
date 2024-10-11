@@ -20,7 +20,7 @@ const VerticalPostCard = ({ post }: { post: TPost }) => {
               </div>
             </Tooltip>
           )}
-          <Link href={"/"}>
+          <Link href={`/posts/${post?._id}`}>
             <Image
               className="rounded-t-md w-full lg:h-[260px] h-[230px]"
               src={post?.thumbnail}
@@ -37,7 +37,7 @@ const VerticalPostCard = ({ post }: { post: TPost }) => {
             </p>
           </div>
           <Link
-            href={"/"}
+            href={`/posts/${post?._id}`}
             className="text-text hover:text-accent inline-block mt-1"
           >
             <h4 className="text-[19px] font-semibold">

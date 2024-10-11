@@ -21,12 +21,7 @@ import {
   FacebookMessengerIcon,
 } from "react-share";
 import { FloatButton } from "antd";
-import { Ellipsis, Share, Share2 } from "lucide-react";
-import {
-  CommentOutlined,
-  CustomerServiceOutlined,
-  ShareAltOutlined,
-} from "@ant-design/icons";
+import { ShareAltOutlined } from "@ant-design/icons";
 
 const PostDetails = ({ params }: { params: { postId: string } }) => {
   const postId = params.postId;
@@ -46,13 +41,13 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
   const postData = data?.data;
 
   return (
-    <div className="md:p-20 py-12 postDetailPage">
+    <div className="md:p-16 py-10 postDetailPage">
       <FContainer>
         <div className="text-center max-w-[1100px] mx-auto md:space-y-8 space-y-5">
           <p className="text-gray-400">
             {moment(postData?.createdAt).format("DD MMMM, YYYY")}
           </p>
-          <h1 className="md:text-[40px] text-3xl font-bold">
+          <h1 className="md:text-[40px] text-[32px] font-semibold md:leading-[55px] leading-[45px]">
             {postData?.title}
           </h1>
           <div className="flex items-center justify-between">
@@ -112,6 +107,7 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
 
       <FloatButton.Group
         trigger="click"
+        className="xl:mr-4 -mr-7 xl:bottom-16 md:bottom-8 bottom-5"
         type="primary"
         style={{ insetInlineEnd: 94 }}
         icon={<ShareAltOutlined className="duration-700" />}
@@ -157,6 +153,10 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
           <FacebookMessengerIcon className="rounded-full shadow-lg" size={35} />
         </FacebookMessengerShareButton>
       </FloatButton.Group>
+
+      <div className="gotop">
+        <FloatButton.BackTop className="xl:mr-9 lg:mr-0 sm:-mr-1 -mr-1 xl:bottom-16 md:bottom-8 bottom-5" />
+      </div>
     </div>
   );
 };

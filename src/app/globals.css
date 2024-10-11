@@ -280,6 +280,21 @@ a {
   margin-top: 0;
 }
 
+.gotop .css-dev-only-do-not-override-ccdg5a {
+  background: #ffa726;
+  border-radius: 100%;
+}
+
+.gotop .ant-float-btn-body {
+  background: #ffa726;
+  border: #ffa726;
+}
+.gotop svg {
+  background: #ffa726;
+  border: #ffa726;
+  color: #fff !important;
+}
+
 /* Import Ant Design reset first to avoid conflicts */
 /* @import "antd/dist/reset.css"; */
 

@@ -50,7 +50,7 @@ const Header = () => {
 
   return (
     <header>
-      <div className="py-6 headerBorder">
+      <div className="md:py-6 py-4 headerBorder">
         <FContainer>
           <div className="flex items-center justify-between gap-12">
             <div>

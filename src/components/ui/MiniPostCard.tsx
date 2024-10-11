@@ -11,7 +11,7 @@ const MiniPostCard = ({ post }: { post: TPost }) => {
     <Card className="flex flex-row border-none p-0 duration-300">
       <div className="flex md:gap-4 gap-3">
         <Link
-          href={"/"}
+          href={`/posts/${post?._id}`}
           className="inline-block sm:h-[85px] md:w-[150px] sm:w-[180px] w-[250px] object-cover rounded-md"
         >
           <div
@@ -36,7 +36,7 @@ const MiniPostCard = ({ post }: { post: TPost }) => {
                 16 Minutes ago
               </p>
             </div>
-            <Link href={"/"} className="-mt-1 inline-block">
+            <Link href={`/posts/${post?._id}`} className="-mt-1 inline-block">
               <h5 className="sm:text-base text-[15px] font-semibold text-text">
                 {title.length > 60 ? title.substring(0, 60) + "..." : title}
               </h5>

@@ -12,7 +12,7 @@ const SmallPostCard = ({ post }: { post: TPost }) => {
     <Card className=" border-none p-0 duration-300">
       <div className="flex sm:flex-row flex-col md:gap-6 gap-3">
         <Link
-          href={"/"}
+          href={`/posts/${post?._id}`}
           className="inline-block sm:h-[140px] h-[210px] md:w-[250px] sm:w-[320px] sm:min-w-[220px] sm:max-w-[220px] w-full object-cover rounded-md"
         >
           <div
@@ -35,7 +35,7 @@ const SmallPostCard = ({ post }: { post: TPost }) => {
                 {moment(createdAt).fromNow()}
               </p>
             </div>
-            <Link href={"/"} className="-mt-1 inline-block">
+            <Link href={`/posts/${post?._id}`} className="-mt-1 inline-block">
               <Heading5>
                 {title.length > 70 ? title.substring(0, 70) + "..." : title}
               </Heading5>
@@ -43,7 +43,7 @@ const SmallPostCard = ({ post }: { post: TPost }) => {
           </div>
           <div className="flex items-center gap-4">
             <div className="sm:mt-0 mt-7">
-              <Link className="text-black" href={"/"}>
+              <Link className="text-black" href={`/posts/${post?.category}`}>
                 <div className="bg-primaryBg px-3 py-1 rounded-[4px] inline capitalize font-medium">
                   <span>{category}</span>
                 </div>

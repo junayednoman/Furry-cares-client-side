@@ -12,9 +12,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        accent: "#FFA726",
         primaryBg: "#D4EED1",
         text: "#2D2D2D",
-        accent: "#FFA726",
         accentDark: "#e69622"
       },
       fontFamily: {
