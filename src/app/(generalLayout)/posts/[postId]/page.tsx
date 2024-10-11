@@ -117,8 +117,10 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
               <ChevronUp
                 onClick={() => handleUpVote("up")}
                 size={30}
-                className={`text-text cursor-pointer translate-y-3 hover:text-accentDark duration-300 ${
-                  postData?.upVotes.includes(user?._id) && "text-accentDark"
+                className={` cursor-pointer translate-y-3 hover:text-accentDark duration-300 ${
+                  postData?.upVotes?.includes(user?._id)
+                    ? "text-accentDark"
+                    : "text-text"
                 }`}
               />
               <div>
@@ -137,8 +139,10 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
               <ChevronDown
                 onClick={() => handleUpVote("down")}
                 size={30}
-                className={`text-text cursor-pointer -translate-y-2 hover:text-accentDark duration-300 ${
-                  postData?.downVotes.includes(user?._id) && "text-accentDark"
+                className={`cursor-pointer -translate-y-2 hover:text-accentDark duration-300 ${
+                  postData?.downVotes?.includes(user?._id)
+                    ? "text-accentDark"
+                    : "text-text "
                 }`}
               />
             </div>
