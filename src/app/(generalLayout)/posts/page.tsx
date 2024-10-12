@@ -14,7 +14,6 @@ const Feed = () => {
   // pagination
   const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  // console.log("pagesize: ", pageSize, "currentPage:", currentPage);
 
   const categoryFromSearchParams = useSearchParams().get("category");
   const [category, setCategory] = useState<string | null>(
