@@ -15,7 +15,9 @@ const Feed = () => {
   const [pageSize, setPageSize] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const categoryFromSearchParams = useSearchParams().get("category");
+  const params = useSearchParams();
+  const tagsFromSearchParams = params.get("tag");
+  const categoryFromSearchParams = params.get("category");
   const [category, setCategory] = useState<string | null>(
     categoryFromSearchParams || null
   );
@@ -35,6 +37,7 @@ const Feed = () => {
       limit: pageSize,
       page: currentPage,
       isPublished: true,
+      searchTerm: tagsFromSearchParams,
     }
   );
 
@@ -48,6 +51,7 @@ const Feed = () => {
     sorting,
     pageSize,
     currentPage,
+    tagsFromSearchParams,
   ]);
 
   const postData = data?.data?.result;

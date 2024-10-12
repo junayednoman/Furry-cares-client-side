@@ -83,9 +83,11 @@ const CommentBox = ({
           </>
         ) : (
           <div>
-            <h6 className="font-semibold text-xl">
-              Comments ({commentData?.data?.meta?.total})
-            </h6>
+            {commentData?.data?.meta?.total > 0 && (
+              <h6 className="font-semibold text-xl">
+                Comments ({commentData?.data?.meta?.total})
+              </h6>
+            )}
             <div>
               {comments?.map((comment: TComment, index: number) => (
                 <div

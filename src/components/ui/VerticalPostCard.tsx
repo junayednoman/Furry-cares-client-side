@@ -21,13 +21,10 @@ const VerticalPostCard = ({ post }: { post: TPost }) => {
             </Tooltip>
           )}
           <Link href={`/posts/${post?._id}`}>
-            <Image
-              className="rounded-t-md w-full lg:h-[260px] h-[230px]"
-              src={post?.thumbnail}
-              width={500}
-              height={260}
-              alt={post?.title}
-            />
+            <div
+              className="rounded-t-md w-full min-h-[240px] bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${post?.thumbnail})` }}
+            ></div>
           </Link>
         </div>
         <div className="p-5 pt-1 pl-6">
@@ -53,12 +50,13 @@ const VerticalPostCard = ({ post }: { post: TPost }) => {
                 <h4 className="font-semibold">
                   {post?.author?.name}{" "}
                   {post?.author?.isVerified && (
-                    <span>
+                    <span className="inline-block">
                       <Image
                         src={verifyIcon}
                         alt="image"
                         width={16}
                         height={16}
+                        className="max-w-[16px] max-h-[16px]"
                       />
                     </span>
                   )}

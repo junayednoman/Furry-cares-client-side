@@ -3,16 +3,17 @@ import { Card } from "antd";
 import Link from "next/link";
 import { Dot } from "lucide-react";
 import { TPost } from "@/types/post.type";
+import moment from "moment";
 
 const MiniPostCard = ({ post }: { post: TPost }) => {
-  const { thumbnail, title, author } = post;
+  const { thumbnail, title, author, createdAt } = post;
 
   return (
     <Card className="flex flex-row border-none p-0 duration-300">
       <div className="flex md:gap-4 gap-3">
         <Link
           href={`/posts/${post?._id}`}
-          className="inline-block sm:h-[85px] min-w-[130px] max-w-[130px] object-cover rounded-md"
+          className="inline-block min-h-[90px] max-h-[90px] min-w-[130px] max-w-[130px] object-cover rounded-md"
         >
           <div
             className={`bg-cover bg-center bg-no-repeat w-full h-full rounded-md`}
@@ -33,7 +34,7 @@ const MiniPostCard = ({ post }: { post: TPost }) => {
               <Dot className="-ml-2 text-slate-300 sm:block hidden" size={35} />
 
               <p className="font-montserrat text-[13px] font-medium mb-0 sm:-ml-2 text-slate-400">
-                16 Minutes ago
+                {moment(createdAt).fromNow()}
               </p>
             </div>
             <Link

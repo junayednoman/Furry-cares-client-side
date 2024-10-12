@@ -20,7 +20,7 @@ import {
   FacebookMessengerShareButton,
   FacebookMessengerIcon,
 } from "react-share";
-import { FloatButton } from "antd";
+import { FloatButton, Tag } from "antd";
 import { ShareAltOutlined } from "@ant-design/icons";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import NoData from "@/components/ui/NoData";
@@ -31,6 +31,7 @@ import spinImg from "@/assets/spin.svg";
 import copyIcon from "@/assets/copy-icon.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CommentBox from "@/app/modules/post-details/CommentBox";
+import RelatedPosts from "@/app/modules/post-details/RelatedPosts";
 
 const PostDetails = ({ params }: { params: { postId: string } }) => {
   const postId = params.postId;
@@ -167,6 +168,17 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
         </div>
         <div className="max-w-[900px] mx-auto mt-12">
           {HTMLReactParser(postData?.content)}
+          <div className="flex items-center gap-1 mt-5">
+            {postData?.tags?.map((tag: string) => (
+              <Tag key={tag} className="cursor-pointer">
+                <Link href={`/posts?tag=${tag.split(" ").join("+")}`}>
+                  <span className="capitalize font-semibold text-text">
+                    {tag}
+                  </span>
+                </Link>
+              </Tag>
+            ))}
+          </div>
           {/* comment section */}
           <div className="mt-12">
             <h4 className="font-semibold text-2xl pb-2">Leave your thoughts</h4>
@@ -177,6 +189,8 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
             />
           </div>
         </div>
+        {/* display related posts */}
+        <RelatedPosts />
       </FContainer>
 
       {/* Share Buttons */}
