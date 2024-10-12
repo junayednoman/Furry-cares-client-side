@@ -23,7 +23,7 @@ export type TPost = {
 export type TComment = {
   _id: string
   post: string
-  commenter: string
+  commenter: TUser
   text: string
   createdAt: string
   updatedAt: string

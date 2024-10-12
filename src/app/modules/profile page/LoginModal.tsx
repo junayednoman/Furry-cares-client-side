@@ -30,7 +30,7 @@ const LoginModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
 
   return (
     <Modal
-      title="Login to your account"
+      title="Login to your continue"
       className="sm:min-w-[550px] w-full p-0"
       footer={null}
       open={isModalOpen}

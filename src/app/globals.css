@@ -2,7 +2,7 @@
   margin-bottom: 0 !important;
 }
 body {
-  color: #d4eed1;
+  color: #2d2d2d;
   background: var(--background);
 }
 h1,
@@ -263,6 +263,7 @@ a {
 
 .postDetailPage img {
   width: 100%;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
   border-radius: 10px;

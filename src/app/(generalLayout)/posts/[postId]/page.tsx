@@ -28,9 +28,13 @@ import { usePartialUpdate } from "@/hooks/mutation";
 import { useUserContext } from "@/context/auth.provider";
 import LoginModal from "@/app/modules/profile page/LoginModal";
 import spinImg from "@/assets/spin.svg";
+import copyIcon from "@/assets/copy-icon.png";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import CommentBox from "@/app/modules/post-details/CommentBox";
 
 const PostDetails = ({ params }: { params: { postId: string } }) => {
   const postId = params.postId;
+  const currentPostLink = `http://localhost:3000/posts/${postId}`;
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { user } = useUserContext();
   const { mutateAsync: updatePostVote, isPending } = usePartialUpdate(
@@ -81,7 +85,7 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
           <h1 className="md:text-[40px] text-[32px] font-semibold md:leading-[55px] leading-[45px]">
             {postData?.title}
           </h1>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between md:px-4 px-2">
             <div className="">
               <Link href={`/profile/${postData?.author?._id}`}>
                 <div className="flex items-center gap-3 mt-3">
@@ -95,8 +99,9 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
                     <h4 className="font-semibold">
                       {postData?.author?.name}{" "}
                       {postData?.author?.isVerified && (
-                        <span>
+                        <span className=" inline-block">
                           <Image
+                            className="max-w-[16px] max-h-[16px]"
                             src={verifyIcon}
                             alt="image"
                             width={16}
@@ -162,9 +167,19 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
         </div>
         <div className="max-w-[900px] mx-auto mt-12">
           {HTMLReactParser(postData?.content)}
+          {/* comment section */}
+          <div className="mt-12">
+            <h4 className="font-semibold text-2xl pb-2">Leave your thoughts</h4>
+            <CommentBox
+              postAuthorId={postData?.author?._id}
+              postId={postData?._id}
+              commenterId={user?._id}
+            />
+          </div>
         </div>
       </FContainer>
 
+      {/* Share Buttons */}
       <FloatButton.Group
         trigger="click"
         className="xl:mr-4 -mr-7 xl:bottom-16 md:bottom-8 bottom-5"
@@ -212,6 +227,18 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
         >
           <FacebookMessengerIcon className="rounded-full shadow-lg" size={35} />
         </FacebookMessengerShareButton>
+
+        <div className="FCardShadow rounded-full cursor-pointer min-w-[33px] min-h-[33px]">
+          <CopyToClipboard text={currentPostLink}>
+            <Image
+              src={copyIcon}
+              alt="icon"
+              width={33}
+              height={33}
+              className="rounded-full w-full cursor-pointer"
+            />
+          </CopyToClipboard>
+        </div>
       </FloatButton.Group>
 
       <div className="gotop">
