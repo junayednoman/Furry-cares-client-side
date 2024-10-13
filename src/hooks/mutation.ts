@@ -56,7 +56,6 @@ export const usePartialUpdate = (key: string, url: string) => {
   })
 };
 
-
 export const useDeleteData = (key: string, url: string) => {
   return useMutation({
     mutationKey: [key],

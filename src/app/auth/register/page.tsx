@@ -8,15 +8,18 @@ import { useAuthMutation } from "@/hooks/auth";
 import { registrationSchema } from "@/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const Register = () => {
-  const { mutate: handleRegister } = useAuthMutation(
+  const router = useRouter();
+  const { mutateAsync: handleRegister } = useAuthMutation(
     "register",
     "/auth/register"
   );
-  const handleFormSubmit: SubmitHandler<FieldValues> = (data) => {
-    handleRegister(data);
+  const handleFormSubmit: SubmitHandler<FieldValues> = async (data) => {
+    await handleRegister(data);
+    router.push("/");
   };
   return (
     <FContainer>

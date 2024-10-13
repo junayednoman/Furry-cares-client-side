@@ -32,7 +32,7 @@ export const postTags = [
   { label: "Exercise", value: "pet exercise" },
   { label: "Dog", value: "dog" },
   { label: "Grooming", value: "pet grooming" },
-  { label: "Vet Care", value: "vet-care" },
+  { label: "Vet Care", value: "vet care" },
   { label: "Cat", value: "cat" },
   { label: "Adoption", value: "pet adoption" },
   { label: "Rescue", value: "pet rescue" },

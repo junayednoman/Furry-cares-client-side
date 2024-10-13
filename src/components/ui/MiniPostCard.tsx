@@ -25,7 +25,7 @@ const MiniPostCard = ({ post }: { post: TPost }) => {
             <div className="flex sm:flex-row flex-col sm:items-center sm:-mt-2">
               <Link
                 className="text-slate-600 font-semibold capitalize"
-                href={`/category}`}
+                href={`/profile/${author?._id}`}
               >
                 <p className="font-montserrat text-[13px] font-medium">
                   {author.name}

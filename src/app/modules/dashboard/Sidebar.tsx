@@ -30,7 +30,7 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
         collapsed={collapsed}
       >
         <div className="p-4">
-          <Link href={`/dashboard/profile`} className="inline-block">
+          <Link href={`/profile`} className="inline-block">
             <h3
               className={`${
                 collapsed ? "text-lg" : "text-[22px]"

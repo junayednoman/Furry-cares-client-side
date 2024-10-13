@@ -1,38 +1,44 @@
-import FForm from "@/components/ui/form/FForm";
-import FInput from "@/components/ui/form/FInput";
-import { FieldValues, SubmitHandler } from "react-hook-form";
-
-import { Divider, Modal } from "antd";
-import { Dispatch } from "react";
+import { Divider, Input, Modal } from "antd";
+import { Dispatch, useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import MiniPostCard from "@/components/ui/MiniPostCard";
 import { TPost } from "@/types/post.type";
 import { useHandleQuery } from "@/hooks/useHandleQuery";
 import FLoading from "@/components/ui/FLoading";
+import useDebounce from "@/hooks/useDebounce";
+import NoData from "@/components/ui/NoData";
 type TModalProps = {
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<React.SetStateAction<boolean>>;
 };
 
 const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
-  const { data: postData, isLoading } = useHandleQuery(
-    "getPostsForSearch",
-    "/posts",
-    {
-      sort: "-votes",
-      limit: 4,
-      isPublished: true,
+  const [searchText, setSearchText] = useState<string | undefined>(undefined);
+  const searchTerm = useDebounce(searchText);
+  console.log("searchTerm, ", searchTerm);
+  const {
+    data: postData,
+    isFetching,
+    isError,
+    refetch,
+  } = useHandleQuery("getPostsForSearch", "/posts", {
+    searchTerm: searchTerm,
+    sort: "-votes",
+    limit: 4,
+    isPublished: true,
+  });
+
+  useEffect(() => {
+    if (searchTerm) {
+      refetch();
+    } else if (searchTerm === undefined) {
+      refetch();
     }
-  );
+  }, [refetch, searchTerm]);
 
   const handleModalCancel = () => {
     setIsModalOpen(false);
   };
-
-  const handleSearch: SubmitHandler<FieldValues> = (data) => {
-    console.log("data, ", data);
-  };
-
   const posts = postData?.data?.result;
 
   return (
@@ -43,24 +49,26 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
         open={isModalOpen}
         onCancel={handleModalCancel}
       >
-        {isLoading ? (
-          <div className="flex justify-center items-center h-[400px] ">
-            <FLoading />
+        <div className="">
+          <div className="flex items-center px-5">
+            <Search size={22} className="text-accent -mt-5" />
+            <div className="mySearchInput w-full ">
+              <Input
+                className="focus:shadow-none"
+                onChange={(e) => setSearchText(e.target.value)}
+                name="search"
+                placeholder="e.g. puppy, pet stories, pet grooming"
+              />
+            </div>
           </div>
-        ) : (
-          <div className="">
-            <FForm handleFormSubmit={handleSearch}>
-              <div className="flex items-center px-5">
-                <Search size={22} className="text-accent -mt-5" />
-                <div className="mySearchInput w-full ">
-                  <FInput
-                    name="search"
-                    placeholder="Write what you are looking for..."
-                  />
-                </div>
-              </div>
-            </FForm>
-            <Divider className="mt-0 pt-0 bg-slate-300" />
+          <Divider className="mt-0 pt-0 bg-slate-300" />
+          {isFetching ? (
+            <div className="flex justify-center items-center h-[400px] ">
+              <FLoading />
+            </div>
+          ) : posts.length < 1 || isError ? (
+            <NoData />
+          ) : (
             <div className="px-5 pt-2">
               {posts?.map((post: TPost, index: number) => (
                 <div
@@ -74,8 +82,8 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
                 </div>
               ))}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </Modal>
     </div>
   );

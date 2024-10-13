@@ -1,14 +1,7 @@
 import { UserOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
 
-import {
-  Bike,
-  Home,
-  ListCheckIcon,
-  NotebookPen,
-  User,
-  Users,
-} from "lucide-react";
+import { Bike, Home, NotebookPen, User, Users } from "lucide-react";
 import Link from "next/link";
 
 export const userMenuItems = [
@@ -69,18 +62,6 @@ export const items: MenuProps["items"] = [
       </div>
     ),
     key: "1",
-  },
-  {
-    label: (
-      <div className="flex items-center gap-2">
-        <ListCheckIcon size={14} />
-        <Link className="text-text" href="/author/posts">
-          My Posts
-        </Link>
-      </div>
-    ),
-
-    key: "2",
   },
   {
     type: "divider",
