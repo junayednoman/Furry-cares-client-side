@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getCurrentUser } from "./services/auth";
-const authRoutes = ["/auth/login", "/auth/register",];
+const authRoutes = ["/auth/login", "/auth/register", "/auth/forget-password", "/auth/reset-password",];
 
 const roleBasedRoutes = {
   user: [/^\/author/],

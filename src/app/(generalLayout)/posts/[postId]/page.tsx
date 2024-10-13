@@ -35,7 +35,7 @@ import RelatedPosts from "@/app/modules/post-details/RelatedPosts";
 
 const PostDetails = ({ params }: { params: { postId: string } }) => {
   const postId = params.postId;
-  const currentPostLink = `http://localhost:3000/posts/${postId}`;
+  const postUrl = `http://localhost:3000/posts/${postId}`;
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { user } = useUserContext();
   const { mutateAsync: updatePostVote, isPending } = usePartialUpdate(
@@ -205,45 +205,45 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
         }
       >
         <FacebookShareButton
-          url={postData?.url}
+          url={postUrl}
           className="shadow-lg rounded-full flex"
         >
           <FacebookIcon className="rounded-full shadow-lg" size={35} />
         </FacebookShareButton>
         <TwitterShareButton
-          url={postData?.url}
+          url={postUrl}
           className="shadow-lg rounded-full flex"
         >
           <TwitterIcon className="rounded-full shadow-lg" size={35} />
         </TwitterShareButton>
         <LinkedinShareButton
-          url={postData?.url}
+          url={postUrl}
           className="shadow-lg rounded-full flex"
         >
           <LinkedinIcon className="rounded-full shadow-lg" size={35} />
         </LinkedinShareButton>
         <TwitterShareButton
-          url={postData?.url}
+          url={postUrl}
           className="shadow-lg rounded-full flex"
         >
           <TwitterIcon className="rounded-full shadow-lg" size={35} />
         </TwitterShareButton>
         <WhatsappShareButton
-          url={postData?.url}
+          url={postUrl}
           className="shadow-lg rounded-full flex"
         >
           <WhatsappIcon className="rounded-full shadow-lg" size={35} />
         </WhatsappShareButton>
         <FacebookMessengerShareButton
           appId="123456789"
-          url={postData?.url}
+          url={postUrl}
           className="shadow-lg rounded-full flex"
         >
           <FacebookMessengerIcon className="rounded-full shadow-lg" size={35} />
         </FacebookMessengerShareButton>
 
         <div className="FCardShadow rounded-full cursor-pointer min-w-[33px] min-h-[33px]">
-          <CopyToClipboard text={currentPostLink}>
+          <CopyToClipboard text={postUrl}>
             <Image
               src={copyIcon}
               alt="icon"
