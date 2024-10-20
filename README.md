@@ -1,6 +1,6 @@
 # Furry Cares 🐾
 
-Welcome to the **Furry Cares** frontend repository! This project is the client-side part of a full-stack web application that allows pet owners to access valuable tips and stories about pet care. Users can browse, create, and manage content, with features tailored to both regular users and admins.
+Welcome to the **Furry Cares** frontend repository! This project is the client-side part of a full-stack web application that allows pet owners to access & share valuable pet care tips and stories. Users can browse, create, and manage content, with features tailored to both regular users and admins.
 
 [Live Link](https://furry-cares.vercel.app/)
 
