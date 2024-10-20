@@ -53,11 +53,13 @@ const BigPostCard = ({ post }: { post: TPost }) => {
             </div>
             <Link href={`/posts/${post?._id}`}>
               <Heading3>
-                {title.length > 60 ? title.slice(0, 60) + "..." : title}
+                {title?.length > 60 ? title.slice(0, 60) + "..." : title}
               </Heading3>
             </Link>
             <p className="md:my-5 my-3 text-slate-600 text-base">
-              {excerpt!.length > 100 ? excerpt!.slice(0, 100) + "..." : excerpt}
+              {(excerpt?.length as number) > 100
+                ? excerpt!.slice(0, 100) + "..."
+                : excerpt}
             </p>
           </div>
           <div className="mt-4 flex items-center gap-4">
