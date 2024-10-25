@@ -18,7 +18,6 @@ Welcome to the **Furry Cares** frontend repository! This project is the client-s
 ## Tech Stack 🛠️
 
 - **Next.js**: React framework for server-side rendering and static site generation.
-- **Redux**: State management for handling global states like user data and theme preferences.
 - **TypeScript**: Typed superset of JavaScript for better code quality.
 - **Tailwind CSS**: Utility-first CSS framework for building responsive designs quickly.
 - **Ant Design**: UI components library for consistent and polished UI.
