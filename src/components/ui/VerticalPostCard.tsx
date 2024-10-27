@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Card, Tooltip } from "antd";
+import { Card, Tooltip } from "antd";
 import Link from "next/link";
 import Image from "next/image";
 import { TPost } from "@/types/post.type";
