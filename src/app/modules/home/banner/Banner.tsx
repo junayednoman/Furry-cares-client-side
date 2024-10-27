@@ -9,16 +9,16 @@ const Banner = async () => {
   const postData = posts?.data?.result;
 
   return (
-    <div className="pt-10 overflow-hidden">
+    <div className="pt-8 overflow-hidden">
       <FContainer>
         {!postData || postData?.length < 1 ? (
           <BannerSkeleton />
         ) : (
-          <div className="grid xl:grid-cols-5 grid-cols-1 md:gap-6 gap-4">
-            <div className="xl:col-span-3">
+          <div className="flex xl:flex-row flex-col md:gap-6 gap-4">
+            <div className="xl:w-[64%] w-full">
               <BannerCarousel posts={postData?.slice(0, 3)} />
             </div>
-            <div className="xl:col-span-2 grid xl:grid-cols-1 xl:gap-0 md:gap-6 gap-4 lg:grid-cols-2 grid-cols-1 xl:space-y-6">
+            <div className="xl:w-[36%] w-full grid xl:grid-cols-1 xl:gap-0 md:gap-6 gap-4 sm:grid-cols-2 grid-cols-1 xl:space-y-6">
               <ClassicPostsCard post={postData[3]} />
               <ClassicPostsCard post={postData[4]} />
             </div>

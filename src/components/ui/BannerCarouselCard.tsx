@@ -9,7 +9,7 @@ import moment from "moment";
 const BannerCarouselCard = ({ post }: { post: TPost }) => {
   return (
     <Card
-      className="relative xl:min-h-[600px] lg:min-h-[600px] md:min-h-[500px] min-h-[350px] w-full overflow-hidden border-none rounded-lg shadow-md group p-0 cursor-pointer"
+      className="relative xl:min-h-[520px] lg:min-h-[600px] md:min-h-[500px] min-h-[350px] w-full overflow-hidden border-none rounded-lg shadow-md group p-0 cursor-pointer"
       bodyStyle={{ padding: 0 }}
     >
       {/* Background Image with Gradient Overlay */}

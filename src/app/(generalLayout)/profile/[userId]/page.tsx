@@ -26,11 +26,11 @@ const ProfilePage = ({ params }: { params: { userId: string } }) => {
     `/users/user/${params?.userId}`
   );
 
-  const { mutate: handleFollow, isPending: followPending } = usePost(
+  const { mutateAsync: handleFollow, isPending: followPending } = usePost(
     "follow",
     `/users/follow`
   );
-  const { mutate: handleUnFollow, isPending: unFollowPending } = usePost(
+  const { mutateAsync: handleUnFollow, isPending: unFollowPending } = usePost(
     "follow",
     `/users/unfollow`
   );
@@ -68,13 +68,13 @@ const ProfilePage = ({ params }: { params: { userId: string } }) => {
   ];
 
   // handle following
-  const handleFollowing = () => {
-    handleFollow({ followingId: user?._id });
+  const handleFollowing = async () => {
+    await handleFollow({ followingId: user?._id });
     refetch();
   };
 
-  const handleUnFollowing = () => {
-    handleUnFollow({ unFollowingId: user?._id });
+  const handleUnFollowing = async () => {
+    await handleUnFollow({ unFollowingId: user?._id });
     refetch();
   };
 
