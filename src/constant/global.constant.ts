@@ -1,19 +1,19 @@
 export const teams = [
   {
     image:
-      " https://img.freepik.com/premium-photo/banner-lead-generation_1096167-133209.jpg?uid=R110269680&ga=GA1.1.1274571054.1719930293&semt=ais_hybrid",
+      "https://i.postimg.cc/wjScxrch/banner-lead-generation-1096167-133209.avif",
     name: "Alice Johnson",
     designation: "Founder & CEO",
   },
   {
     image:
-      " https://img.freepik.com/premium-photo/banner-lead-generation_1139417-135284.jpg?uid=R110269680&ga=GA1.1.1274571054.1719930293&semt=ais_hybrid",
+      "https://i.postimg.cc/y8JyHK91/banner-lead-generation-1139417-135284.avif",
     name: "Michael Smith",
     designation: "Chief Operating Officer",
   },
   {
     image:
-      "https://img.freepik.com/premium-photo/man-suit-with-his-arms-crossed_1109459-2268.jpg?uid=R110269680&ga=GA1.1.1274571054.1719930293&semt=ais_hybrid",
+      "https://i.postimg.cc/VLkFKnkb/man-suit-with-his-arms-crossed-1109459-2268.avif",
     name: "Sophia Davis",
     designation: "Software Engineer",
   },

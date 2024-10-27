@@ -77,7 +77,7 @@ const FeedFilter = ({ setCategory, setTimePosted, setSorting }: TProps) => {
               selectOnChange={(value: string) => setCategory(value)}
               options={categories}
               name="category"
-              placeholder="Select Category"
+              placeholder="Filter by category"
             />
           </div>
           <div className="w-full">
