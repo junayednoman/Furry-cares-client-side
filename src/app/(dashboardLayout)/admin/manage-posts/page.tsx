@@ -12,7 +12,7 @@ export type TTableProps = Pick<
   "title" | "category" | "votes" | "isPremium" | "isPublished" | "_id"
 >;
 
-const Posts = () => {
+const ManagePosts = () => {
   const [postIdToBeDeleted, setPostIdToBeDeleted] = useState("");
   const [postIdToChangePublishStatus, setPostIdToChangePublishStatus] =
     useState("");
@@ -160,4 +160,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default ManagePosts;

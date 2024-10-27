@@ -1,7 +1,14 @@
 import { UserOutlined } from "@ant-design/icons";
 import { MenuProps } from "antd";
 
-import { Bike, Home, NotebookPen, User, Users } from "lucide-react";
+import {
+  Bike,
+  Home,
+  NotebookPen,
+  SquareKanban,
+  User,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 
 export const userMenuItems = [
@@ -25,11 +32,16 @@ export const userMenuItems = [
 export const adminMenuItems = [
   {
     key: "1",
+    icon: <SquareKanban size={16} />,
+    label: <Link href={"/admin/overview"}>Overview</Link>,
+  },
+  {
+    key: "2",
     icon: <User size={16} />,
     label: <Link href={"/profile"}>Profile</Link>,
   },
   {
-    key: "2",
+    key: "3",
     icon: <NotebookPen size={16} />,
     label: <Link href={"/admin/manage-posts"}>Manage Posts</Link>,
   },

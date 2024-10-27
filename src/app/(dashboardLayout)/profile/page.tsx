@@ -11,10 +11,12 @@ import { useHandleQuery } from "@/hooks/useHandleQuery";
 import Loading from "@/app/(generalLayout)/loading";
 import NoData from "@/components/ui/NoData";
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UpdateProfileModal from "@/app/modules/profile page/UpdaetProfileModal";
+import { useUserContext } from "@/context/auth.provider";
 
 const ProfilePage = () => {
+  const { user: currentUser } = useUserContext();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const {
     data: postData,
@@ -23,6 +25,12 @@ const ProfilePage = () => {
     isError,
     refetch,
   } = useHandleQuery("get-my-profile", "/users/my-profile");
+
+  useEffect(() => {
+    if (currentUser?._id) {
+      refetch();
+    }
+  }, [currentUser?._id]);
 
   if (isLoading || isFetching) {
     return <Loading />;
