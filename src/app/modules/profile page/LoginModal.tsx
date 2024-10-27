@@ -30,7 +30,7 @@ const LoginModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
 
   return (
     <Modal
-      title="Login to your continue"
+      title="Login to continue"
       className="sm:min-w-[550px] w-full p-0"
       footer={null}
       open={isModalOpen}
@@ -57,16 +57,16 @@ const LoginModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
           </FButton>
         </div>
       </FForm>
-      <div className="mt-8 flex justify-between items-center sm:text-base text-[15px]">
+      <div className="mt-4 flex justify-between items-center sm:text-base text-[15px]">
         <p>
           Don’t have an account?{" "}
-          <Link className=" font-semibold text-accent" href="/auth/register">
+          <Link className=" font-medium text-accent" href="/auth/register">
             Register
           </Link>
         </p>
-        <p className="sm:text-base text-[15px] font-semibold text-accent">
+        <p className="sm:text-base text-[15px] font-medium text-accent">
           <Link
-            className=" font-semibold text-accent"
+            className=" font-medium text-accent"
             href="/auth/forget-password"
           >
             Forgot password?
