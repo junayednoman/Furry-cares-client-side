@@ -6,7 +6,7 @@ import Heading2 from "@/components/typography/Heading2";
 
 const About = () => {
   return (
-    <div className="-mt-6 md:pb-20 pb-16 md:pt-10 pt-4 bg-[#f6fcf6]">
+    <div className="-mt-6 md:pb-20 pb-16 md:pt-10 pt-4 bg-light">
       <FContainer>
         <div className="mt-12">
           <div className="grid lg:grid-cols-2 grid-cols-1 items-center lg:gap-20 gap-16">

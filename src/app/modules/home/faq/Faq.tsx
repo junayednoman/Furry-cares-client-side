@@ -79,7 +79,7 @@ const Faq = () => {
   ];
 
   return (
-    <div className="md:py-20 py-16 bg-[#F6FCF6]">
+    <div className="md:py-20 py-16 bg-light">
       <FSectionTitle
         heading="Frequently Asked Questions"
         subHeading="Get answer to your queries"

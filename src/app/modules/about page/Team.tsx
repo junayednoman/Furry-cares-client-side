@@ -5,7 +5,7 @@ import { teams } from "@/constant/global.constant";
 
 const Team = () => {
   return (
-    <div className="md:py-20 py-16 bg-[#F6FCF6]">
+    <div className="md:py-20 py-16 bg-light">
       <FContainer>
         <FSectionTitle
           color="#fff"

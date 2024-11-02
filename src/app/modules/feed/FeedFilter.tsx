@@ -69,7 +69,7 @@ const FeedFilter = ({ setCategory, setTimePosted, setSorting }: TProps) => {
   };
 
   return (
-    <div className="md:p-6 p-5 rounded-md border border-slate-200 border-solid bg-[#fbfdfa]">
+    <div className="md:p-6 p-5 rounded-md border border-slate-200 border-solid bg-light">
       <FForm handleFormSubmit={handleFilter}>
         <div className="flex md:flex-row flex-col items-center md:gap-8 gap-4">
           <div className="w-full">

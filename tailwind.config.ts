@@ -10,8 +10,10 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+
     extend: {
       colors: {
+        light: "#fffcf8",
         accent: "#FFA726",
         primaryBg: "#D4EED1",
         text: "#2D2D2D",
@@ -24,5 +26,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  darkMode: "selector"
 };
 export default config;
