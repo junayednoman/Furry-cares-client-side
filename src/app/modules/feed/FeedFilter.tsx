@@ -44,7 +44,7 @@ const days = [
 
 const sortings = [
   {
-    value: null,
+    value: "null",
     label: "Reset",
   },
   {

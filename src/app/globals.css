@@ -29,6 +29,19 @@ a {
   box-shadow: 0 0 2px 0 rgba(145, 158, 171, 0.2),
     0 12px 24px -4px rgba(145, 158, 171, 0.12);
 }
+.sidebarHeading {
+  position: relative;
+  padding-left: 8px;
+}
+.sidebarHeading::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 19px;
+  width: 3px;
+  background-color: #ffa726;
+}
 
 .Fshadow {
   transition: 0.3s ease !important;
@@ -49,7 +62,9 @@ a {
   color: #fff !important;
   border: 1px solid #ffa726 !important;
 }
-
+.borderGray {
+  border: 1px solid #cccccc66;
+}
 .ant-card-body {
   padding: 0 !important;
 }

@@ -20,7 +20,7 @@ const BigPostCard = ({ post }: { post: TPost }) => {
   } = post || {};
   return (
     <Card className="flex flex-row border-none p-0 duration-300">
-      <div className="grid md:grid-cols-5 grid-cols-1 md:gap-10 gap-y-3">
+      <div className="grid md:grid-cols-5 grid-cols-1 xl:gap-10 md:gap-6 gap-y-3">
         <div className="col-span-2">
           <Link href={`/posts/${post?._id}`}>
             <Image

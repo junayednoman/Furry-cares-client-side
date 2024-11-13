@@ -19,8 +19,11 @@ import { useUserContext } from "@/context/auth.provider";
 import { items } from "@/constant/sidebar.constant";
 import { MenuProps, Spin } from "antd";
 import { ItemType } from "antd/es/menu/interface";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const currentUrl = usePathname();
+
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const { user, handleLogout, loading: userLoading } = useUserContext();
   const [isMenuDrawerOpen, setMenuDrawerOpen] = useState(false);
@@ -51,7 +54,7 @@ const Header = () => {
   return (
     <header>
       <div className="md:py-6 py-4 headerBorder">
-        <FContainer>
+        <FContainer wide={currentUrl.includes("posts")}>
           <div className="flex items-center justify-between gap-12">
             <div>
               <Link

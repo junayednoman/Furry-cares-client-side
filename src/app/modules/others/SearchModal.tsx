@@ -15,7 +15,7 @@ type TModalProps = {
 const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
   const [searchText, setSearchText] = useState<string | undefined>(undefined);
   const searchTerm = useDebounce(searchText);
-  console.log("searchTerm, ", searchTerm);
+
   const {
     data: postData,
     isFetching,
@@ -71,14 +71,8 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
           ) : (
             <div className="px-5 pt-2">
               {posts?.map((post: TPost, index: number) => (
-                <div
-                  onClick={() => setIsModalOpen(false)}
-                  className={`border-b ${
-                    index === posts.length - 1 && "border-b-0"
-                  } border-t-0 border-x-0 border-solid border-slate-200 py-3`}
-                  key={post._id}
-                >
-                  <MiniPostCard post={post} />
+                <div key={index} onClick={() => setIsModalOpen(false)}>
+                  <MiniPostCard index={index} post={post} />
                 </div>
               ))}
             </div>
