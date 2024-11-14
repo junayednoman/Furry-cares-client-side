@@ -20,6 +20,9 @@ const HorizontalAd = ({
           alt="ad"
         />
       </a>
+      <p className="text-center text-gray-500 text-sm tracking-normal mt-1 font-montserrat">
+        Advertisement
+      </p>
     </div>
   );
 };

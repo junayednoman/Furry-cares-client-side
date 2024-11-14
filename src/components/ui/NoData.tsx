@@ -1,9 +1,9 @@
 import { Empty } from "antd";
 
-const NoData = () => {
+const NoData = ({ text }: { text?: string }) => {
   return (
-    <div className="md:py-16 p-10">
-      <Empty></Empty>
+    <div className="md:py-12 p-10">
+      <Empty description={text || "No Data Found!"}></Empty>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import { TComment } from "@/types/post.type";
 import CommentSkeleton from "@/app/(generalLayout)/skeletons/CommentSkeleton";
 import Image from "next/image";
 import spinImg from "@/assets/spin.svg";
+import NoData from "@/components/ui/NoData";
 
 const CommentBox = ({
   postId,
@@ -75,13 +76,15 @@ const CommentBox = ({
           </FButton>
         </div>
       </FForm>
-      <div className="mt-12">
+      <div className={`${comments?.length > 0 ? "mt-12" : ""}`}>
         {isCommentLoading ? (
           <>
             <CommentSkeleton />
             <CommentSkeleton />
             <CommentSkeleton />
           </>
+        ) : comments?.length < 1 ? (
+          <NoData text={"No comments!"} />
         ) : (
           <div>
             {commentData?.data?.meta?.total > 0 && (
