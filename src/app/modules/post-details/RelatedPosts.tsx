@@ -80,13 +80,14 @@ const RelatedPosts = () => {
   if (isLoading) {
     return <FeaturedStoriesSkeleton heading="Related posts" />;
   }
+
   if (isError || !postData || postData?.length < 1) {
     return null;
   }
 
   return (
     <>
-      <div className="md:py-14 py-10 overflow-hidden">
+      <div className="md:py-24 py-16 overflow-hidden">
         <FSectionTitle heading="Related posts" />
         <div className="xl:mx-10">
           <div className="navigation-wrapper w-full relative">

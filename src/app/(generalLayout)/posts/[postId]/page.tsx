@@ -13,7 +13,7 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
   return (
     <div className="md:pt-20 pt-12">
       <FContainer wide>
-        <div className="grid xl:grid-cols-6 grid-cols-1 xl:gap-12 gap-2">
+        <div className="grid xl:grid-cols-6 grid-cols-1 xl:gap-14 gap-y-12">
           <div className="col-span-4">
             <PostContent postUrl={postUrl} postId={postId} />
           </div>
@@ -26,7 +26,7 @@ const PostDetails = ({ params }: { params: { postId: string } }) => {
         {/* display related posts */}
         <RelatedPosts />
         {/* horizontal ad */}
-        <div className="-mt-10">
+        <div className="-mt-16">
           <HorizontalAd
             className="mx-auto sm:pb-14 pb-8"
             link="https://google.com"

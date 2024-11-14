@@ -61,7 +61,8 @@ const CommentBox = ({
   };
 
   return (
-    <div className=" w-full">
+    <div className=" w-full border borderGray sm:p-7 p-4">
+      <h4 className="font-semibold text-2xl pb-2">Leave your thoughts</h4>
       <FForm
         reset={true}
         resolver={zodResolver(commentSchema)}

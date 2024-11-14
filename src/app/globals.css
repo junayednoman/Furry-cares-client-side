@@ -64,6 +64,7 @@ a {
 }
 .borderGray {
   border: 1px solid #cccccc66;
+  border-radius: 10px;
 }
 .ant-card-body {
   padding: 0 !important;

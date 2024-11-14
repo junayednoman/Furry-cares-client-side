@@ -195,7 +195,6 @@ const PostContent = ({
 
         {/* comment section */}
         <div className="mt-12">
-          <h4 className="font-semibold text-2xl pb-2">Leave your thoughts</h4>
           <CommentBox
             postAuthorId={postData?.author?._id}
             postId={postData?._id}

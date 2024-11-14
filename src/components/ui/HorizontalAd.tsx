@@ -13,7 +13,7 @@ const HorizontalAd = ({
     <div className={`sm:mt-12 mt-5 ${className} max-w-[1100px]`}>
       <a target="_blank" href={link}>
         <Image
-          className="md:rounded-md rounded-sm max-w-full h-auto"
+          className="md:rounded-md rounded-[4px] max-w-full h-auto"
           width={1100}
           height={350}
           src={image}
