@@ -57,7 +57,7 @@ const LoginModal = ({ isModalOpen, setIsModalOpen }: TModalProps) => {
           </FButton>
         </div>
       </FForm>
-      <div className="mt-4 flex justify-between items-center sm:text-base text-[15px]">
+      <div className="mt-4 flex sm:flex-row flex-col justify-between sm:items-center sm:text-base text-[15px]">
         <p>
           Don’t have an account?{" "}
           <Link className=" font-medium text-accent" href="/auth/register">

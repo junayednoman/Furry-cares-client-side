@@ -18,7 +18,7 @@ const config: Config = {
         primaryBg: "#D4EED1",
         text: "#2D2D2D",
         accentDark: "#e69622",
-        gray: "#dbdbdb",
+        grayColor: "#dbdbdb",
       },
       fontFamily: {
         montserrat: ["var(--font-montserrat)"],
