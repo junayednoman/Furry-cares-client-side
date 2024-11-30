@@ -12,7 +12,6 @@ const OwnPosts = ({ userId }: { userId: string }) => {
   // pagination
   const [pageSize, setPageSize] = useState(3);
   const [currentPage, setCurrentPage] = useState(1);
-  // console.log("pagesize: ", pageSize, "currentPage:", currentPage);
 
   const categoryFromSearchParams = useSearchParams().get("category");
 

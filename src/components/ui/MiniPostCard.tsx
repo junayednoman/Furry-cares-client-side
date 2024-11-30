@@ -16,11 +16,11 @@ const MiniPostCard = ({ post, index }: { post: TPost; index: number }) => {
     >
       <div className="flex sm:flex-row flex-col md:gap-4 gap-3">
         <Link
-          href={`/posts/${post?._id}`}
+          href={`/posts/${post?._id}?category=${post?.category}`}
           className="inline-block object-cover rounded-md "
         >
           <div
-            className={`bg-cover bg-center bg-no-repeat sm:min-h-[90px] min-h-[180px] sm:max-h-[90px] max-h-[200px] sm:min-w-[130px] min-w-full sm:max-w-[130px] max-w-full rounded-md bg-red-400`}
+            className={`bg-cover bg-center bg-no-repeat sm:min-h-[90px] min-h-[180px] sm:max-h-[90px] max-h-[200px] sm:min-w-[130px] min-w-full sm:max-w-[130px] max-w-full rounded-md`}
             style={{ backgroundImage: `url(${thumbnail})` }}
           ></div>
         </Link>
@@ -42,7 +42,7 @@ const MiniPostCard = ({ post, index }: { post: TPost; index: number }) => {
               </p>
             </div>
             <Link
-              href={`/posts/${post?._id}`}
+              href={`/posts/${post?._id}?category=${post?.category}`}
               className="sm:-mt-1 mt-2 inline-block"
             >
               <h5 className="text-base  font-semibold text-text">

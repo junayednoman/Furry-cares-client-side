@@ -78,8 +78,6 @@ const ProfilePage = ({ params }: { params: { userId: string } }) => {
     refetch();
   };
 
-  console.log("lengsit, ", user?.following?.length);
-
   return (
     <div className="md:py-14 py-3">
       <FContainer>

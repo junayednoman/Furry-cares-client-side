@@ -32,14 +32,13 @@ import { ShareAltOutlined } from "@ant-design/icons";
 import copyIcon from "@/assets/copy-icon.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import HorizontalAd from "@/components/ui/HorizontalAd";
+import envConfig from "@/config";
+import { useSearchParams } from "next/navigation";
 
-const PostContent = ({
-  postId,
-  postUrl,
-}: {
-  postId: string;
-  postUrl: string;
-}) => {
+const PostContent = ({ postId }: { postId: string }) => {
+  const category = useSearchParams().get("category");
+  const postUrl = `${envConfig?.base_url}/posts/${postId}?category=${category}`;
+
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { user } = useUserContext();
   const { mutateAsync: updatePostVote, isPending } = usePartialUpdate(

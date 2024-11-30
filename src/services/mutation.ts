@@ -13,7 +13,6 @@ export const handlePostFormData = async (url: string, formData: FormData) => {
     });
     return data;
   } catch (error: any) {
-    console.log('error insie, ', error?.response?.data);
     throw new Error(error?.response?.data?.message || "unable to create post!");
   }
 }
@@ -53,7 +52,6 @@ export const handlePatch = async (url: string, formData: FieldValues) => {
     });
     return data;
   } catch (error: any) {
-    console.log('error inside, ', error?.response?.data);
     throw new Error(error?.response?.data?.message || "unable to update!");
   }
 }

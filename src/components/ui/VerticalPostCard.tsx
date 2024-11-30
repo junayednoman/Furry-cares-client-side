@@ -20,7 +20,7 @@ const VerticalPostCard = ({ post }: { post: TPost }) => {
               </div>
             </Tooltip>
           )}
-          <Link href={`/posts/${post?._id}`}>
+          <Link href={`/posts/${post?._id}?category=${post?.category}`}>
             <div
               className="rounded-t-md w-full min-h-[240px] bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${post?.thumbnail})` }}
@@ -66,7 +66,7 @@ const VerticalPostCard = ({ post }: { post: TPost }) => {
           </div>
 
           <Link
-            href={`/posts/${post?._id}`}
+            href={`/posts/${post?._id}?category=${post?.category}`}
             className="text-text hover:text-accent inline-block mt-2"
           >
             <h4 className="text-[19px] font-semibold">
@@ -82,7 +82,10 @@ const VerticalPostCard = ({ post }: { post: TPost }) => {
               ) : (
                 <div className="">
                   <span>{post?.excerpt?.slice(0, 80)} </span>
-                  <Link className="text-slate-500" href={`/posts/${post?._id}`}>
+                  <Link
+                    className="text-slate-500"
+                    href={`/posts/${post?._id}?category=${post?.category}`}
+                  >
                     ...more
                   </Link>
                 </div>

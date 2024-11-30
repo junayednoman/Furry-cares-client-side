@@ -1,21 +1,23 @@
 import FContainer from "@/components/ui/Container";
 import RelatedPosts from "@/app/modules/post-details/RelatedPosts";
 import PostContent from "@/app/modules/post-details/PostContent";
-import envConfig from "@/config";
 import FeedSidebar from "@/app/modules/sidebar/FeedSidebar";
 import Faq from "@/app/modules/home/faq/Faq";
 import HorizontalAd from "@/components/ui/HorizontalAd";
 
-const PostDetails = ({ params }: { params: { postId: string } }) => {
+const PostDetails = ({
+  params,
+}: {
+  params: { postId: string; category: string };
+}) => {
   const postId = params.postId;
-  const postUrl = `${envConfig}/posts/${postId}`;
 
   return (
     <div className="md:pt-20 pt-12">
       <FContainer wide>
         <div className="grid xl:grid-cols-6 grid-cols-1 xl:gap-14 gap-y-12">
           <div className="col-span-4">
-            <PostContent postUrl={postUrl} postId={postId} />
+            <PostContent postId={postId} />
           </div>
           <div className="col-span-2">
             <FeedSidebar />

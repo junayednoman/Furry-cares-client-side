@@ -41,7 +41,6 @@ const ProfilePage = () => {
   }
 
   const user = postData?.data;
-  console.log("user.email, ", user.email);
   const tabsItems = [
     {
       label: "Posts",
@@ -59,8 +58,6 @@ const ProfilePage = () => {
       children: <Followings user={user} />,
     },
   ];
-
-  console.log("lengsit, ", user?.following?.length);
 
   return (
     <>

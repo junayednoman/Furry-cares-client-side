@@ -31,7 +31,7 @@ const PostTitleCard = ({ post, index }: { post: TPost; index: number }) => {
               </p>
             </div>
             <Link
-              href={`/posts/${post?._id}`}
+              href={`/posts/${post?._id}?category=${post?.category}`}
               className="sm:-mt-1 mt-2 inline-block"
             >
               <h5 className="sm:text-base text-[15px] font-semibold text-text">

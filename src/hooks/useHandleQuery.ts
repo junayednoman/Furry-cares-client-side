@@ -1,11 +1,12 @@
 import handleQuery from "@/services/handleQuery";
 import { useQuery } from "@tanstack/react-query";
 
-export const useHandleQuery = (queryKey: string, url: string, params?: Record<string, any>) => {
+export const useHandleQuery = (queryKey: string, url: string, params?: Record<string, any>, enabled?: boolean) => {
   return useQuery({
     queryKey: [queryKey],
     queryFn: async () => await handleQuery(url, params),
     refetchOnWindowFocus: false,
     refetchOnMount: false,
+    enabled
   });
 };

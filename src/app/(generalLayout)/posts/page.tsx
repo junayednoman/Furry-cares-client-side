@@ -18,11 +18,13 @@ const Feed = () => {
       </FContainer>
 
       <FContainer>
-        <HorizontalAd
-          className="mx-auto"
-          link="https://google.com"
-          image="https://firebasestorage.googleapis.com/v0/b/eimattro.appspot.com/o/advertisement%2Fimages%2F4c675238-d5f1-42d8-aae2-19de5174f612.png?alt=media"
-        />
+        <div className="xl:pt-16 pt-4">
+          <HorizontalAd
+            className="mx-auto"
+            link="https://google.com"
+            image="https://firebasestorage.googleapis.com/v0/b/eimattro.appspot.com/o/advertisement%2Fimages%2F4c675238-d5f1-42d8-aae2-19de5174f612.png?alt=media"
+          />
+        </div>
       </FContainer>
     </div>
   );

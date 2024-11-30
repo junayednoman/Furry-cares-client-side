@@ -7,6 +7,7 @@ import FSectionTitle from "@/components/ui/FSectionTitle";
 import { useAuthMutation } from "@/hooks/auth";
 import { registrationSchema } from "@/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler } from "react-hook-form";
@@ -23,6 +24,15 @@ const Register = () => {
   };
   return (
     <FContainer>
+      <div className="md:ml-24 ml-4 sm:mt-10 mt-6">
+        <Link
+          href={"/"}
+          className="text-xl font-medium flex w-fit items-center gap-2"
+        >
+          <ArrowLeft size={25} />
+          Back to home
+        </Link>
+      </div>
       <div className="md:max-w-[500px] mx-auto w-full md:py-20 py-16">
         <FSectionTitle heading="Register" subHeading="Create your account" />
         <FForm

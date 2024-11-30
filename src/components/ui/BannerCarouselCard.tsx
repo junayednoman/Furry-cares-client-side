@@ -23,7 +23,7 @@ const BannerCarouselCard = ({ post }: { post: TPost }) => {
       </div>
 
       {/* Content Overlay */}
-      <Link href={`/posts/${post?._id}`}>
+      <Link href={`/posts/${post?._id}?category=${post?.category}`}>
         <div className="absolute inset-0 flex flex-col justify-end sm:p-14 p-7 py-6">
           {/* Tag */}
           <div className="w-fit text-primaryBg flex items-center mb-3">

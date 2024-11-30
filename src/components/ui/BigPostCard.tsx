@@ -20,9 +20,9 @@ const BigPostCard = ({ post }: { post: TPost }) => {
   } = post || {};
   return (
     <Card className="flex flex-row border-none p-0 duration-300">
-      <div className="grid md:grid-cols-5 grid-cols-1 xl:gap-10 md:gap-6 gap-y-3">
+      <div className="grid md:grid-cols-5 grid-cols-1 xl:gap-7 md:gap-6 gap-y-3">
         <div className="col-span-2">
-          <Link href={`/posts/${post?._id}`}>
+          <Link href={`/posts/${post?._id}?category=${post?.category}`}>
             <Image
               className="lg:min-h-[240px] md:min-h-[200px] min-h-[240px] w-full rounded-[8px]"
               src={thumbnail}
@@ -51,7 +51,7 @@ const BigPostCard = ({ post }: { post: TPost }) => {
                 </p>
               </div>
             </div>
-            <Link href={`/posts/${post?._id}`}>
+            <Link href={`/posts/${post?._id}?category=${post?.category}`}>
               <Heading3>
                 {title?.length > 60 ? title.slice(0, 60) + "..." : title}
               </Heading3>

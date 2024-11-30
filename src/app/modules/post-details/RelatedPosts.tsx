@@ -3,13 +3,17 @@ import FSectionTitle from "@/components/ui/FSectionTitle";
 import VerticalPostCard from "@/components/ui/VerticalPostCard";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { TPost } from "@/types/post.type";
 import { useHandleQuery } from "@/hooks/useHandleQuery";
 import FeaturedStoriesSkeleton from "@/app/(generalLayout)/skeletons/FeaturedStoriesSkeleton";
+import { useSearchParams } from "next/navigation";
 const RelatedPosts = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
+  const category = useSearchParams().get("category");
+
+  // Slider states
+  const currentSlide = useRef(0);
+  const loaded = useRef(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: true,
@@ -29,10 +33,11 @@ const RelatedPosts = () => {
       },
       initial: 0,
       slideChanged(slider) {
-        setCurrentSlide(slider.track.details.rel);
+        // Update ref directly instead of triggering re-render
+        currentSlide.current = slider.track.details.rel;
       },
       created() {
-        setLoaded(true);
+        loaded.current = true;
       },
     },
     [
@@ -67,67 +72,68 @@ const RelatedPosts = () => {
     ]
   );
 
-  const { data, isLoading, isError } = useHandleQuery(
+  const { data, isFetching, refetch } = useHandleQuery(
     "get-related-posts",
     "/posts",
     {
+      category,
       sort: "-votes",
       limit: 6,
     }
   );
 
+  useEffect(() => {
+    if (category) {
+      refetch();
+    }
+  }, [category, refetch]);
+
   const postData = data?.data?.result;
-  if (isLoading) {
+  if (isFetching || !postData || postData?.length < 1) {
     return <FeaturedStoriesSkeleton heading="Related posts" />;
   }
 
-  if (isError || !postData || postData?.length < 1) {
-    return null;
-  }
-
   return (
-    <>
-      <div className="md:py-24 py-16 overflow-hidden">
-        <FSectionTitle heading="Related posts" />
-        <div className="xl:mx-10">
-          <div className="navigation-wrapper w-full relative">
-            <div ref={sliderRef} className="keen-slider mt-10">
-              {postData?.map((post: TPost, index: number) => (
-                <div
-                  key={post._id}
-                  className={`keen-slider__slide px-3 pb-6 number-slide${
-                    index + 1
-                  }`}
-                >
-                  <VerticalPostCard post={post} />
-                </div>
-              ))}
-            </div>
-            {loaded && instanceRef.current && (
-              <>
-                <Arrow
-                  left
-                  onClick={(e: any) =>
-                    e.stopPropagation() || instanceRef.current?.prev()
-                  }
-                  disabled={currentSlide === 0}
-                />
+    <div className="md:py-24 py-16 overflow-hidden">
+      <FSectionTitle heading="Related posts" />
 
-                <Arrow
-                  onClick={(e: any) =>
-                    e.stopPropagation() || instanceRef.current?.next()
-                  }
-                  disabled={
-                    currentSlide ===
-                    instanceRef?.current?.track?.details?.slides?.length - 1
-                  }
-                />
-              </>
-            )}
+      <div className="xl:mx-10">
+        <div className="navigation-wrapper w-full relative">
+          <div ref={sliderRef} className="keen-slider mt-10">
+            {postData?.map((post: TPost, index: number) => (
+              <div
+                key={post._id}
+                className={`keen-slider__slide px-3 pb-6 number-slide${
+                  index + 1
+                }`}
+              >
+                <VerticalPostCard post={post} />
+              </div>
+            ))}
           </div>
+          {loaded.current && instanceRef.current && (
+            <>
+              <Arrow
+                left
+                onClick={(e: any) =>
+                  e.stopPropagation() || instanceRef.current?.prev()
+                }
+                disabled={currentSlide.current === 0}
+              />
+              <Arrow
+                onClick={(e: any) =>
+                  e.stopPropagation() || instanceRef.current?.next()
+                }
+                disabled={
+                  currentSlide.current ===
+                  instanceRef?.current?.track?.details?.slides?.length - 1
+                }
+              />
+            </>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default RelatedPosts;

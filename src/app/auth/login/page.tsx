@@ -9,6 +9,8 @@ import { useUserContext } from "@/context/auth.provider";
 import { useAuthMutation } from "@/hooks/auth";
 import { loginSchema } from "@/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Collapse, CollapseProps } from "antd";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, Suspense } from "react";
@@ -44,10 +46,43 @@ const LoginForm = () => {
     setUserLoading(true);
   };
 
+  const accordionItems: CollapseProps["items"] = [
+    {
+      key: "1",
+      label: "Login Credentials",
+      children: (
+        <div className="flex items-center flex-wrap gap-6">
+          <div>
+            <h4>Admin</h4>
+            <p>email: junayednoman055@gmail.com</p>
+            <p>pass: noman05</p>
+          </div>
+          <div>
+            <h4>User</h4>
+            <p>email: junayednoman6@gmail.com</p>
+            <p>pass: noman05</p>
+          </div>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <FContainer>
+      <div className="md:ml-24 ml-4 sm:mt-10 mt-6">
+        <Link
+          href={"/"}
+          className="text-xl font-medium flex w-fit items-center gap-2"
+        >
+          <ArrowLeft size={25} />
+          Back to home
+        </Link>
+      </div>
       <div className="md:max-w-[500px] mx-auto w-full md:py-20 py-16">
         <FSectionTitle heading="Login" subHeading="Login to your account" />
+        <div className="flex gap-1 my-6">
+          <Collapse items={accordionItems} />
+        </div>
         <FForm
           defaultValues={defaultValues}
           resolver={zodResolver(loginSchema)}

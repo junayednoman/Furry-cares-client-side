@@ -4,13 +4,13 @@ import FSectionTitle from "@/components/ui/FSectionTitle";
 import VerticalPostCard from "@/components/ui/VerticalPostCard";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { useState } from "react";
+import { useRef } from "react";
 import { TPost } from "@/types/post.type";
 import { useHandleQuery } from "@/hooks/useHandleQuery";
 import FeaturedStoriesSkeleton from "@/app/(generalLayout)/skeletons/FeaturedStoriesSkeleton";
 const FeaturedStories = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
+  const currentSlide = useRef(0);
+  const loaded = useRef(false);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: true,
@@ -30,10 +30,10 @@ const FeaturedStories = () => {
       },
       initial: 0,
       slideChanged(slider) {
-        setCurrentSlide(slider.track.details.rel);
+        currentSlide.current = slider.track.details.rel;
       },
       created() {
-        setLoaded(true);
+        loaded.current = true;
       },
     },
     [
@@ -68,7 +68,7 @@ const FeaturedStories = () => {
     ]
   );
 
-  const { data, isFetching, isLoading, isError } = useHandleQuery(
+  const { data, isFetching, isError } = useHandleQuery(
     "get-featured-stories",
     "/posts",
     {
@@ -79,7 +79,8 @@ const FeaturedStories = () => {
   );
 
   const postData = data?.data?.result;
-  if (isFetching || isLoading || isError || !postData || postData?.length < 1) {
+  console.log("postData", postData);
+  if (isFetching || isError || !postData || postData?.length < 1) {
     return (
       <FeaturedStoriesSkeleton
         heading="featured stories"
@@ -110,14 +111,14 @@ const FeaturedStories = () => {
                   </div>
                 ))}
               </div>
-              {loaded && instanceRef.current && (
+              {loaded.current && instanceRef.current && (
                 <>
                   <Arrow
                     left
                     onClick={(e: any) =>
                       e.stopPropagation() || instanceRef.current?.prev()
                     }
-                    disabled={currentSlide === 0}
+                    disabled={currentSlide.current === 0}
                   />
 
                   <Arrow
@@ -125,7 +126,7 @@ const FeaturedStories = () => {
                       e.stopPropagation() || instanceRef.current?.next()
                     }
                     disabled={
-                      currentSlide ===
+                      currentSlide.current ===
                       instanceRef?.current?.track?.details?.slides?.length - 1
                     }
                   />

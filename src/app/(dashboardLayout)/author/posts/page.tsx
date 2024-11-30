@@ -24,7 +24,6 @@ const Posts = () => {
     refetch: refetchPostData,
   } = useHandleQuery("my-posts", `/posts/user/${user?._id}`);
 
-  console.log("userIdToBeDeleted, ", postIdToBeDeleted);
   const postData = data?.data?.result;
 
   // delete post
@@ -46,7 +45,6 @@ const Posts = () => {
     isPublished: post.isPublished,
   }));
 
-  console.log("postItems, ", postData);
   const columns = [
     {
       title: "Title",

@@ -50,9 +50,6 @@ const FUploading = ({
             onChange={onChange}
             name={name}
             listType={listType}
-            onDrop={(e) => {
-              console.log("Dropped files", e.dataTransfer.files);
-            }}
           >
             <p className="ant-upload-drag-icon">
               <FileUp />

@@ -9,7 +9,6 @@ import MiniPostCard from "@/components/ui/MiniPostCard";
 const FeedSidebar = async () => {
   const posts = await getFeaturedPosts("/posts?sort=-votes&limit=4");
   const postData = posts?.data?.result;
-  console.log("postData, ", postData);
   return (
     <>
       <div>

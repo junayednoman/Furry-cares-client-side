@@ -23,7 +23,7 @@ const ClassicPostsCard = ({ post }: { post: TPost }) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
 
       {/* Content Overlay */}
-      <Link href={`/posts/${post?._id}`}>
+      <Link href={`/posts/${post?._id}?category=${post?.category}`}>
         <div className="absolute inset-0 flex flex-col justify-end sm:p-8 p-7 py-6">
           {/* category */}
           <div className="w-fit text-primaryBg flex items-center">

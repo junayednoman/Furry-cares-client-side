@@ -9,7 +9,6 @@ const handleQuery = async (url: string, params?: Record<string, any>) => {
     // await delay(3000);
     return data;
   } catch (error: any) {
-    console.log(error?.response?.data);
     throw new Error(error?.response?.data?.message || "Something went wrong!");
   }
 }
